@@ -1,0 +1,87 @@
+@font-face {
+  font-display: swap;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/manrope-v19-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/manrope-v19-latin-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  src: url('../fonts/manrope-v19-latin-800.woff2') format('woff2');
+}
+
+:root {
+  --font-family: "Manrope", sans-serif;
+  --line-height: 1.5;
+  --font-weight: 400;
+  --font-size: 16px;
+
+  --color: #070721;
+  --background-color: #f7fffb;
+
+  --link-color: #374f42;
+
+  --button-border-main: #649179;
+  --button-bg-main: #649179;
+  --button-bg-main-hover: #374f42;
+  --button-color-main: #f7fffb;
+
+  --button-border-secondary: #070721;
+  --button-bg-secondary: transparent;
+  --button-bg-secondary-hover: #f7fffb;
+  --button-color-secondary: #070721;
+
+  --main-icon-fill: #374f42;
+  --main-icon-fill-hover: #374f42;
+  --secondary-icon-fill: #070721;
+  --icon-fill-hover: #d1e0d8;
+
+  --filter-bg-hover: #d1e0d8;
+
+  --card-bg: #d1e0d8;
+
+  --backdrop-bg: rgba(0, 0, 0, 0.6);
+
+  --error-border-color: #FF4500;
+  --error-text-color: #FF4500;
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+  font-weight: var(--font-weight);
+  font-size: var(--font-size);
+  color: var(--color);
+  background-color: var(--background-color);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  white-space: nowrap;
+  clip-path: none;
+  overflow: hidden;
+  opacity: 0;
+  z-index: -1;
+}

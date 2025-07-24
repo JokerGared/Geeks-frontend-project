@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+  <defs>
+    <symbol id="icon-filter-arrow" viewBox="0 0 30 32">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.882" d="m23.529 11.765-8.471 8.471-8.471-8.471"/>
+    </symbol>
+    <symbol id="icon-edit" viewBox="0 0 32 32">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.333" d="M11.615 25.5H6.5v-5.125L17.096 9.758M11.615 25.5H25.5m-13.885 0 10.596-10.617m-5.115-5.125 2.192-2.197c1.413-1.415 3.703-1.415 5.115 0s1.413 3.71 0 5.125l-2.192 2.197m-5.115-5.125 5.115 5.125"/>
+    </symbol>
+    <symbol id="icon-arrow" viewBox="0 0 31 32">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.28" d="M6.24 25.12 24.473 6.88m0 0h-9.82m9.82 0v9.82"/>
+    </symbol>
+    <symbol id="icon-save" viewBox="0 0 32 32">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.333" d="M15.996 4.667c1.685 0 3.231.161 4.457.348 1.552.236 2.768 1.299 3.115 2.785.418 1.794.828 4.522.758 8.187-.078 4.044-.668 6.962-1.237 8.866-.154.515-.51.78-.913.848-.421.071-.941-.069-1.363-.49-.769-.766-1.65-1.593-2.462-2.232a9.094 9.094 0 0 0-1.184-.811c-.353-.196-.767-.374-1.171-.374-.397 0-.825.175-1.199.367-.399.205-.84.486-1.292.805-.905.639-1.907 1.466-2.789 2.233-.466.405-1.014.5-1.447.383-.417-.114-.769-.434-.878-.992-.372-1.917-.725-4.749-.725-8.59 0-3.831.395-6.534.788-8.273.326-1.442 1.502-2.468 3.014-2.702a29.972 29.972 0 0 1 4.527-.358z"/>
+    </symbol>
+    <symbol id="icon-burger" viewBox="0 0 34 32">
+      <path stroke-linecap="round" stroke-width="1.422" d="M8 7.289h18.133M8 20.089h18.133M8 13.689h18.133"/>
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 34 32">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.422" d="m7.467 4.622 9.6 9.6m0 0-9.6 9.6m9.6-9.6 9.6 9.6m-9.6-9.6 9.6-9.6"/>
+    </symbol>
+    <symbol id="icon-exit" viewBox="0 0 32 32">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.28" d="M13.194 6.88H9.686A2.806 2.806 0 0 0 6.88 9.686v12.628a2.806 2.806 0 0 0 2.806 2.806h3.508M11.68 16h14.031m0 0-4.209 4.209M25.711 16l-4.209-4.209"/>
+    </symbol>
+  </defs>
+</svg>
