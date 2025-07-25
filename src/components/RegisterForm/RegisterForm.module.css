@@ -1,98 +1,3 @@
-/* .form {
-  border: 1px solid #5a4630;
-  border-radius: 8px;
-  background-color: transparent;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 280px;
-  padding: 20px;
-  margin-bottom: 30px;
-}
-
-.labelInputContainer {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-}
-
-.label {
-  padding-bottom: 4px;
-}
-
-.input {
-  font-size: 14px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin: 5px;
-  &:hover,
-  &:focus {
-    transition: box-shadow 0.3s ease;
-    border-color: 1px solid rgba(255, 241, 162, 0.2);
-    box-shadow: 0 0 5px 2px rgba(126, 88, 60, 0.3);
-    outline: none;
-  }
-}
-
-.error {
-  color: #f00;
-}
-
-.registrationPageTitle {
-  margin-bottom: 20px;
-}
-
-.registrationButton {
-  width: 50%;
-  font-size: 16px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #5a4630;
-  color: #fff;
-  cursor: pointer;
-  margin-top: 10px;
-
-  &:disabled {
-    cursor: no-drop;
-  }
-
-  &:hover {
-    transition: box-shadow 0.5s ease;
-    border-color: 1px solid rgba(255, 241, 162, 0.2);
-    box-shadow: 0 0 5px 2px rgba(126, 88, 60, 0.3);
-    background-color: #fff8f0;
-    color: #5a4630;
-    font-size: 15px;
-    outline: none;
-  }
-.registrationButton {
-  background-color: var(--green);
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-family: var(--body-md-semibold-font-family);
-  font-size: var(--body-md-semibold-font-size);
-  font-weight: var(--body-md-semibold-font-weight);
-  padding: 12px 16px;
-  border-radius: 64px;
-  transition: all 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-
-  &:disabled {
-    cursor: no-drop;
-  }
-
-  &:hover {
-    background-color: rgba(100, 145, 121, 0.9);
-  }
-} */
-
-@import url("https://fonts.googleapis.com/css?family=Manrope:400,700");
-
 .registerContainer {
   position: relative;
   width: 100%;
@@ -106,8 +11,10 @@
 }
 
 /* Registration Form Styles */
+
 .registrationCard {
-  width: 392px;
+  width: 100%;
+  max-width: 360px;
   background-color: #d1e0d8;
   border-radius: 32px;
   border: none;
@@ -124,7 +31,7 @@
 
 .title {
   align-self: stretch;
-  font-family: "Manrope", Helvetica;
+  font-family: 'Manrope', Helvetica;
   font-size: 32px;
   font-style: normal;
   font-weight: 700;
@@ -137,7 +44,7 @@
 
 .subtitle {
   width: 278px;
-  font-family: "Manrope", Helvetica;
+  font-family: 'Manrope', Helvetica;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -177,7 +84,7 @@
 
 .label {
   align-self: stretch;
-  font-family: "Manrope", Helvetica;
+  font-family: 'Manrope', Helvetica;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -189,7 +96,7 @@
 .input {
   background-color: white;
   border: 1px solid #9f9f9f;
-  font-family: "Manrope", Helvetica;
+  font-family: 'Manrope', Helvetica;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -208,7 +115,7 @@
 }
 
 .error {
-  font-family: "Manrope", Helvetica;
+  font-family: 'Manrope', Helvetica;
   font-size: 12px;
   color: #e53e3e;
   margin-top: 4px;
@@ -222,7 +129,7 @@
 .passwordInput {
   background-color: white;
   border: 1px solid #9f9f9f;
-  font-family: "Manrope", Helvetica;
+  font-family: 'Manrope', Helvetica;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -256,7 +163,7 @@
   background-color: #649179;
   border-radius: 64px;
   color: white;
-  font-family: "Manrope", Helvetica;
+  font-family: 'Manrope', Helvetica;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -272,9 +179,13 @@
   cursor: not-allowed;
 }
 
+.registrationButton:hover {
+  opacity: 0.6;
+}
+
 .loginPrompt {
   align-self: stretch;
-  font-family: "Manrope", Helvetica;
+  font-family: 'Manrope', Helvetica;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -285,7 +196,7 @@
 }
 
 .loginLinkBottom {
-  font-family: "Manrope", Helvetica;
+  font-family: 'Manrope', Helvetica;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -293,4 +204,18 @@
   line-height: normal;
   text-decoration: underline;
   color: #070721;
+}
+
+/* Tablet (min-width: 768px) */
+@media only screen and (min-width: 768px) {
+  .registrationCard {
+    max-width: 522px;
+  }
+}
+
+/* Desktop (min-width: 1440px) */
+@media only screen and (min-width: 1440px) {
+  .registrationCard {
+    max-width: 392px;
+  }
 }

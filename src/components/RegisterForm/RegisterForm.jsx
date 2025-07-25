@@ -1,144 +1,33 @@
-// // import s from './RegisterForm.module.css';
-
-// // const RegisterForm = () => {
-// //   return <div>Register Form</div>;
-// // };
-
-// export default RegisterForm;
-// import s from "./RegisterForm.module.css";
-// import { ErrorMessage, Field, Form, Formik } from "formik";
-// import * as Yup from "yup";
-// // import { useDispatch } from "react-redux";
-// // import { registration } from "../../redux/auth/operations";
-
-// const initialValues = {
-//   name: "",
-//   email: "",
-//   password: "",
-//   confirmPassword: "",
-// };
-
-// const emailRegular = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-// const validationSchema = Yup.object().shape({
-//   username: Yup.string()
-//     .min(2, "Too Short!")
-//     .max(16, "Too Long!")
-//     .required("Required"),
-//   email: Yup.string()
-//     .matches(emailRegular, "Wrong email format")
-//     .required("Required"),
-//   password: Yup.string().min(7, "Minimum 7 characters").required("Required"),
-// });
-
-// const RegisterForm = () => {
-//   // const dispatch = useDispatch();
-
-//   const handleSubmit = (values, action) => {
-//     const newContact = {
-//       name: values.username,
-//       email: values.email,
-//       password: values.password,
-//       confirmPassword: values.confirmPassword,
-//     };
-
-//     // dispatch(registration(newContact));
-
-//     action.resetForm();
-//   };
-//   return (
-//     <Formik
-//       initialValues={initialValues}
-//       onSubmit={handleSubmit}
-//       validationSchema={validationSchema}
-//     >
-//       {({ dirty }) => (
-//         <Form className={s.form}>
-//           <div className={s.labelInputContainer}>
-//             <label className={s.label} htmlFor="username">
-//               Enter your name
-//             </label>
-//             <Field
-//               className={s.input}
-//               type="text"
-//               name="username"
-//               placeholder=""
-//             />
-//             <ErrorMessage name="username" className={s.error} component="div" />
-//           </div>
-
-//           <div className={s.labelInputContainer}>
-//             <label className={s.label} htmlFor="email">
-//               Enter your email address
-//             </label>
-//             <Field
-//               type="email"
-//               name="email"
-//               className={s.input}
-//               placeholder=""
-//             />
-//             <ErrorMessage name="email" className={s.error} component="div" />
-//           </div>
-
-//           <div className={s.labelInputContainer}>
-//             <label className={s.label} htmlFor="password">
-//               Create a strong password
-//             </label>
-//             <Field
-//               className={s.input}
-//               type="password"
-//               name="password"
-//               placeholder=""
-//               autoComplete="false"
-//             />
-//             <ErrorMessage name="password" className={s.error} component="div" />
-//           </div>
-
-//           <button
-//             type="submit"
-//             className={s.registrationButton}
-//             disabled={!dirty}
-//           >
-//             Create account
-//           </button>
-//         </Form>
-//       )}
-//     </Formik>
-//   );
-// };
-
-// export default RegisterForm;
-
-import s from "./RegisterForm.module.css";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import * as Yup from "yup";
-import { useState } from "react";
-import { EyeIcon } from "lucide-react";
-// // import { useDispatch } from "react-redux";
-// // import { registration } from "../../redux/auth/operations";
+import s from './RegisterForm.module.css';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import * as Yup from 'yup';
+import { useState } from 'react';
+import { EyeIcon } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+// import { registration } from '../../redux/auth/operations';
 
 const initialValues = {
-  name: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
+  name: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
 };
 
 const emailRegular = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
-    .min(2, "Name must be at least 2 characters")
-    .required("Name is required"),
+    .min(2, 'Name must be at least 2 characters')
+    .required('Name is required'),
   email: Yup.string()
-    .matches(emailRegular, "Invalid email address")
-    .required("Email is required"),
+    .matches(emailRegular, 'Invalid email address')
+    .required('Email is required'),
   password: Yup.string()
-    .min(8, "Password must be at least 8 characters")
-    .required("Password is required"),
+    .min(8, 'Password must be at least 8 characters')
+    .required('Password is required'),
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password"), null], "Passwords must match")
-    .required("Please confirm your password"),
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .required('Please confirm your password'),
 });
 
 const RegisterForm = () => {
@@ -147,7 +36,7 @@ const RegisterForm = () => {
   // const dispatch = useDispatch();
 
   const handleSubmit = (values, action) => {
-    console.log("Form submitted:", values);
+    console.log('Form submitted:', values);
     // Handle form submission here
     setTimeout(() => {
       action.setSubmitting(false);
@@ -215,7 +104,7 @@ const RegisterForm = () => {
                     <div className={s.passwordField}>
                       <Field
                         className={s.passwordInput}
-                        type={showPassword ? "text" : "password"}
+                        type={showPassword ? 'text' : 'password'}
                         name="password"
                         placeholder="*********"
                         autoComplete="new-password"
@@ -239,7 +128,7 @@ const RegisterForm = () => {
                     <div className={s.passwordField}>
                       <Field
                         className={s.passwordInput}
-                        type={showConfirmPassword ? "text" : "password"}
+                        type={showConfirmPassword ? 'text' : 'password'}
                         name="confirmPassword"
                         placeholder="*********"
                         autoComplete="new-password"
@@ -264,7 +153,7 @@ const RegisterForm = () => {
                   className={s.registrationButton}
                   disabled={!dirty || isSubmitting}
                 >
-                  {isSubmitting ? "Creating account..." : "Create account"}
+                  {isSubmitting ? 'Creating account...' : 'Create account'}
                 </button>
               </Form>
             )}

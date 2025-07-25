@@ -1,20 +1,6 @@
 .regPageContainers {
-  /* margin-top: 20px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
-/* .regTextContainer {
-  margin-bottom: 40px;
-}
-
-.regPageTitle {
-  text-align: center;
-  margin-bottom: 6px;
-}
-
-.regPageDesc {
-  text-align: center;
-} */
