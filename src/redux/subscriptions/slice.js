@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 import {
   fetchSubscriptions,
   subscribeToAuthor,
   unsubscribeFromAuthor,
-} from "./operations";
+} from './operations.js';
 
 const initialState = {
   list: [],
@@ -12,7 +12,7 @@ const initialState = {
 };
 
 const subscriptionsSlice = createSlice({
-  name: "subscriptions",
+  name: 'subscriptions',
   initialState,
   extraReducers: (builder) => {
     builder
@@ -47,7 +47,7 @@ const subscriptionsSlice = createSlice({
       .addCase(unsubscribeFromAuthor.fulfilled, (state, action) => {
         state.isLoading = false;
         state.list = state.list.filter(
-          (author) => author._id !== action.payload._id
+          (author) => author._id !== action.payload._id,
         );
       })
       .addCase(unsubscribeFromAuthor.rejected, (state, action) => {

@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 import {
-  addToFavorites,
   fetchFavorites,
+  addToFavorites,
   removeFromFavorites,
-} from "./operations";
+} from './operations.js';
 
 const initialState = {
   items: [],
@@ -12,7 +12,7 @@ const initialState = {
 };
 
 const favoritesSlice = createSlice({
-  name: "favorites",
+  name: 'favorites',
   initialState,
   extraReducers: (builder) => {
     builder
@@ -47,7 +47,7 @@ const favoritesSlice = createSlice({
       .addCase(removeFromFavorites.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items = state.items.filter(
-          (article) => article._id !== action.payload._id
+          (article) => article._id !== action.payload._id,
         );
       })
       .addCase(removeFromFavorites.rejected, (state, action) => {
