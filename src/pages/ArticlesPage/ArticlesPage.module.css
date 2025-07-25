@@ -1,0 +1,44 @@
+.articlesPageWrapper {
+  padding: 24px;
+}
+
+.pageTitle {
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.counterContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 8px;
+  margin-bottom: 16px;
+}
+
+.articleCounter {
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #070721;
+  margin: 0;
+}
+
+.filterSelect {
+  width: 169px;
+  height: 33px;
+  padding: 4px 8px;
+  border: 1px solid #9f9f9f;
+  border-radius: 4px;
+  background: #f7fffb;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 155%;
+  color: #595d62;
+  cursor: not-allowed;
+  margin: 0;
+}
