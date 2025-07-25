@@ -5,7 +5,7 @@
 }
 
 .section {
-  padding: 72px 0;
+  padding-bottom: 72px;
 }
 
 @media only screen and (min-width: 768px) {
