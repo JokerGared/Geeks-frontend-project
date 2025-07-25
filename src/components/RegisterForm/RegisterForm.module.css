@@ -1,0 +1,296 @@
+/* .form {
+  border: 1px solid #5a4630;
+  border-radius: 8px;
+  background-color: transparent;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 280px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.labelInputContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.label {
+  padding-bottom: 4px;
+}
+
+.input {
+  font-size: 14px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 5px;
+  &:hover,
+  &:focus {
+    transition: box-shadow 0.3s ease;
+    border-color: 1px solid rgba(255, 241, 162, 0.2);
+    box-shadow: 0 0 5px 2px rgba(126, 88, 60, 0.3);
+    outline: none;
+  }
+}
+
+.error {
+  color: #f00;
+}
+
+.registrationPageTitle {
+  margin-bottom: 20px;
+}
+
+.registrationButton {
+  width: 50%;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #5a4630;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 10px;
+
+  &:disabled {
+    cursor: no-drop;
+  }
+
+  &:hover {
+    transition: box-shadow 0.5s ease;
+    border-color: 1px solid rgba(255, 241, 162, 0.2);
+    box-shadow: 0 0 5px 2px rgba(126, 88, 60, 0.3);
+    background-color: #fff8f0;
+    color: #5a4630;
+    font-size: 15px;
+    outline: none;
+  }
+.registrationButton {
+  background-color: var(--green);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: var(--body-md-semibold-font-family);
+  font-size: var(--body-md-semibold-font-size);
+  font-weight: var(--body-md-semibold-font-weight);
+  padding: 12px 16px;
+  border-radius: 64px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  &:disabled {
+    cursor: no-drop;
+  }
+
+  &:hover {
+    background-color: rgba(100, 145, 121, 0.9);
+  }
+} */
+
+@import url("https://fonts.googleapis.com/css?family=Manrope:400,700");
+
+.registerContainer {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f7fffb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* Registration Form Styles */
+.registrationCard {
+  width: 392px;
+  background-color: #d1e0d8;
+  border-radius: 32px;
+  border: none;
+  box-shadow: none;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 48px 32px;
+}
+
+.title {
+  align-self: stretch;
+  font-family: "Manrope", Helvetica;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0px;
+  line-height: normal;
+  color: #070721;
+  text-align: center;
+  margin: 0;
+}
+
+.subtitle {
+  width: 278px;
+  font-family: "Manrope", Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 155%;
+  color: #070721;
+  text-align: center;
+  margin: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 27px;
+  align-self: stretch;
+  width: 100%;
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+  width: 100%;
+}
+
+.labelInputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+  width: 100%;
+}
+
+.label {
+  align-self: stretch;
+  font-family: "Manrope", Helvetica;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: normal;
+  color: #070721;
+}
+
+.input {
+  background-color: white;
+  border: 1px solid #9f9f9f;
+  font-family: "Manrope", Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 155%;
+  color: #595d62;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #649179;
+}
+
+.error {
+  font-family: "Manrope", Helvetica;
+  font-size: 12px;
+  color: #e53e3e;
+  margin-top: 4px;
+}
+
+.passwordField {
+  position: relative;
+  width: 100%;
+}
+
+.passwordInput {
+  background-color: white;
+  border: 1px solid #9f9f9f;
+  font-family: "Manrope", Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 155%;
+  color: #595d62;
+  width: 100%;
+  padding: 8px 40px 8px 12px;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.passwordInput:focus {
+  outline: none;
+  border-color: #649179;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  color: #595d62;
+  cursor: pointer;
+}
+
+.registrationButton {
+  width: 100%;
+  background-color: #649179;
+  border-radius: 64px;
+  color: white;
+  font-family: "Manrope", Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0px;
+  line-height: normal;
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+.registrationButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.loginPrompt {
+  align-self: stretch;
+  font-family: "Manrope", Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  color: #070721;
+  text-align: center;
+  line-height: 24.8px;
+  margin: 0;
+}
+
+.loginLinkBottom {
+  font-family: "Manrope", Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0px;
+  line-height: normal;
+  text-decoration: underline;
+  color: #070721;
+}
