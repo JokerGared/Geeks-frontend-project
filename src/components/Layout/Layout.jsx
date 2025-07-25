@@ -2,7 +2,7 @@ import { Suspense, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import MobileMenu from '../MobileMenu/MobileMenu';
+import Container from '../Container/Container';
 
 const Layout = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,9 +19,11 @@ const Layout = () => {
     <>
       <Header onOpenMobileMenu={handleOpenMobileMenu} />
       <main>
-        <Suspense fallback={<div>Завантаження...</div>}>
-          <Outlet />
-        </Suspense>
+        <Container>
+          <Suspense fallback={<div>Завантаження...</div>}>
+            <Outlet />
+          </Suspense>
+        </Container>
       </main>
       <Footer />
       <MobileMenu isOpen={isOpen} onCloseMobileMenu={handleCloseMobileMenu} />
