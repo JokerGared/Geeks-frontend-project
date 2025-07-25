@@ -1,7 +1,7 @@
-import s from "./Heder.module.css";
-import Navigation from "../Navigation/Navigation";
-import AuthNav from "../AuthNav/AuthNav";
-import UserMenu from "../UserMenu/UserMenu";
+import s from './Header.module.css';
+import Navigation from '../Navigation/Navigation';
+import AuthNav from '../AuthNav/AuthNav';
+import UserMenu from '../UserMenu/UserMenu';
 
 const Header = () => {
   const isLoggedIn = true;
