@@ -1,4 +1,4 @@
-@import 'node_modules/modern-normalize/modern-normalize.css';
+@import "modern-normalize/modern-normalize.css";
 
 @font-face {
   font-display: swap;
@@ -86,4 +86,21 @@ body {
   overflow: hidden;
   opacity: 0;
   z-index: -1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
