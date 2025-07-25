@@ -127,3 +127,9 @@ img {
 address {
   font-style: normal;
 }
+
+/*=========== Common styles ===========*/
+
+section {
+  padding-bottom: 72px;
+}
