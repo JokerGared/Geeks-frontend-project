@@ -1,0 +1,89 @@
+.card {
+  width: 361px;
+  min-width: 320px;
+  padding: 12px;
+  background: #d1e0d8;
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.image {
+  width: 337px;
+  height: 233px;
+  border-radius: 24px;
+  object-fit: cover;
+}
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 337px;
+  margin-top: 12px;
+}
+
+.author {
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #070721;
+  margin-bottom: 4px;
+}
+
+.title {
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #070721;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 155%;
+  color: #070721;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.actions {
+  width: 337px;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.learnMore {
+  width: 289px;
+  height: 40px;
+  padding: 8px;
+  border: 1px solid #374f42;
+  border-radius: 64px;
+  background: transparent;
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #374f42;
+  cursor: pointer;
+}
+
+.save {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border: 1px solid #374f42;
+  border-radius: 64px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
