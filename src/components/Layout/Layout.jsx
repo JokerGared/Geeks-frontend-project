@@ -2,6 +2,7 @@ import { Suspense, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import MobileMenu from '../MobileMenu/MobileMenu';
 
 const Layout = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +24,7 @@ const Layout = () => {
         </Suspense>
       </main>
       <Footer />
+      <MobileMenu isOpen={isOpen} onCloseMobileMenu={handleCloseMobileMenu} />
     </>
   );
 };

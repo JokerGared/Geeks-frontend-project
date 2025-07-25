@@ -3,7 +3,6 @@ import s from './Navigation.module.css';
 import { NavLink, Link, useParams } from 'react-router-dom';
 import UserMenu from '../UserMenu/UserMenu';
 import AuthNav from '../AuthNav/AuthNav';
-import { useMediaQuery } from 'react-responsive';
 
 const handleActiveClass = ({ isActive }) => {
   return clsx(s.navLink, isActive && s.active);
