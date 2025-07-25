@@ -7,12 +7,9 @@ const handleActiveClass = ({ isActive }) => {
 };
 
 const UserMenu = () => {
-  const currentUserId = '123';
-  // const currentUserId = useSelector(selectUserId);
-
   return (
     <>
-      <NavLink to={`/authors/${currentUserId}`} className={handleActiveClass}>
+      <NavLink to={`/profile`} className={handleActiveClass}>
         My Profile
       </NavLink>
       <NavLink to='/create' className={clsx(s.createLink)}>

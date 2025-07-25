@@ -10,6 +10,7 @@ const ArticlesPage = lazy(() => import('./pages/ArticlesPage/ArticlesPage'));
 const ArticlePage = lazy(() => import('./pages/ArticlePage/ArticlePage'));
 const AuthorsPage = lazy(() => import('./pages/AuthorsPage/AuthorsPage'));
 const AuthorProfilePage = lazy(() => import('./pages/AuthorProfilePage/AuthorProfilePage'));
+const MyProfile = lazy(() => import('./pages/MyProfile/MyProfile'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 const UploadPhotoPage = lazy(() => import('./pages/UploadPhotoPage/UploadPhotoPage'));
@@ -40,6 +41,11 @@ const App = () => {
           <Route path='my-articles' element={<MyArticles />} />
           <Route path='saved' element={<SavedArticles />} />
         </Route>
+
+        <Route
+          path='profile'
+          element={<PrivateRoute component={<MyProfile />} redirectTo='/login' />}
+        />
 
         <Route
           path='create'

@@ -2,8 +2,6 @@ import { useEffect } from 'react';
 import s from './MobileMenu.module.css';
 import clsx from 'clsx';
 import { Link, NavLink } from 'react-router-dom';
-import UserMenu from '../UserMenu/UserMenu';
-import AuthNav from '../AuthNav/AuthNav';
 
 const handleActiveClass = ({ isActive }) => {
   return clsx(s.mobNavLink, isActive && s.active);
@@ -74,11 +72,7 @@ const MobileMenu = ({ isOpen, onCloseMobileMenu }) => {
 
           {isLoggedIn ? (
             <>
-              <NavLink
-                to={`/authors/${currentUserId}`}
-                className={handleActiveClass}
-                onClick={onCloseMobileMenu}
-              >
+              <NavLink to={'/profile'} className={handleActiveClass} onClick={onCloseMobileMenu}>
                 My Profile
               </NavLink>
               <NavLink to='/create' className={clsx(s.mobCreateLink)} onClick={onCloseMobileMenu}>

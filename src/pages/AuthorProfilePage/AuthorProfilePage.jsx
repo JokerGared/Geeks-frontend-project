@@ -1,12 +1,13 @@
 import s from './AuthorProfilePage.module.css';
 import ArticlesList from '../../components/ArticlesList/ArticlesList';
 import { NavLink, Outlet } from 'react-router-dom';
+import MyProfile from '../MyProfile/MyProfile';
 
 const AuthorProfilePage = () => {
-  // const authorId = useParams();
+  // const { authorId } = useParams();
   // const currentUserId = useSelector(selectUserId);
 
-  const authorId = '123';
+  const authorId = '1';
   const currentUserId = '123';
 
   const isCurrentUserProfile = authorId === currentUserId;
@@ -14,17 +15,7 @@ const AuthorProfilePage = () => {
     <div>
       <h2>Author's articles</h2>
 
-      {isCurrentUserProfile && (
-        <>
-          <nav>
-            <NavLink to='my-articles'>My Articles</NavLink>
-            <NavLink to='saved'>Saved Articles</NavLink>
-          </nav>
-          <Outlet />
-        </>
-      )}
-
-      {!isCurrentUserProfile && <ArticlesList />}
+      {isCurrentUserProfile ? <MyProfile /> : <ArticlesList />}
     </div>
   );
 };
