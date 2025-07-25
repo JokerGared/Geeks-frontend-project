@@ -6,8 +6,8 @@ const MyProfile = () => {
     <div>
       <h2>Author's articles</h2>
       <nav>
-        <NavLink to='my-articles'>My Articles</NavLink>
-        <NavLink to='saved'>Saved Articles</NavLink>
+        <NavLink to="my-articles">My Articles</NavLink>
+        <NavLink to="saved">Saved Articles</NavLink>
       </nav>
       <Outlet />
     </div>

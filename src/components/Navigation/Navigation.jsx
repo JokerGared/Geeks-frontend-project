@@ -9,22 +9,22 @@ const handleActiveClass = ({ isActive }) => {
 };
 
 const Navigation = ({ onOpenMobileMenu }) => {
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   return (
     <nav className={clsx(s.nav)}>
-      <Link to='/'>
-        <img src='/logo.svg' alt='Logo' />
+      <Link to="/">
+        <img src="/logo.svg" alt="Logo" />
       </Link>
 
       <div className={clsx(s.joinLinkCreateBurgerContainer)}>
         {isLoggedIn && (
-          <NavLink to='/create' className={clsx(s.createLink)}>
+          <NavLink to="/create" className={clsx(s.createLink)}>
             Create an article
           </NavLink>
         )}
         {!isLoggedIn && (
-          <NavLink to='/register' className={clsx(s.joinLink)}>
+          <NavLink to="/register" className={clsx(s.joinLink)}>
             Join now
           </NavLink>
         )}
@@ -32,22 +32,27 @@ const Navigation = ({ onOpenMobileMenu }) => {
         <button
           onClick={onOpenMobileMenu}
           className={clsx(s.burgerButton)}
-          aria-label='Open mobile menu'
+          aria-label="Open mobile menu"
         >
-          <svg width={32} height={32} className={clsx(s.burgerIcon)} aria-hidden='true'>
-            <use href='/icons.svg#icon-burger'></use>
+          <svg
+            width={32}
+            height={32}
+            className={clsx(s.burgerIcon)}
+            aria-hidden="true"
+          >
+            <use href="/icons.svg#icon-burger"></use>
           </svg>
         </button>
       </div>
 
       <div className={clsx(s.linkUserMenuAuthNavContainer)}>
-        <NavLink to='/' className={handleActiveClass}>
+        <NavLink to="/" className={handleActiveClass}>
           Home
         </NavLink>
-        <NavLink to='/articles' className={handleActiveClass}>
+        <NavLink to="/articles" className={handleActiveClass}>
           Articles
         </NavLink>
-        <NavLink to='/authors' className={handleActiveClass} end>
+        <NavLink to="/authors" className={handleActiveClass} end>
           Creators
         </NavLink>
 
