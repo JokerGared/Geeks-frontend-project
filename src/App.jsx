@@ -1,26 +1,25 @@
-import { Route, Routes } from "react-router-dom";
-import Layout from "./components/Layout/Layout";
-import { lazy } from "react";
-// import MyArticles from './components/MyArticles/MyArticles';
-import SavedArticles from "./components/SavedArticles/SavedArticles";
-import PrivateRoute from "./components/Route/PrivateRoute";
+import { Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
+import { lazy } from 'react';
+import SavedArticles from './components/SavedArticles/SavedArticles';
+import PrivateRoute from './components/Route/PrivateRoute';
 
-const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
-const ArticlesPage = lazy(() => import("./pages/ArticlesPage/ArticlesPage"));
-const ArticlePage = lazy(() => import("./pages/ArticlePage/ArticlePage"));
-const AuthorsPage = lazy(() => import("./pages/AuthorsPage/AuthorsPage"));
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const ArticlesPage = lazy(() => import('./pages/ArticlesPage/ArticlesPage'));
+const ArticlePage = lazy(() => import('./pages/ArticlePage/ArticlePage'));
+const AuthorsPage = lazy(() => import('./pages/AuthorsPage/AuthorsPage'));
 const AuthorProfilePage = lazy(() =>
-  import("./pages/AuthorProfilePage/AuthorProfilePage")
+  import('./pages/AuthorProfilePage/AuthorProfilePage'),
 );
-const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
-const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 const UploadPhotoPage = lazy(() =>
-  import("./pages/UploadPhotoPage/UploadPhotoPage")
+  import('./pages/UploadPhotoPage/UploadPhotoPage'),
 );
 const CreateArticlePage = lazy(() =>
-  import("./pages/CreateArticlePage/CreateArticlePage")
+  import('./pages/CreateArticlePage/CreateArticlePage'),
 );
-const NotFound = lazy(() => import("./pages/NotFoundPage/NotFound"));
+const NotFound = lazy(() => import('./pages/NotFoundPage/NotFound'));
 
 const App = () => {
   return (
@@ -46,11 +45,19 @@ const App = () => {
         <Route path="articles/:articleId" element={<ArticlePage />} />
 
         <Route path="authors" element={<AuthorsPage />} />
-        {/* <Route path="authors/:authorId" element={<AuthorProfilePage />}>
-          <Route index element={<MyArticles />} />
-          <Route path="my-articles" element={<MyArticles />} />
+        <Route
+          path="authors/:authorId"
+          element={
+            <PrivateRoute
+              component={<AuthorProfilePage />}
+              redirectTo="/login"
+            />
+          }
+        >
+          <Route index element={<SavedArticles />} />
+          <Route path="my-articles" element={<SavedArticles />} />
           <Route path="saved" element={<SavedArticles />} />
-        </Route> */}
+        </Route>
 
         <Route
           path="create"
