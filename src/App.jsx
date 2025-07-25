@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import { lazy } from 'react';
-import MyArticles from './components/MyArticles/MyArticles';
 import SavedArticles from './components/SavedArticles/SavedArticles';
 import PrivateRoute from './components/Route/PrivateRoute';
+import MyArticles from './components/MyArticles/MyArticles';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const ArticlesPage = lazy(() => import('./pages/ArticlesPage/ArticlesPage'));

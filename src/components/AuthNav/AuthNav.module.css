@@ -1,0 +1,53 @@
+.navLink {
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--link-color);
+  text-decoration: none;
+  transition: all .3s ease;
+  position: relative;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background-color: var(--link-color);
+  transition: width .3s ease;
+}
+
+.navLink:hover::after,
+.navLink:focus::after,
+.navLink.active::after {
+  width: 100%;
+}
+
+.joinLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--button-color-main);
+  background-color: var(--button-bg-main);
+  border-radius: 64px;
+  height: 46px;
+  text-decoration: none;
+  transition: all .3s ease;
+}
+
+.joinLink {
+  min-width: 100px;
+}
+
+.joinLink:hover,
+.joinLink:focus {
+  background-color: var(--button-bg-main-hover);
+}
+
+.deskAuthNav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
