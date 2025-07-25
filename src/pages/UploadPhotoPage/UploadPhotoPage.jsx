@@ -1,4 +1,4 @@
-import s from './UploadForm.module.css';
+import s from './UploadPhotoPage.module.css';
 import UploadForm from '../../components/UploadForm/UploadForm';
 
 const UploadPhotoPage = () => {

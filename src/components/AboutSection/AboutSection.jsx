@@ -2,9 +2,9 @@ import s from './AboutSection.module.css';
 
 const AboutSection = () => {
   return (
-    <div>
+    <section>
       <h2>About us</h2>
-    </div>
+    </section>
   );
 };
 
