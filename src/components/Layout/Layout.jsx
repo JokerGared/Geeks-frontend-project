@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Container from '../Container/Container';
+import MobileMenu from '../MobileMenu/MobileMenu';
 
 const Layout = () => {
   const [isOpen, setIsOpen] = useState(false);
