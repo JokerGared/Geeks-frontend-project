@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchArticles, fetchArticleById, createArticle } from './operations';
+import {
+  fetchArticles,
+  fetchArticleById,
+  createArticle,
+} from './operations.js';
 
 const initialState = {
   items: [],

@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { fetchAuthorById, fetchAuthors } from "./operations";
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchAuthors, fetchAuthorById } from './operations.js';
 
 const initialState = {
   list: [],
@@ -9,7 +9,7 @@ const initialState = {
 };
 
 const authorsSlice = createSlice({
-  name: "authors",
+  name: 'authors',
   initialState,
   extraReducers: (builder) => {
     builder
