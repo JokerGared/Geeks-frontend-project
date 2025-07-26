@@ -1,7 +1,11 @@
+.logo {
+  padding: 14px 0;
+}
+
 .nav {
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: center;
 }
 
 .linkUserMenuAuthNavContainer {
@@ -15,13 +19,14 @@
   text-decoration: none;
   transition: all .3s ease;
   position: relative;
+  padding: 28px 0;
 }
 
 .navLink::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -4px;
+  bottom: 24px;
   width: 0;
   height: 1px;
   background-color: var(--link-color);
@@ -43,6 +48,7 @@
   padding: 0;
   cursor: pointer;
   transition: all .3s ease;
+  padding: 14px 0;
 }
 
 .burgerButton:hover,
@@ -92,6 +98,13 @@
 
   .joinLink {
     min-width: 100px;
+  }
+
+  .createLink:hover,
+  .createLink:focus,
+  .joinLink:hover,
+  .joinLin:focus {
+    background-color: var(--button-bg-main-hover);
   }
 }
 

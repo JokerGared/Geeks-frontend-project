@@ -5,13 +5,14 @@
   text-decoration: none;
   transition: all .3s ease;
   position: relative;
+  padding: 28px 0;
 }
 
 .navLink::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -4px;
+  bottom: 24px;
   width: 0;
   height: 1px;
   background-color: var(--link-color);

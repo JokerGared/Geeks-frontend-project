@@ -14,7 +14,7 @@ const Navigation = ({ onOpenMobileMenu }) => {
   return (
     <nav className={clsx(s.nav)}>
       <Link to="/">
-        <img src="/logo.svg" alt="Logo" />
+        <img src="/logo.svg" alt="Logo" className={clsx(s.logo)} />
       </Link>
 
       <div className={clsx(s.joinLinkCreateBurgerContainer)}>
