@@ -28,7 +28,7 @@ export const fetchArticleById = createAsyncThunk(
   },
 );
 
-export const createArticles = createAsyncThunk(
+export const createArticle = createAsyncThunk(
   'articles/create',
   async (credentials, thunkAPI) => {
     const formData = new FormData();
