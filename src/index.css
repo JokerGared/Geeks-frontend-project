@@ -24,7 +24,7 @@
 
 
 :root {
-  --font-family: "Manrope", sans-serif;
+  --font-family: 'Manrope', sans-serif;
   --line-height: 1.5;
   --font-weight: 400;
   --font-size: 16px;
@@ -55,8 +55,8 @@
 
   --backdrop-bg: rgba(0, 0, 0, 0.6);
 
-  --error-border-color: #FF4500;
-  --error-text-color: #FF4500;
+  --error-border-color: #ff4500;
+  --error-text-color: #ff4500;
 }
 
 * {
@@ -85,4 +85,52 @@ body {
   overflow: hidden;
   opacity: 0;
   z-index: -1;
+}
+
+/*=========== Reset ===========*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+svg {
+  display: block;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+address {
+  font-style: normal;
+}
+
+/*=========== Common styles ===========*/
+
+section {
+  padding-bottom: 72px;
 }
