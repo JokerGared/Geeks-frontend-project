@@ -18,10 +18,11 @@ const Layout = () => {
 
   return (
     <>
+      <ScrollToTop />
       <Header onOpenMobileMenu={handleOpenMobileMenu} />
       <main>
         <Container>
-          <Suspense fallback={<div>Завантаження...</div>}>
+          <Suspense fallback={<div>Loading...</div>}>
             <Outlet />
           </Suspense>
         </Container>
