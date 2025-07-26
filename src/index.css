@@ -16,7 +16,15 @@
 
 @font-face {
   font-display: swap;
-  font-family: 'Manrope';
+  font-family: 'Merienda';
+  font-style: normal;
+  font-weight: 800;
+  src: url('../fonts/merienda-v21-latin-800.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Merienda';
   font-style: normal;
   font-weight: 800;
   src: url('../fonts/manrope-v19-latin-800.woff2') format('woff2');
@@ -24,6 +32,7 @@
 
 :root {
   --font-family: 'Manrope', sans-serif;
+  --secondary-font-family: 'Merienda', sans-serif;
   --line-height: 1.5;
   --font-weight: 400;
   --font-size: 16px;
