@@ -32,9 +32,10 @@
 
 .logoCloseButtonContainer {
   display: flex;
-  align-items: start;
+  align-items: center;
   justify-content: space-between;
   margin-bottom: 44px;
+  height: 46px;
 }
 
 .closeButton {
@@ -170,12 +171,14 @@
 }
 
 .avatar {
-  width: 24px;
-  height: 24px;
+  width: 40px;
+  height: 40px;
 }
 
 .name {
-  margin: 0;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--link-color);
 }
 
 .exitButton {
@@ -213,5 +216,10 @@
   .tabCreateLink {
     display: flex;
     margin: 0;
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
   }
 }

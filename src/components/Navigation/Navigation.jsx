@@ -10,6 +10,7 @@ const handleActiveClass = ({ isActive }) => {
 
 const Navigation = ({ onOpenMobileMenu }) => {
   // const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoggedIn = true;
 
   return (
     <nav className={clsx(s.nav)}>

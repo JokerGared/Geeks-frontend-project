@@ -9,6 +9,7 @@ const handleActiveClass = ({ isActive }) => {
 
 const MobileMenu = ({ isOpen, onCloseMobileMenu }) => {
   // const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoggedIn = true;
 
   const handleBackDropClick = (e) => {
     if (e.target === e.currentTarget) {

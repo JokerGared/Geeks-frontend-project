@@ -1,9 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import { lazy } from 'react';
-import SavedArticles from './components/SavedArticles/SavedArticles';
 import PrivateRoute from './components/Route/PrivateRoute';
-import MyArticles from './components/MyArticles/MyArticles';
+import AuthorsArticles from './components/AuthorsArticles/AuthorsArticles';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const ArticlesPage = lazy(() => import('./pages/ArticlesPage/ArticlesPage'));
@@ -47,18 +46,18 @@ const App = () => {
         <Route path="articles/:articleId" element={<ArticlePage />} />
 
         <Route path="authors" element={<AuthorsPage />} />
-        <Route path="authors/:authorId" element={<AuthorProfilePage />}>
-          <Route index element={<MyArticles />} />
-          <Route path="my-articles" element={<MyArticles />} />
-          <Route path="saved" element={<SavedArticles />} />
-        </Route>
+        <Route path="authors/:authorId" element={<AuthorProfilePage />} />
 
         <Route
           path="profile"
           element={
             <PrivateRoute component={<MyProfile />} redirectTo="/login" />
           }
-        />
+        >
+          <Route index element={<AuthorsArticles />} />
+          <Route path="my-articles" element={<AuthorsArticles />} />
+          <Route path="saved" element={<AuthorsArticles />} />
+        </Route>
 
         <Route
           path="create"

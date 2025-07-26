@@ -1,14 +1,16 @@
 import s from './AuthorProfilePage.module.css';
-import ArticlesList from '../../components/ArticlesList/ArticlesList';
 import MyProfile from '../MyProfile/MyProfile';
+import PublicProfile from '../../components/PublicProfile/PublicProfile';
 
 const AuthorProfilePage = () => {
   // const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  let currentUser;
   return (
     <div>
       <h2>Author's articles</h2>
 
-      {isLoggedIn ? <MyProfile /> : <ArticlesList />}
+      {currentUser ? <MyProfile /> : <PublicProfile />}
     </div>
   );
 };
