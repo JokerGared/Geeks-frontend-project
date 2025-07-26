@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Container from '../Container/Container';
 import MobileMenu from '../MobileMenu/MobileMenu';
+import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 const Layout = () => {
   const [isOpen, setIsOpen] = useState(false);
