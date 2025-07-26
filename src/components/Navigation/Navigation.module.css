@@ -1,0 +1,126 @@
+.logo {
+  padding: 19px 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.linkUserMenuAuthNavContainer {
+  display: none;
+}
+
+.navLink {
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--link-color);
+  text-decoration: none;
+  transition: var(--transition);
+  position: relative;
+  padding: 28px 0;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 24px;
+  width: 0;
+  height: 1px;
+  background-color: var(--link-color);
+  transition: var(--transition);
+}
+
+.navLink:hover::after,
+.navLink:focus::after,
+.navLink.active::after {
+  width: 100%;
+}
+
+.burgerButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 14px 0;
+}
+
+.burgerButton:hover,
+.burgerButton:focus {
+  border: none;
+}
+
+.burgerIcon {
+  stroke: var(--main-icon-fill);
+  transition: var(--transition);
+}
+
+.burgerButton:hover .burgerIcon,
+.burgerButton:focus .burgerIcon {
+  stroke: var(--main-icon-fill);
+}
+
+.createLink,
+.joinLink {
+  display: none;
+}
+
+@media screen and (min-width:768px) {
+  .joinLinkCreateBurgerContainer {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .createLink,
+  .joinLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--button-color-main);
+    background-color: var(--button-bg-main);
+    border-radius: 64px;
+    height: 46px;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .createLink {
+    min-width: 160px;
+  }
+
+  .joinLink {
+    min-width: 100px;
+  }
+
+  .createLink:hover,
+  .createLink:focus,
+  .joinLink:hover,
+  .joinLin:focus {
+    background-color: var(--button-bg-main-hover);
+  }
+}
+
+@media screen and (min-width:1440px) {
+  .burgerButton {
+    display: none;
+  }
+
+  .createLink,
+  .joinLink {
+    display: none;
+  }
+
+  .linkUserMenuAuthNavContainer {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+}

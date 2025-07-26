@@ -45,18 +45,17 @@ const App = () => {
         <Route path="articles/:articleId" element={<ArticlePage />} />
 
         <Route path="authors" element={<AuthorsPage />} />
+        <Route path="authors/:authorId" element={<AuthorProfilePage />} />
+
         <Route
-          path="authors/:authorId"
+          path="profile"
           element={
-            <PrivateRoute
-              component={<AuthorProfilePage />}
-              redirectTo="/login"
-            />
+            <PrivateRoute component={<MyProfile />} redirectTo="/login" />
           }
         >
-          <Route index element={<SavedArticles />} />
-          <Route path="my-articles" element={<SavedArticles />} />
-          <Route path="saved" element={<SavedArticles />} />
+          <Route index element={<AuthorsArticles />} />
+          <Route path="my-articles" element={<AuthorsArticles />} />
+          <Route path="saved" element={<AuthorsArticles />} />
         </Route>
 
         <Route
