@@ -1,0 +1,221 @@
+.loginConteiner {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f7fffb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* Registration Form Styles */
+
+.loginCard {
+  width: 100%;
+  max-width: 330px;
+  background-color: #d1e0d8;
+  border-radius: 32px;
+  border: none;
+  box-shadow: none;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 48px 32px;
+}
+
+.title {
+  align-self: stretch;
+  font-family: 'Manrope', Helvetica;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0px;
+  line-height: normal;
+  color: #070721;
+  text-align: center;
+  margin: 0;
+}
+
+.subtitle {
+  width: 278px;
+  font-family: 'Manrope', Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 155%;
+  color: #070721;
+  text-align: center;
+  margin: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 27px;
+  align-self: stretch;
+  width: 100%;
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+  width: 100%;
+}
+
+.labelInputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+  width: 100%;
+}
+
+.label {
+  align-self: stretch;
+  font-family: 'Manrope', Helvetica;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: normal;
+  color: #070721;
+}
+
+.input {
+  background-color: white;
+  border: 1px solid #9f9f9f;
+  font-family: 'Manrope', Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 155%;
+  color: #595d62;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #649179;
+}
+
+.error {
+  font-family: 'Manrope', Helvetica;
+  font-size: 12px;
+  color: #e53e3e;
+  margin-top: 4px;
+}
+
+.passwordField {
+  position: relative;
+  width: 100%;
+}
+
+.passwordInput {
+  background-color: white;
+  border: 1px solid #9f9f9f;
+  font-family: 'Manrope', Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 155%;
+  color: #595d62;
+  width: 100%;
+  padding: 8px 40px 8px 12px;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.passwordInput:focus {
+  outline: none;
+  border-color: #649179;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  color: #595d62;
+  cursor: pointer;
+}
+
+.loginButton {
+  width: 100%;
+  background-color: #649179;
+  border-radius: 64px;
+  color: white;
+  font-family: 'Manrope', Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0px;
+  line-height: normal;
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+.loginButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.loginButton:hover {
+  opacity: 0.6;
+}
+
+.loginPrompt {
+  align-self: stretch;
+  font-family: 'Manrope', Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  color: #070721;
+  text-align: center;
+  line-height: 24.8px;
+  margin: 0;
+}
+
+.registerLinkBottom {
+  font-family: 'Manrope', Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0px;
+  line-height: normal;
+  text-decoration: underline;
+  color: #070721;
+}
+
+/* Tablet (min-width: 768px) */
+@media only screen and (min-width: 768px) {
+  .loginCard {
+    max-width: 522px;
+  }
+}
+
+/* Desktop (min-width: 1440px) */
+@media only screen and (min-width: 1440px) {
+  .loginCard {
+    max-width: 392px;
+  }
+}
