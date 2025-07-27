@@ -1,9 +1,10 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
-import s from './AuthorProfilePage.module.css';
 import MyProfile from '../MyProfile/MyProfile';
 import PublicProfile from '../../components/PublicProfile/PublicProfile';
-import { useSelector } from 'react-redux';
+
 import { selectUser } from '../../redux/auth/selectors';
 import { fetchAuthorById } from '../../redux/authors/operations';
 import { selectCurrentAuthor } from '../../redux/authors/selectors';
