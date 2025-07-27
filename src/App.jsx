@@ -29,16 +29,7 @@ const App = () => {
         <Route index element={<HomePage />} />
 
         <Route path="register" element={<RegisterPage />} />
-
-        <Route
-          path="photo"
-          element={
-            <PrivateRoute
-              component={<UploadPhotoPage />}
-              redirectTo="/register"
-            />
-          }
-        />
+        <Route path="photo" element={<UploadPhotoPage />} />
 
         <Route path="login" element={<LoginPage />} />
 

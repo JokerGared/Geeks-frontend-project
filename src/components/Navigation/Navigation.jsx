@@ -1,16 +1,23 @@
 import clsx from 'clsx';
 import s from './Navigation.module.css';
-import { NavLink, Link, useParams } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import UserMenu from '../UserMenu/UserMenu';
 import AuthNav from '../AuthNav/AuthNav';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { openModal } from '../../redux/modal/slice';
 
 const handleActiveClass = ({ isActive }) => {
   return clsx(s.navLink, isActive && s.active);
 };
 
-const Navigation = ({ onOpenMobileMenu }) => {
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isLoggedIn = true;
+const Navigation = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
+
+  const handleOpenMobileMenu = () => {
+    dispatch(openModal({ type: 'mobileMenu' }));
+  };
 
   return (
     <nav className={clsx(s.nav)}>
@@ -31,7 +38,7 @@ const Navigation = ({ onOpenMobileMenu }) => {
         )}
 
         <button
-          onClick={onOpenMobileMenu}
+          onClick={handleOpenMobileMenu}
           className={clsx(s.burgerButton)}
           aria-label="Open mobile menu"
         >
