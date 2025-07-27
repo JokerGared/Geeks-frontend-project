@@ -1,9 +1,14 @@
 import clsx from 'clsx';
 import s from './Footer.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Container from '../Container/Container';
 
 const Footer = () => {
+  const { pathname } = useLocation();
+
+  const hiddenPath = ['/register', '/photo', '/login'];
+  const visibleAccountLink = !hiddenPath.includes(pathname);
+
   return (
     <footer className={clsx(s.footer)}>
       <Container className={clsx(s.footerContainer)}>
@@ -20,9 +25,11 @@ const Footer = () => {
             Articles
           </Link>
 
-          <Link to={'/profile'} className={clsx(s.footerLink)}>
-            Account
-          </Link>
+          {visibleAccountLink && (
+            <Link to={'/profile'} className={clsx(s.footerLink)}>
+              Account
+            </Link>
+          )}
         </nav>
       </Container>
     </footer>
