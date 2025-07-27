@@ -1,17 +1,13 @@
 import s from './Header.module.css';
 import Navigation from '../Navigation/Navigation';
-import AuthNav from '../AuthNav/AuthNav';
-import UserMenu from '../UserMenu/UserMenu';
+import clsx from 'clsx';
 import Container from '../Container/Container';
 
-const Header = () => {
-  const isLoggedIn = true;
-
+const Header = ({ onOpenMobileMenu }) => {
   return (
-    <header>
+    <header className={clsx(s.header)}>
       <Container>
-        <Navigation />
-        {isLoggedIn ? <UserMenu /> : <AuthNav />}
+        <Navigation onOpenMobileMenu={onOpenMobileMenu} />
       </Container>
     </header>
   );

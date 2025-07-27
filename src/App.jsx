@@ -1,25 +1,26 @@
-import { Route, Routes } from "react-router-dom";
-import Layout from "./components/Layout/Layout";
-import { lazy } from "react";
-import SavedArticles from "./components/SavedArticles/SavedArticles";
-import PrivateRoute from "./components/Route/PrivateRoute";
+import { Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
+import { lazy } from 'react';
+import PrivateRoute from './components/Route/PrivateRoute';
+import AuthorsArticles from './components/AuthorsArticles/AuthorsArticles';
 
-const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
-const ArticlesPage = lazy(() => import("./pages/ArticlesPage/ArticlesPage"));
-const ArticlePage = lazy(() => import("./pages/ArticlePage/ArticlePage"));
-const AuthorsPage = lazy(() => import("./pages/AuthorsPage/AuthorsPage"));
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const ArticlesPage = lazy(() => import('./pages/ArticlesPage/ArticlesPage'));
+const ArticlePage = lazy(() => import('./pages/ArticlePage/ArticlePage'));
+const AuthorsPage = lazy(() => import('./pages/AuthorsPage/AuthorsPage'));
 const AuthorProfilePage = lazy(() =>
-  import("./pages/AuthorProfilePage/AuthorProfilePage")
+  import('./pages/AuthorProfilePage/AuthorProfilePage'),
 );
-const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
-const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+const MyProfile = lazy(() => import('./pages/MyProfile/MyProfile'));
+const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 const UploadPhotoPage = lazy(() =>
-  import("./pages/UploadPhotoPage/UploadPhotoPage")
+  import('./pages/UploadPhotoPage/UploadPhotoPage'),
 );
 const CreateArticlePage = lazy(() =>
-  import("./pages/CreateArticlePage/CreateArticlePage")
+  import('./pages/CreateArticlePage/CreateArticlePage'),
 );
-const NotFound = lazy(() => import("./pages/NotFoundPage/NotFound"));
+const NotFound = lazy(() => import('./pages/NotFoundPage/NotFound'));
 
 const App = () => {
   return (
@@ -45,18 +46,17 @@ const App = () => {
         <Route path="articles/:articleId" element={<ArticlePage />} />
 
         <Route path="authors" element={<AuthorsPage />} />
+        <Route path="authors/:authorId" element={<AuthorProfilePage />} />
+
         <Route
-          path="authors/:authorId"
+          path="profile"
           element={
-            <PrivateRoute
-              component={<AuthorProfilePage />}
-              redirectTo="/login"
-            />
+            <PrivateRoute component={<MyProfile />} redirectTo="/login" />
           }
         >
-          <Route index element={<SavedArticles />} />
-          <Route path="my-articles" element={<SavedArticles />} />
-          <Route path="saved" element={<SavedArticles />} />
+          <Route index element={<AuthorsArticles />} />
+          <Route path="my-articles" element={<AuthorsArticles />} />
+          <Route path="saved" element={<AuthorsArticles />} />
         </Route>
 
         <Route
