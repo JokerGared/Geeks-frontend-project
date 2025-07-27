@@ -10,3 +10,5 @@ export const selectError = (state) => state.auth.error;
 
 export const selectRegistrationFormData = (state) =>
   state.auth.registrationFormData;
+
+export const selectLoginFormData = (state) => state.auth.loginFormData;
