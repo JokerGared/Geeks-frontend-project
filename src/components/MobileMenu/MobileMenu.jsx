@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import { selectModalType } from '../../redux/modal/selectors';
 import { closeModal, openModal } from '../../redux/modal/slice';
+import { MODALS } from '../../constants/modals';
 
 const handleActiveClass = ({ isActive }) => {
   return clsx(s.mobNavLink, isActive && s.active);
@@ -16,7 +17,7 @@ const MobileMenu = () => {
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const modalType = useSelector(selectModalType);
-  const isOpen = modalType === 'mobileMenu';
+  const isOpen = modalType === MODALS.MOBILE_MENU;
 
   const dispatch = useDispatch();
 
@@ -31,8 +32,8 @@ const MobileMenu = () => {
   };
 
   const handleOpenConfirmExitModal = () => {
-    dispatch(openModal({ type: 'confirmExitModal' }));
-    console.log('confirm exit modal is open');
+    dispatch(openModal({ type: 'modalLogoutConfirm' }));
+    console.log('modal logout confirm is open');
     handleCloseMobileMenu();
   };
 
