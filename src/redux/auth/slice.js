@@ -14,6 +14,12 @@ const authSlice = createSlice({
     isRefreshing: false,
     isLoading: false,
     error: null,
+    registrationFormData: null,
+  },
+  reducers: {
+    setRegistrationFormData(state, action) {
+      state.registrationFormData = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -50,6 +56,7 @@ const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
         state.error = null;
+        state.registrationFormData = null;
       })
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
@@ -67,4 +74,5 @@ const authSlice = createSlice({
   },
 });
 
+export const { setRegistrationFormData } = authSlice.actions;
 export default authSlice.reducer;
