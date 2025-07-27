@@ -1,0 +1,25 @@
+.button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--link-color);
+  border-radius: 50%;
+  background-color: transparent;
+  transition: var(--transition);
+}
+
+.icon {
+  stroke: var(--link-color);
+  fill: none;
+  transition: var(--transition);
+}
+
+.active {
+  background-color: var(--link-color);
+}
+
+.active .icon {
+  stroke: var(--button-bg-secondary-hover);
+}
