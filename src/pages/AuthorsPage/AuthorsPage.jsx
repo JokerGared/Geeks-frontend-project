@@ -3,10 +3,10 @@ import AuthorsList from '../../components/AuthorsList/AuthorsList';
 
 const AuthorsPage = () => {
   return (
-    <div>
-      <h2>Authors</h2>
+    <section className={s.authorsPage}>
+      <h2 className={s.title}>Authors</h2>
       <AuthorsList />
-    </div>
+    </section>
   );
 };
 
