@@ -12,7 +12,7 @@ import { selectCurrentAuthor } from '../../redux/authors/selectors';
 const AuthorProfilePage = () => {
   const { authorId } = useParams();
   const user = useSelector(selectUser);
-  const author = useSelector(selectCurrentAuthor);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchAuthorById(authorId));
