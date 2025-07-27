@@ -19,7 +19,7 @@
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.422" d="m7.467 4.622 9.6 9.6m0 0-9.6 9.6m9.6-9.6 9.6 9.6m-9.6-9.6 9.6-9.6"/>
     </symbol>
     <symbol id="icon-exit" viewBox="0 0 32 32">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.28" d="M13.194 6.88H9.686A2.806 2.806 0 0 0 6.88 9.686v12.628a2.806 2.806 0 0 0 2.806 2.806h3.508M11.68 16h14.031m0 0-4.209 4.209M25.711 16l-4.209-4.209"/>
+      <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.28" d="M13.194 6.88h-3.508c-1.55 0-2.806 1.256-2.806 2.806v12.628c0 1.55 1.256 2.806 2.806 2.806h3.508M11.68 16h14.031M25.711 16l-4.209 4.209M25.711 16l-4.209-4.209"></path>
     </symbol>
   </defs>
 </svg>
