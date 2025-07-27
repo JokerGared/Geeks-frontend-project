@@ -14,7 +14,6 @@ const UserMenu = () => {
 
   const handleOpenConfirmExitModal = () => {
     dispatch(openModal({ type: 'modalLogoutConfirm' }));
-    console.log('modal logout confirm is open');
   };
 
   return (
