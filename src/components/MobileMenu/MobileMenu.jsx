@@ -12,6 +12,8 @@ const handleActiveClass = ({ isActive }) => {
 };
 
 const MobileMenu = () => {
+  const avatar = 'https://i.pravatar.cc/150?img=5';
+
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const modalType = useSelector(selectModalType);
   const isOpen = modalType === 'mobileMenu';
@@ -154,11 +156,7 @@ const MobileMenu = () => {
           {isLoggedIn && (
             <div className={clsx(s.avatarContainer)}>
               <div className={clsx(s.avatarNameContainer)}>
-                <img
-                  src="/avatar.png"
-                  alt="Avatar"
-                  className={clsx(s.avatar)}
-                />
+                <img src={avatar} alt="Avatar" className={clsx(s.avatar)} />
                 <p className={clsx(s.name)}>Naomi</p>
               </div>
               <button

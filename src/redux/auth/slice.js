@@ -10,7 +10,7 @@ const authSlice = createSlice({
       avatarURL: '',
     },
     token: null,
-    isLoggedIn: true, //false | true
+    isLoggedIn: false, //false | true
     isRefreshing: false,
     isLoading: false,
     error: null,

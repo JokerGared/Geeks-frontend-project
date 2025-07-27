@@ -170,15 +170,16 @@
   position: absolute;
   content: "";
   width: 1px;
-  height: 30px;
+  height: 40px;
   background: #374f42;
   right: -16px;
-  bottom: -2px;
+  bottom: 0;
 }
 
 .avatar {
   width: 40px;
   height: 40px;
+  border-radius: 256px;
 }
 
 .name {
@@ -234,5 +235,9 @@
   .avatar {
     width: 32px;
     height: 32px;
+  }
+
+  .avatarNameContainer::after {
+    bottom: -3px;
   }
 }

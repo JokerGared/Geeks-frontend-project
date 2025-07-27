@@ -9,6 +9,7 @@ const handleActiveClass = ({ isActive }) => {
 };
 
 const UserMenu = () => {
+  const avatar = 'https://i.pravatar.cc/150?img=5';
   const dispatch = useDispatch();
 
   const handleOpenConfirmExitModal = () => {
@@ -27,7 +28,7 @@ const UserMenu = () => {
 
       <div className={clsx(s.avatarContainer)}>
         <div className={clsx(s.avatarNameContainer)}>
-          <img src="" alt="Avatar" className={clsx(s.avatar)} />
+          <img src={avatar} alt="Avatar" className={clsx(s.avatar)} />
           <p className={clsx(s.name)}>Naomi</p>
         </div>
         <button

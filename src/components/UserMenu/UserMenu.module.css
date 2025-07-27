@@ -65,15 +65,16 @@
   position: absolute;
   content: "";
   width: 1px;
-  height: 30px;
+  height: 40px;
   background: #374f42;
   right: -16px;
-  bottom: -2px;
+  bottom: -4px;
 }
 
 .avatar {
   width: 32px;
   height: 32px;
+  border-radius: 256px;
 }
 
 .name {
