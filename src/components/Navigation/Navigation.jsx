@@ -1,16 +1,17 @@
 import clsx from 'clsx';
 import s from './Navigation.module.css';
-import { NavLink, Link, useParams } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import UserMenu from '../UserMenu/UserMenu';
 import AuthNav from '../AuthNav/AuthNav';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
 const handleActiveClass = ({ isActive }) => {
   return clsx(s.navLink, isActive && s.active);
 };
 
 const Navigation = ({ onOpenMobileMenu }) => {
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isLoggedIn = true;
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
     <nav className={clsx(s.nav)}>

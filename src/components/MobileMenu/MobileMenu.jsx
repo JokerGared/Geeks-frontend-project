@@ -2,14 +2,15 @@ import { useEffect } from 'react';
 import s from './MobileMenu.module.css';
 import clsx from 'clsx';
 import { Link, NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
 const handleActiveClass = ({ isActive }) => {
   return clsx(s.mobNavLink, isActive && s.active);
 };
 
 const MobileMenu = ({ isOpen, onCloseMobileMenu }) => {
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isLoggedIn = true;
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const handleBackDropClick = (e) => {
     if (e.target === e.currentTarget) {

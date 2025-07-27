@@ -13,7 +13,7 @@
   pointer-events: none;
   visibility: hidden;
 
-  transition: var(--transition);
+  transition: all var(--transition);
 }
 
 .mobileBackdrop.isOpen {
@@ -54,7 +54,13 @@
 }
 
 .closeIcon {
-  stroke: var(--secondary-icon-fill)
+  stroke: var(--button-bg-main);
+  transition: all var(--transition);
+}
+
+.closeButton:hover .closeIcon,
+.closeButton:focus .closeIcon {
+  stroke: var(--button-bg-main-hover);
 }
 
 .closeButton:hover .burgerIcon,
@@ -87,7 +93,7 @@
   width: 0;
   height: 1px;
   background-color: var(--link-color);
-  transition: var(--transition);
+  transition: all var(--transition);
 }
 
 .mobNavLink:hover::after,
@@ -109,7 +115,7 @@
   border-radius: 64px;
   height: 46px;
   text-decoration: none;
-  transition: var(--transition);
+  transition: all var(--transition);
   margin: 0 auto;
 }
 
@@ -192,7 +198,14 @@
 }
 
 .exitIcon {
-  stroke: var(--main-icon-fill)
+  stroke: var(--button-bg-main);
+  fill: none;
+  transition: all var(--transition);
+}
+
+.exitButton:hover .exitIcon,
+.exitButton:focus .exitIcon {
+  stroke: var(--button-bg-main-hover);
 }
 
 @media screen and (min-width:768px) {

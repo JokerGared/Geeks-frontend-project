@@ -3,7 +3,7 @@
   font-size: 12px;
   color: var(--link-color);
   text-decoration: none;
-  transition: all .3s ease;
+  transition: all var(--transition);
   position: relative;
   padding: 28px 0;
 }
@@ -16,7 +16,7 @@
   width: 0;
   height: 1px;
   background-color: var(--link-color);
-  transition: width .3s ease;
+  transition: width var(--transition);
 }
 
 .navLink:hover::after,
@@ -36,7 +36,7 @@
   border-radius: 64px;
   height: 46px;
   text-decoration: none;
-  transition: all .3s ease;
+  transition: all var(--transition);
 }
 
 .createLink {
@@ -93,7 +93,14 @@
 }
 
 .exitIcon {
-  stroke: var(--main-icon-fill)
+  stroke: var(--button-bg-main);
+  fill: none;
+  transition: all var(--transition);
+}
+
+.exitButton:hover .exitIcon,
+.exitButton:focus .exitIcon {
+  stroke: var(--button-bg-main-hover);
 }
 
 .deskAuthNav {
