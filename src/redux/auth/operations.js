@@ -18,12 +18,12 @@ export const register = createAsyncThunk(
         formData.append('avatar', credentials.avatar);
       }
 
-      const response = await axios.post('/users/signup', formData);
+      const response = await axios.post('/auth/register', formData);
       setAuthHeader(`Bearer ${response.data.token}`);
       return response.data;
     } catch (error) {
       const message =
-        error.response?.status === 400
+        error.response?.status === 409
           ? 'User with this email is already registered'
           : error.response?.data?.message || error.message;
 
@@ -37,7 +37,7 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post('/users/login', credentials);
+      const response = await axios.post('/auth/login', credentials);
       setAuthHeader(`Bearer ${response.data.token}`);
       return response.data;
     } catch (error) {
@@ -53,7 +53,7 @@ export const logIn = createAsyncThunk(
 );
 
 export const logOut = createAsyncThunk('auth/logout', async () => {
-  await axios.post('/users/logout');
+  await axios.post('/auth/logout');
   setAuthHeader('');
 });
 
@@ -66,7 +66,7 @@ export const refreshUser = createAsyncThunk(
       if (!token) throw new Error('No token found');
 
       setAuthHeader(`Bearer ${token}`);
-      const response = await axios.get('/users/current');
+      const response = await axios.get('/auth/refresh');
       return response.data;
     } catch (error) {
       toast.error('Oops...try again!');

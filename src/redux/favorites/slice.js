@@ -4,6 +4,7 @@ import {
   addToFavorites,
   removeFromFavorites,
 } from './operations.js';
+import { logOut } from '../auth/operations';
 
 const initialState = {
   items: [],
@@ -47,12 +48,17 @@ const favoritesSlice = createSlice({
       .addCase(removeFromFavorites.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items = state.items.filter(
-          (article) => article._id !== action.payload._id,
+          (article) => article._id !== action.payload.articleId,
         );
       })
       .addCase(removeFromFavorites.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+      .addCase(logOut.fulfilled, (state) => {
+        state.items = [];
+        state.isLoading = false;
+        state.error = null;
       });
   },
 });
