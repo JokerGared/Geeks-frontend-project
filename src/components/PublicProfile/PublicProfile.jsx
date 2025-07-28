@@ -6,7 +6,7 @@ import Container from '../Container/Container';
 import clsx from 'clsx';
 
 const PublicProfile = () => {
-  const { name, avatarUrl, articlesAmount } = useSelector(selectCurrentAuthor);
+  const { name, avatarUrl, articlesAmount } = useSelector();
   const articles = useSelector(selectAuthorArticles);
   return (
     <Container>
