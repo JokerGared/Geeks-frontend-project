@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import s from './ArticlesList.module.css';
 import ArticleItem from '../ArticleItem/ArticleItem';
 
@@ -9,26 +8,17 @@ const ArticlesList = ({ articles = [], onLoadMore }) => {
 
   return (
     <div className={s.wrapper}>
-      <ul className={s.list}>
+      <ul className={s.articlesList}>
         {articles.map((item) => (
-          <li key={item.id} className={s.item}>
+          <li key={item._id} className={s.article}>
             <ArticleItem {...item} />
           </li>
         ))}
       </ul>
 
-      {onLoadMore && (
-        <button type="button" className={s.loadMore} onClick={onLoadMore}>
-          Load more
-        </button>
-      )}
+      {onLoadMore && <LoadMoreBtn onClick={onLoadMore} />}
     </div>
   );
-};
-
-ArticlesList.propTypes = {
-  articles: PropTypes.arrayOf(PropTypes.object),
-  onLoadMore: PropTypes.func,
 };
 
 export default ArticlesList;
