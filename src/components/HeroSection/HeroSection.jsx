@@ -27,6 +27,13 @@ const HeroSection = () => {
               </Link>
             </li>
           )}
+          {isLoggedIn && (
+            <li>
+              <a href="#top-creators" className={clsx(s.topCreatorsLink)}>
+                Go to Creators
+              </a>
+            </li>
+          )}
         </ul>
       </div>
     </section>
