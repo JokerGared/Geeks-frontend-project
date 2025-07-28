@@ -29,7 +29,8 @@
 }
 
 .heroArticleLink,
-.heroRegisterLink {
+.heroRegisterLink,
+.topCreatorsLink {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,13 +55,16 @@
   border: 1px solid transparent;
 }
 
-.heroRegisterLink {
+.heroRegisterLink,
+.topCreatorsLink {
   color: #374f42;
   border: 1px solid var(--link-color);
 }
 
 .heroRegisterLink:hover,
-.heroRegisterLink:focus {
+.heroRegisterLink:focus,
+.topCreatorsLink:hover,
+.topCreatorsLink:focus {
   color: var(--button-color-main);
   background-color: var(--link-color);
 }
@@ -147,7 +151,8 @@
   }
 
   .heroArticleLink,
-  .heroRegisterLink {
+  .heroRegisterLink,
+  .topCreatorsLink {
     min-width: 184px;
   }
 
