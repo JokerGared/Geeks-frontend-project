@@ -1,0 +1,158 @@
+.heroSection {
+  padding-top: 16px;
+  background-image: url(/images/home/hero/mob-hero.png);
+  background-position: 0 16px;
+  background-repeat: no-repeat;
+}
+
+.heroTitleLinksContainer {
+  margin-top: 340px;
+}
+
+.heroTitle {
+  font-weight: 700;
+  font-size: 39px;
+  line-height: 1.5;
+  color: var(--link-color);
+  margin-bottom: 30px;
+  max-width: 372px;
+}
+
+.heroTitle span {
+  font-family: var(--secondary-font-family);
+}
+
+.heroLinksList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.heroArticleLink,
+.heroRegisterLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  border-radius: 64px;
+  width: 100%;
+  max-width: 360px;
+  height: 58px;
+  transition: all .3s ease;
+}
+
+.heroArticleLink:hover,
+.heroArticleLink:focus {
+  background-color: var(--button-bg-main-hover);
+}
+
+.heroArticleLink {
+  color: #f7fffb;
+  border-color: transparent;
+  background-color: var(--button-border-main);
+  border: 1px solid transparent;
+}
+
+.heroRegisterLink {
+  color: #374f42;
+  border: 1px solid var(--link-color);
+}
+
+.heroRegisterLink:hover,
+.heroRegisterLink:focus {
+  color: var(--button-color-main);
+  background-color: var(--link-color);
+}
+
+@media screen and (max-width:393px) {
+  .heroSection {
+    background-size: contain;
+  }
+}
+
+@media screen and (min-width:393px) and (min-resolution: 192dpi) {
+  .heroSection {
+    background-image: url(/images/home/hero/mob-hero@2x.png);
+    background-size: 361px 322px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .heroSection {
+    padding-top: 22px;
+    background-image: url(/images/home/hero/tab-hero.png);
+    background-position: right 0 top 22px;
+    background-size: 430px 385px;
+  }
+
+  @media screen and (min-resolution: 192dpi) {
+    .heroSection {
+      background-image: url(/images/home/hero/tab-hero@2x.png);
+      background-size: 430px 384px;
+    }
+  }
+
+  .heroTitleLinksContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 0;
+    min-height: 388px;
+  }
+
+  .heroTitle {
+    font-size: 40px;
+    margin-bottom: 0;
+  }
+
+  .heroLinksList {
+    max-width: 250px;
+  }
+}
+
+
+@media screen and (min-width:1440px) {
+  .heroSection {
+    padding-top: 88px;
+    background-image: url(/images/home/hero/desk-hero.png);
+    background-size: 805px 560px;
+    background-position: right 0 top 88px;
+
+  }
+
+  @media screen and (min-resolution: 192dpi) {
+    .heroSection {
+      background-image: url(/images/home/hero/desk-hero@2x.png);
+      background-size: 805px 560px;
+    }
+  }
+
+  .heroTitle {
+    max-width: 600px;
+    font-weight: 800;
+    font-size: 92px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .heroTitleLinksContainer {
+    justify-content: start;
+    gap: 56px;
+    min-height: 560px;
+  }
+
+  .heroLinksList {
+    flex-direction: row;
+  }
+
+  .heroArticleLink,
+  .heroRegisterLink {
+    min-width: 184px;
+  }
+
+  .heroImage {
+    width: 100%;
+    max-width: 806px;
+  }
+}
