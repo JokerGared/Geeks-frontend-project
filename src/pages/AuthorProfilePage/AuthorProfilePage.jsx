@@ -1,13 +1,11 @@
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-
-import MyProfile from '../MyProfile/MyProfile';
-import PublicProfile from '../../components/PublicProfile/PublicProfile';
+import { useEffect } from 'react';
 
 import { selectUser } from '../../redux/auth/selectors';
 import { fetchAuthorById } from '../../redux/authors/operations';
-import { selectCurrentAuthor } from '../../redux/authors/selectors';
+
+import PublicProfilePage from '../PublicProfilePage/PublicProfilePage';
 
 const AuthorProfilePage = () => {
   const { authorId } = useParams();
@@ -15,12 +13,16 @@ const AuthorProfilePage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchAuthorById(authorId));
-  }, [dispatch, authorId]);
+    if (user && authorId !== user?._id) {
+      dispatch(fetchAuthorById(authorId));
+    }
+  }, [dispatch, authorId, user]);
 
-  return (
-    <>{user && authorId === user._id ? <MyProfile /> : <PublicProfile />}</>
-  );
+  if (user && authorId === user?._id) {
+    return <Navigate to="/profile" />;
+  }
+
+  return <PublicProfilePage />;
 };
 
 export default AuthorProfilePage;
