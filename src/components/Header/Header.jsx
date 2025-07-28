@@ -3,11 +3,11 @@ import Navigation from '../Navigation/Navigation';
 import clsx from 'clsx';
 import Container from '../Container/Container';
 
-const Header = ({ onOpenMobileMenu }) => {
+const Header = () => {
   return (
     <header className={clsx(s.header)}>
       <Container>
-        <Navigation onOpenMobileMenu={onOpenMobileMenu} />
+        <Navigation />
       </Container>
     </header>
   );

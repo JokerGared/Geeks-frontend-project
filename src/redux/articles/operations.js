@@ -4,10 +4,10 @@ import { toast } from 'react-hot-toast';
 
 export const fetchArticles = createAsyncThunk(
   'articles/fetchAll',
-  async (_, thunkAPI) => {
+  async (page, thunkAPI) => {
     try {
-      const { data } = await axios.get('/articles');
-      return data.data.articles;
+      const { data } = await axios.get(`/articles?page=${page}&limit=12`);
+      return data.data;
     } catch (error) {
       toast.error('Failed to load articles');
       return thunkAPI.rejectWithValue(error.message);
