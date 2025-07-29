@@ -1,8 +1,13 @@
 import s from './ArticleItem.module.css';
 import ButtonAddToBookmarks from '../ButtonAddToBookmarks/ButtonAddToBookmarks';
 import { Link } from 'react-router-dom';
+import { selectUser } from '../../redux/auth/selectors';
+import { useSelector } from 'react-redux';
+import ButtonEdit from '../ButtonEdit/ButtonEdit';
 
 const ArticleItem = ({ _id, img, title, desc, ownerId }) => {
+  const user = useSelector(selectUser);
+
   return (
     <article className={s.card}>
       <img src={img} alt={title} className={s.image} />
@@ -17,7 +22,7 @@ const ArticleItem = ({ _id, img, title, desc, ownerId }) => {
         <Link to={`/articles/${_id}`} className={s.learnMore}>
           Learn more
         </Link>
-        <ButtonAddToBookmarks />
+        {ownerId._id === user._id ? <ButtonEdit /> : <ButtonAddToBookmarks />}
       </div>
     </article>
   );
