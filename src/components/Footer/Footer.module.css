@@ -55,6 +55,10 @@
 }
 
 @media screen and (min-width:1440px) {
+  .footer {
+    padding: 0;
+  }
+
   .footerContainer {
     display: flex;
     align-items: center;
@@ -67,5 +71,14 @@
 
   .footerRights {
     margin-bottom: 0;
+  }
+
+  .footerLink {
+    padding: 34px 0;
+  }
+
+  .footerLink::after {
+    height: 2px;
+    bottom: 30px;
   }
 }
