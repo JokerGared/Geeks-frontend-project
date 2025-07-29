@@ -62,7 +62,7 @@ const LoginForm = () => {
                     <Field
                       type="email"
                       name="email"
-                      className={`${s.input}${
+                      className={`${s.input} ${
                         errors.email && touched.email ? s.inputError : ''
                       }`}
                       placeholder="email@gmail.com"
@@ -82,7 +82,8 @@ const LoginForm = () => {
                       <Field
                         type={showPassword ? 'text' : 'password'}
                         name="password"
-                        className={`${s.input}${
+                        // className={s.input}
+                        className={`${s.input} ${
                           errors.password && touched.password
                             ? s.inputError
                             : ''
