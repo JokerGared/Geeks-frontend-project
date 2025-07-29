@@ -17,7 +17,7 @@
   font-size: 12px;
   color: var(--link-color);
   text-decoration: none;
-  transition: var(--transition);
+  transition: all var(--transition);
   position: relative;
   padding: 28px 0;
 }
@@ -30,7 +30,7 @@
   width: 0;
   height: 1px;
   background-color: var(--link-color);
-  transition: var(--transition);
+  transition: all var(--transition);
 }
 
 .navLink:hover::after,
@@ -47,7 +47,7 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: var(--transition);
+  transition: all var(--transition);
   padding: 14px 0;
 }
 
@@ -57,13 +57,13 @@
 }
 
 .burgerIcon {
-  stroke: var(--main-icon-fill);
-  transition: var(--transition);
+  stroke: var(--button-bg-main);
+  transition: all var(--transition);
 }
 
 .burgerButton:hover .burgerIcon,
 .burgerButton:focus .burgerIcon {
-  stroke: var(--main-icon-fill);
+  stroke: var(--button-bg-main-hover);
 }
 
 .createLink,
@@ -89,7 +89,7 @@
     border-radius: 64px;
     height: 46px;
     text-decoration: none;
-    transition: var(--transition);
+    transition: all var(--transition);
   }
 
   .createLink {

@@ -4,9 +4,9 @@ import { toast } from 'react-hot-toast';
 
 export const fetchAuthors = createAsyncThunk(
   'authors/fetchAll',
-  async (_, thunkAPI) => {
+  async (page, thunkAPI) => {
     try {
-      const { data } = await axios.get('/users');
+      const { data } = await axios.get(`/users?page=${page}&limit=20`);
       return data.data;
     } catch (error) {
       toast.error('Failed to load authors');

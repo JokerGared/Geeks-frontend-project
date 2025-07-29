@@ -10,6 +10,10 @@ const initialState = {
   current: null,
   isLoading: false,
   error: null,
+  page: 1,
+  totalPages: 1,
+  hasNextPage: false,
+  hasPreviousPage: false,
 };
 
 const articlesSlice = createSlice({
@@ -23,7 +27,11 @@ const articlesSlice = createSlice({
       })
       .addCase(fetchArticles.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = action.payload;
+        state.items = [...state.items, ...action.payload.articles];
+        state.page = action.payload.page;
+        state.totalPages = action.payload.totalPages;
+        state.hasNextPage = action.payload.hasNextPage;
+        state.hasPreviousPage = action.payload.hasPreviousPage;
       })
       .addCase(fetchArticles.rejected, (state, action) => {
         state.isLoading = false;
