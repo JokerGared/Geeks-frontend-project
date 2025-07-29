@@ -44,6 +44,7 @@ const authorsSlice = createSlice({
       .addCase(fetchAuthorById.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+        state.current = null;
       });
   },
 });
