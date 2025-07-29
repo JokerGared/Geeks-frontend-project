@@ -1,4 +1,4 @@
-.loginConteiner {
+.loginContainer {
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -7,8 +7,6 @@
   align-items: center;
   justify-content: center;
 }
-
-/* Registration Form Styles */
 
 .loginCard {
   width: 100%;
@@ -60,12 +58,14 @@
 }
 
 .labelInputContainer {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
   align-self: stretch;
   width: 100%;
+  padding-bottom: 22px; /* чтобы убрать "прыжки" при появлении ошибки */
 }
 
 .label {
@@ -99,6 +99,10 @@
   font-size: 12px;
   color: var(--error-text-color);
   margin-top: 4px;
+  bottom: 0;
+  left: 0;
+  height: 18px; /* фиксированная высота */
+  line-height: 18px;
 }
 
 .passwordField {
@@ -174,8 +178,8 @@
   color: #070721;
 }
 
-.loginLinkBottom:hover,
-.loginLinkBottom:focus {
+.registerLinkBottom:hover,
+.registerLinkBottom:focus {
   color: var(--button-bg-main-hover);
   opacity: 0.5;
   transition: var(--transition);
