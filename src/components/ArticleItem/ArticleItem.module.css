@@ -1,13 +1,13 @@
 .card {
-  width: 361px;
-  min-width: 320px;
-  padding: 12px;
-  background: #d1e0d8;
-  border-radius: 32px;
   display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
   flex-direction: column;
-  box-sizing: border-box;
-  overflow: hidden;
+  border-radius: 32px;
+  padding: 12px;
+  width: 361px;
+  height: 492px;
+  background: var(--card-bg);
 }
 
 .image {
@@ -18,72 +18,82 @@
 }
 
 .content {
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 337px;
-  margin-top: 12px;
+  width: 100%;
 }
 
 .author {
-  font-family: 'Manrope', sans-serif;
   font-weight: 700;
-  font-size: 16px;
-  color: #070721;
-  margin-bottom: 4px;
 }
 
 .title {
-  font-family: 'Manrope', sans-serif;
+  width: 264px;
   font-weight: 700;
   font-size: 24px;
-  color: #070721;
-  margin-bottom: 8px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.description {
-  font-family: 'Manrope', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 155%;
-  color: #070721;
-  margin-bottom: 12px;
-  flex-shrink: 0;
+.desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .actions {
-  width: 337px;
-  height: 40px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: auto;
 }
 
 .learnMore {
   width: 289px;
   height: 40px;
-  padding: 8px;
-  border: 1px solid #374f42;
-  border-radius: 64px;
-  background: transparent;
-  font-family: 'Manrope', sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  color: #374f42;
-  cursor: pointer;
-}
 
-.save {
-  width: 40px;
-  height: 40px;
-  padding: 8px;
-  border: 1px solid #374f42;
-  border-radius: 64px;
-  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  border: 1px solid var(--link-color);
+  border-radius: 64px;
+  background: transparent;
+
+  font-weight: 700;
+  color: var(--link-color);
   cursor: pointer;
+
+  transition: var(--transition);
+}
+
+.learnMore:hover,
+.learnMore:focus {
+  color: var(--button-color-main);
+  background-color: var(--link-color);
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    border-radius: 32px;
+    padding: 12px;
+    width: 392px;
+    height: 492px;
+    background: var(--card-bg);
+  }
+}
+@media screen and (min-width: 1440px) {
 }
