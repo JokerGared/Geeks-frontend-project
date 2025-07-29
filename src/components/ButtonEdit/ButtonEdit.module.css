@@ -10,16 +10,17 @@
   transition: var(--transition);
 }
 
+.button:hover,
+.button:focus {
+  background-color: var(--link-color);
+}
+
 .icon {
   stroke: var(--link-color);
   fill: none;
   transition: var(--transition);
 }
-
-.active {
-  background-color: var(--link-color);
-}
-
-.active .icon {
+.button:hover .icon,
+.button:focus .icon {
   stroke: var(--button-bg-secondary-hover);
 }
