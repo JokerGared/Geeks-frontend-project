@@ -84,6 +84,11 @@
 @media screen and (min-width: 1440px) {
   .card {
     width: 392px;
+    transition: var(--transition);
+  }
+  .card:hover,
+  .card:hover {
+    transform: scale(1.05);
   }
 
   .learnMore {
