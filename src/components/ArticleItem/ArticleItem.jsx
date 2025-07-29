@@ -22,7 +22,11 @@ const ArticleItem = ({ _id, img, title, desc, ownerId }) => {
         <Link to={`/articles/${_id}`} className={s.learnMore}>
           Learn more
         </Link>
-        {ownerId._id === user._id ? <ButtonEdit /> : <ButtonAddToBookmarks />}
+        {ownerId._id === user._id ? (
+          <ButtonEdit article={{ _id, title, desc, img, ownerId }} />
+        ) : (
+          <ButtonAddToBookmarks article={{ _id, img, title, desc, ownerId }} />
+        )}
       </div>
     </article>
   );
