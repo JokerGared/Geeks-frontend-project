@@ -7,7 +7,6 @@ import s from './AuthorProfilePage.module.css';
 import { selectUser } from '../../redux/auth/selectors';
 import { fetchAuthorById } from '../../redux/authors/operations';
 import { selectAuthorsError } from '../../redux/authors/selectors';
-import PublicProfilePage from '../PublicProfilePage/PublicProfilePage';
 
 const AuthorProfilePage = () => {
   const { authorId } = useParams();
@@ -19,7 +18,7 @@ const AuthorProfilePage = () => {
     if (authorId !== user._id) {
       dispatch(fetchAuthorById(authorId));
     }
-  }, [dispatch, authorId, user]);
+  }, [dispatch, authorId, user._id]);
 
   useEffect(() => {
     if (error) {
@@ -37,7 +36,7 @@ const AuthorProfilePage = () => {
     );
   }
 
-  return <PublicProfilePage />;
+  return <PublicProfile />;
 };
 
 export default AuthorProfilePage;
