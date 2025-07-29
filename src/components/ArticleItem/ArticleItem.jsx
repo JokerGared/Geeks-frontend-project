@@ -1,9 +1,9 @@
 import s from './ArticleItem.module.css';
 import ButtonAddToBookmarks from '../ButtonAddToBookmarks/ButtonAddToBookmarks';
+import ButtonEdit from '../ButtonEdit/ButtonEdit';
 import { Link } from 'react-router-dom';
 import { selectUser } from '../../redux/auth/selectors';
 import { useSelector } from 'react-redux';
-import ButtonEdit from '../ButtonEdit/ButtonEdit';
 
 const ArticleItem = ({ _id, img, title, desc, ownerId }) => {
   const user = useSelector(selectUser);
