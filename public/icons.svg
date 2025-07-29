@@ -30,5 +30,9 @@
     <symbol id="icon-check" viewBox="0 0 48 32">
       <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="6" d="M6 13.882l13.333 14.118 22.667-24"></path>
     </symbol>
+    <symbol id="icon-Camera" viewBox="0 0 38 32">
+      <path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="0.6598" d="M23.503 17.461c0 2.018-1.956 3.654-4.369 3.654s-4.37-1.636-4.37-3.654c0-2.018 1.956-3.654 4.37-3.654s4.37 1.636 4.37 3.654z"></path>
+      <path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="0.6598" d="M7.773 22.5v-8.906c0-1.496 1.451-2.71 3.241-2.71 1.227 0 2.35-0.58 2.898-1.498l0.734-1.229c0.608-1.016 1.85-1.658 3.209-1.658h2.557c1.359 0 2.601 0.642 3.209 1.658l0.734 1.228c0.549 0.918 1.671 1.498 2.898 1.498 1.79 0 3.241 1.213 3.241 2.71v8.906c0 1.657-1.606 3-3.587 3h-15.547c-1.981 0-3.587-1.343-3.587-3z"></path>
+    </symbol>
   </defs>
 </svg>
