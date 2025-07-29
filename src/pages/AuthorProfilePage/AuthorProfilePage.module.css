@@ -1,0 +1,19 @@
+.errorWrapper {
+  width: 420px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.error {
+  font-weight: 700;
+  font-size: 32px;
+  text-align: center;
+  color: var(--color);
+}
