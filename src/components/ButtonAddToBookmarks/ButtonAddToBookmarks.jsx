@@ -30,7 +30,7 @@ const ButtonAddToBookmarks = ({ article }) => {
 
   const handleClick = () => {
     if (!isLoggedIn) {
-      dispatch(openModal('ErrorSave'));
+      dispatch(openModal({ type: 'ErrorSave' }));
       return;
     }
     if (isSaved) {
