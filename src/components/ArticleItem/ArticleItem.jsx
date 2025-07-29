@@ -1,39 +1,26 @@
-import PropTypes from 'prop-types';
 import s from './ArticleItem.module.css';
+import ButtonAddToBookmarks from '../ButtonAddToBookmarks/ButtonAddToBookmarks';
+import { Link } from 'react-router-dom';
 
-const ArticleItem = ({ id, title, description, author, imageUrl }) => {
-  const fallbackImage = 'https://via.placeholder.com/300x200?text=No+Image';
-
+const ArticleItem = ({ _id, img, title, desc, ownerId }) => {
   return (
-    <div className={s.card}>
-      <img
-        src={imageUrl || fallbackImage}
-        alt={title || 'Article Image'}
-        className={s.image}
-      />
+    <article className={s.card}>
+      <img src={img} alt={title} className={s.image} />
 
       <div className={s.content}>
-        <h3 className={s.title}>{title || 'Untitled'}</h3>
-        <p className={s.author}>By {author || 'Unknown'}</p>
-        <p className={s.description}>
-          {description || 'No description provided.'}
-        </p>
+        <p className={s.author}>{ownerId.name}</p>
+        <p className={s.title}>{title}</p>
 
-        <div className={s.actions}>
-          <button className={s.learnMore}>Learn more</button>
-          <button className={s.save}>Save</button>
-        </div>
+        <p className={s.desc}>{desc}</p>
       </div>
-    </div>
+      <div className={s.actions}>
+        <Link to={`/articles/${_id}`} className={s.learnMore}>
+          Learn more
+        </Link>
+        <ButtonAddToBookmarks />
+      </div>
+    </article>
   );
-};
-
-ArticleItem.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  title: PropTypes.string,
-  description: PropTypes.string,
-  author: PropTypes.string,
-  imageUrl: PropTypes.string,
 };
 
 export default ArticleItem;
