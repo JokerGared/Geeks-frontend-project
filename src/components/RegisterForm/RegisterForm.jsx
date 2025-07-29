@@ -2,9 +2,11 @@ import s from './RegisterForm.module.css';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
-import { EyeIcon } from 'lucide-react';
-// import { useDispatch } from 'react-redux';
-// import { registration } from '../../redux/auth/operations';
+import { EyeIcon, EyeOff } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { setRegistrationFormData } from '../../redux/auth/slice';
+import { useNavigate } from 'react-router-dom';
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 const initialValues = {
   name: '',
@@ -18,11 +20,14 @@ const emailRegular = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const validationSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Name must be at least 2 characters')
+    .max(32, 'Name must be at most 32 characters')
     .required('Name is required'),
   email: Yup.string()
+    .max(32, 'Name must be at most 32 characters')
     .matches(emailRegular, 'Invalid email address')
     .required('Email is required'),
   password: Yup.string()
+    .max(64, 'Password must be at most 64 characters')
     .min(8, 'Password must be at least 8 characters')
     .required('Password is required'),
   confirmPassword: Yup.string()
@@ -32,18 +37,19 @@ const validationSchema = Yup.object().shape({
 
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleSubmit = (values, action) => {
-    console.log('Form submitted:', values);
-    // Handle form submission here
-    setTimeout(() => {
-      action.setSubmitting(false);
-    }, 400);
-    action.resetForm();
+  const handleSubmit = (values) => {
+    dispatch(setRegistrationFormData(values));
+    navigate('/photo');
   };
-  // dispatch(registration(newContact));
+
+  const eyeIcon = showPassword ? (
+    <EyeIcon className={s.eyeIcon} onClick={() => setShowPassword(false)} />
+  ) : (
+    <EyeOff className={s.eyeIcon} onClick={() => setShowPassword(true)} />
+  );
 
   return (
     <div className={s.registerContainer}>
@@ -60,7 +66,7 @@ const RegisterForm = () => {
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
-            {({ isSubmitting, dirty }) => (
+            {({ isSubmitting, dirty, errors, touched, values }) => (
               <Form className={s.form}>
                 <div className={s.formFields}>
                   <div className={s.labelInputContainer}>
@@ -68,9 +74,11 @@ const RegisterForm = () => {
                       Enter your name
                     </label>
                     <Field
-                      className={s.input}
                       type="text"
                       name="name"
+                      className={`${s.input} ${
+                        errors.name && touched.name ? s.inputError : ''
+                      }`}
                       placeholder="Max"
                     />
                     <ErrorMessage
@@ -87,7 +95,9 @@ const RegisterForm = () => {
                     <Field
                       type="email"
                       name="email"
-                      className={s.input}
+                      className={`${s.input} ${
+                        errors.email && touched.email ? s.inputError : ''
+                      }`}
                       placeholder="email@gmail.com"
                     />
                     <ErrorMessage
@@ -103,16 +113,27 @@ const RegisterForm = () => {
                     </label>
                     <div className={s.passwordField}>
                       <Field
-                        className={s.passwordInput}
                         type={showPassword ? 'text' : 'password'}
                         name="password"
+                        className={`${s.input} ${
+                          errors.password && touched.password
+                            ? s.inputError
+                            : ''
+                        }`}
                         placeholder="*********"
                         autoComplete="new-password"
                       />
-                      <EyeIcon
-                        className={s.eyeIcon}
-                        onClick={() => setShowPassword(!showPassword)}
-                      />
+                      {eyeIcon}
+                    </div>
+                    <div className={s.passwordStrength}>
+                      {values.password && (
+                        <PasswordStrengthBar
+                          password={values.password}
+                          scoreWordStyle={{
+                            fontSize: '12px',
+                          }}
+                        />
+                      )}
                     </div>
                     <ErrorMessage
                       name="password"
@@ -127,18 +148,17 @@ const RegisterForm = () => {
                     </label>
                     <div className={s.passwordField}>
                       <Field
-                        className={s.passwordInput}
-                        type={showConfirmPassword ? 'text' : 'password'}
+                        type={showPassword ? 'text' : 'password'}
                         name="confirmPassword"
+                        className={`${s.input} ${
+                          errors.password && touched.password
+                            ? s.inputError
+                            : ''
+                        }`}
                         placeholder="*********"
                         autoComplete="new-password"
                       />
-                      <EyeIcon
-                        className={s.eyeIcon}
-                        onClick={() =>
-                          setShowConfirmPassword(!showConfirmPassword)
-                        }
-                      />
+                      {eyeIcon}
                     </div>
                     <ErrorMessage
                       name="confirmPassword"
