@@ -1,7 +1,123 @@
-import s from './AddArticleForm.module.css';
+import css from './AddArticleForm.module.css';
+import { useDispatch } from "react-redux";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useEffect, useRef, useState } from 'react';
+import * as Yup from "yup";
+import { useNavigate } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const AddArticleForm = () => {
-  return <div>Add Article Form</div>;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const initialValues = { 
+    title: "",
+    article: "", 
+    img: null,
+    publishDate: new Date(),
+    desc:""
+  };
+
+  const handleSubmit = async (values, {resetForm}) => {
+        dispatch(createArticle(values));
+        try {
+          const result = await dispatch(createArticle(values)).unwrap();
+          toast.success('Article published successfully!');
+          navigate(`/articles/${result.id}`);
+          resetForm();
+        } catch (error) {
+          toast.error(error.message || 'Failed to publish article');
+        }
+  }
+
+  const validationSchema = Yup.object({
+    title: Yup.string().required("Title is required").min(3,"minimum 3 symbols").max(48,"maximum 48 symbols"),
+    article: Yup.string().required("Text is required").min(100, "minimum 100 symbols").max(4000,"maximum 4000 symbols"),
+    img: Yup.mixed().test('fileSize', 'The file is too large', value => {
+      return value && value.size <= 1000000;
+    }),
+    publishDate: Yup.date().typeError('Date should be in format: YYYY-MM-DD').min(new Date(), 'The date cannot be in the past'),
+    desc: Yup.string().min(3).max(48),
+  });
+
+  const [selectedImage, setSelectedImage] = useState(null);
+  const handleImageChange = (e, setFieldValue) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFieldValue('img', file); 
+      setSelectedImage(URL.createObjectURL(file));
+    }
+  };
+
+  const textareaRef = useRef(null);
+  const adjustTextareaHeight = () => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  };
+  useEffect(() => {
+    adjustTextareaHeight();
+  }, []);
+
+  return (
+    <>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+        <Form className={css["create-article-form-container"]} autoComplete="off"> 
+          <label className={css["create-article-form-img-title-wrapper"]}>
+            <label className={css.imageUploadArea}>
+              {selectedImage ? (
+                <img src={selectedImage} alt="Preview" className={css.selectedImage} />
+              ) : (
+                <svg className={css.previewImage} width="72" height="61" viewBox="0 0 72 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M49.2452 34.9303C49.2452 41.0472 43.3151 46.006 36 46.006C28.6849 46.006 22.7548 41.0472 22.7548 34.9303C22.7548 28.8133 28.6849 23.8545 36 23.8545C43.3151 23.8545 49.2452 28.8133 49.2452 34.9303Z" stroke="#070707" stroke-width="1"/>
+                  <path d="M1.5625 50.2031L1.5625 23.2082C1.5625 18.6716 5.96049 14.994 11.3857 14.994C15.1064 14.994 18.5078 13.2361 20.1718 10.4533L22.3981 6.73002C24.2402 3.6492 28.0058 1.70311 32.125 1.70313L39.8751 1.70315C43.9942 1.70316 47.7598 3.64925 49.6019 6.73006L51.8282 10.4533C53.4922 13.2362 56.8936 14.994 60.6143 14.994C66.0395 14.994 70.4375 18.6717 70.4375 23.2082V50.2031C70.4375 55.2254 65.5686 59.2968 59.5625 59.2968H12.4375C6.4314 59.2968 1.5625 55.2254 1.5625 50.2031Z" stroke="#070707" stroke-width="1"/>
+                </svg>
+              )}
+              <input
+                type="file"
+                accept="img/*"
+                onChange={(e) => handleImageChange(e, setFieldValue)}
+                className={css.fileInput}
+              />
+            </label>
+            <label className={css["create-article-form-title-wrapper"]}>
+              <label className={css["create-article-form-part"]}>
+                <p className={css["create-article-form-title"]}>Title</p>
+                <Field type="title" name="title" className={css["create-article-form-input-title"]} placeholder="Enter the title" />
+                <ErrorMessage name="title" component="div" style={{ color: "red" }} />
+              </label>
+              <label className={css["create-article-form-part"]}>
+                <p className={css["create-article-form-title"]}>SubTitle</p>
+                <Field type="text" name="desc" className={css["create-article-form-input-title"]} placeholder="Enter the Subtitle" />
+                <ErrorMessage name="desc" component="div" style={{ color: "red" }} />
+              </label>
+            </label>
+          </label>
+          <label className={css["create-article-form-part"]}>
+            <Field as="textarea" innerRef={textareaRef} name="article" className={css["create-article-form-input-text"]} placeholder="Enter a text" onInput={adjustTextareaHeight} onLoad={adjustTextareaHeight} />
+            <ErrorMessage name="article" component="div" style={{ color: "red" }} />
+          </label>
+          <p className={css["create-form-date-text"]}>Date of publication: </p>
+          <Field name="publishDate">
+                {({ field, form }) => (
+                    <DatePicker
+                    className={css['create-form-data']}
+                    selected={field.value}
+                    onChange={(date) => form.setFieldValue('publishDate', date)}
+                    minDate={new Date()}
+                    dateFormat="yyyy-MM-dd"
+                    popperPlacement="top-start"
+                    />
+                )}
+          </Field> 
+          <ErrorMessage name="publishDate" component="div" style={{ color: "red" }} />
+          <button type="submit" className={css["publish-article-button"]}>Publish Article</button>
+        </Form>
+      </Formik>
+    </>
+  );
 };
 
 export default AddArticleForm;
