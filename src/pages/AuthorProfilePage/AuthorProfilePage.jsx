@@ -7,6 +7,7 @@ import s from './AuthorProfilePage.module.css';
 import { selectUser } from '../../redux/auth/selectors';
 import { fetchAuthorById } from '../../redux/authors/operations';
 import { selectAuthorsError } from '../../redux/authors/selectors';
+import PublicProfile from '../../components/PublicProfile/PublicProfile';
 
 const AuthorProfilePage = () => {
   const { authorId } = useParams();
