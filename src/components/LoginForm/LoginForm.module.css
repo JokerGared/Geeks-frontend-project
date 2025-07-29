@@ -2,12 +2,10 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background-color: #f7fffb;
+  background-color: var(--background-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
-  box-sizing: border-box;
 }
 
 /* Registration Form Styles */
@@ -15,10 +13,8 @@
 .loginCard {
   width: 100%;
   max-width: 330px;
-  background-color: #d1e0d8;
+  background-color: var(--card-bg);
   border-radius: 32px;
-  border: none;
-  box-shadow: none;
 }
 
 .cardContent {
@@ -31,29 +27,19 @@
 
 .title {
   align-self: stretch;
-  font-family: 'Manrope', Helvetica;
   font-size: 32px;
-  font-style: normal;
   font-weight: 700;
-  letter-spacing: 0px;
-  line-height: normal;
-  color: #070721;
+  color: var(--color);
   text-align: center;
   margin: 0;
 }
 
-.subtitle {
+/* .subtitle {
   width: 278px;
-  font-family: 'Manrope', Helvetica;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0px;
-  line-height: 155%;
-  color: #070721;
+  color: var(--color);
   text-align: center;
   margin: 0;
-}
+} */
 
 .form {
   display: flex;
@@ -84,29 +70,19 @@
 
 .label {
   align-self: stretch;
-  font-family: 'Manrope', Helvetica;
   font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
   letter-spacing: 0px;
-  line-height: normal;
-  color: #070721;
+  color: var(--color);
 }
 
 .input {
-  background-color: white;
+  background-color: var(--background-color);
   border: 1px solid #9f9f9f;
-  font-family: 'Manrope', Helvetica;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0px;
-  line-height: 155%;
+  line-height: 1.5;
   color: #595d62;
   width: 100%;
   padding: 8px 12px;
   border-radius: 6px;
-  box-sizing: border-box;
 }
 
 .input:focus {
@@ -114,10 +90,14 @@
   border-color: #649179;
 }
 
+.inputError {
+  border: 1px solid var(--error-border-color);
+}
+
 .error {
-  font-family: 'Manrope', Helvetica;
+  position: absolute;
   font-size: 12px;
-  color: #e53e3e;
+  color: var(--error-text-color);
   margin-top: 4px;
 }
 
@@ -127,19 +107,13 @@
 }
 
 .passwordInput {
-  background-color: white;
+  background-color: var(--background-color);
   border: 1px solid #9f9f9f;
-  font-family: 'Manrope', Helvetica;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0px;
-  line-height: 155%;
+  line-height: 1.5;
   color: #595d62;
   width: 100%;
   padding: 8px 40px 8px 12px;
   border-radius: 6px;
-  box-sizing: border-box;
 }
 
 .passwordInput:focus {
@@ -160,50 +134,51 @@
 
 .loginButton {
   width: 100%;
-  background-color: #649179;
+  background-color: var(--button-bg-main);
   border-radius: 64px;
-  color: white;
-  font-family: 'Manrope', Helvetica;
-  font-size: 16px;
-  font-style: normal;
+  color: var(--button-color-main);
   font-weight: 700;
-  letter-spacing: 0px;
-  line-height: normal;
   border: none;
   padding: 12px 24px;
-  cursor: pointer;
 }
 
 .loginButton:disabled {
-  opacity: 0.6;
+  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
+  background: var(--button-bg-main);
+  opacity: 0.3;
   cursor: not-allowed;
 }
 
 .loginButton:hover {
-  opacity: 0.6;
+  background: var(--button-bg-main-hover);
+  transition: var(--transition);
+}
+
+.loginButton:focus {
+  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
+  background: var(--button-bg-main);
+  transition: var(--transition);
 }
 
 .loginPrompt {
   align-self: stretch;
-  font-family: 'Manrope', Helvetica;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
   color: #070721;
   text-align: center;
-  line-height: 24.8px;
+  line-height: 1.5;
   margin: 0;
 }
 
 .registerLinkBottom {
-  font-family: 'Manrope', Helvetica;
-  font-size: 16px;
-  font-style: normal;
   font-weight: 700;
-  letter-spacing: 0px;
-  line-height: normal;
   text-decoration: underline;
   color: #070721;
+}
+
+.loginLinkBottom:hover,
+.loginLinkBottom:focus {
+  color: var(--button-bg-main-hover);
+  opacity: 0.5;
+  transition: var(--transition);
 }
 
 /* Tablet (min-width: 768px) */

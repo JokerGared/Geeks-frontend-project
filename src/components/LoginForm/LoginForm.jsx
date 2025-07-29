@@ -2,9 +2,10 @@ import s from './LoginForm.module.css';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
-import { EyeIcon } from 'lucide-react';
-// import { useDispatch } from 'react-redux';
-// import { Login } from '../../redux/auth/operations';
+import { EyeIcon, EyeOff } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { setLoginFormData } from '../../redux/auth/slice';
 
 const initialValues = {
   email: '',
@@ -15,29 +16,33 @@ const emailRegular = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
+    .max(32, 'Name must be at most 32 characters')
     .matches(emailRegular, 'Invalid email address')
     .required('Email is required'),
   password: Yup.string()
     .min(8, 'Password must be at least 8 characters')
+    .max(64, 'Password must be at most 64 characters')
     .required('Password is required'),
 });
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleSubmit = (values, action) => {
-    console.log('Form submitted:', values);
-    // Handle form submission here
-    setTimeout(() => {
-      action.setSubmitting(false);
-    }, 400);
-    action.resetForm();
+  const handleSubmit = (values) => {
+    dispatch(setLoginFormData(values));
+    navigate('/HomeAuthorised');
   };
-  // dispatch(login(newContact));
+
+  const eyeIcon = showPassword ? (
+    <EyeIcon className={s.eyeIcon} onClick={() => setShowPassword(false)} />
+  ) : (
+    <EyeOff className={s.eyeIcon} onClick={() => setShowPassword(true)} />
+  );
 
   return (
-    <div className={s.loginConteiner}>
+    <div className={s.loginContainer}>
       <div className={s.loginCard}>
         <div className={s.cardContent}>
           <h1 className={s.title}>Login</h1>
@@ -47,7 +52,7 @@ const LoginForm = () => {
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
-            {({ isSubmitting, dirty }) => (
+            {({ isSubmitting, dirty, errors, touched }) => (
               <Form className={s.form}>
                 <div className={s.formFields}>
                   <div className={s.labelInputContainer}>
@@ -57,7 +62,9 @@ const LoginForm = () => {
                     <Field
                       type="email"
                       name="email"
-                      className={s.input}
+                      className={`${s.input}${
+                        errors.email && touched.email ? s.inputError : ''
+                      }`}
                       placeholder="email@gmail.com"
                     />
                     <ErrorMessage
@@ -73,16 +80,17 @@ const LoginForm = () => {
                     </label>
                     <div className={s.passwordField}>
                       <Field
-                        className={s.passwordInput}
                         type={showPassword ? 'text' : 'password'}
                         name="password"
+                        className={`${s.input}${
+                          errors.password && touched.password
+                            ? s.inputError
+                            : ''
+                        }`}
                         placeholder="*********"
                         autoComplete="new-password"
                       />
-                      <EyeIcon
-                        className={s.eyeIcon}
-                        onClick={() => setShowPassword(!showPassword)}
-                      />
+                      {eyeIcon}
                     </div>
                     <ErrorMessage
                       name="password"
