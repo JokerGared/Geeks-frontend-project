@@ -3,7 +3,7 @@ import s from './ButtonEdit.module.css';
 
 const ButtonEdit = () => {
   return (
-    <button className={s.edit} type="button">
+    <button className={s.button} type="button">
       <svg className={s.icon} width="24px" height="24px">
         <use xlinkHref="/icons.svg#icon-edit" />
       </svg>
