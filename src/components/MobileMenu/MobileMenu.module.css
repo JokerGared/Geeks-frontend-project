@@ -13,7 +13,7 @@
   pointer-events: none;
   visibility: hidden;
 
-  transition: var(--transition);
+  transition: all var(--transition);
 }
 
 .mobileBackdrop.isOpen {
@@ -28,6 +28,7 @@
   max-width: 393px;
   background-color: var(--card-bg);
   padding: 24px 16px;
+  border-radius: 32px;
 }
 
 .logoCloseButtonContainer {
@@ -54,7 +55,13 @@
 }
 
 .closeIcon {
-  stroke: var(--secondary-icon-fill)
+  stroke: var(--button-bg-main);
+  transition: all var(--transition);
+}
+
+.closeButton:hover .closeIcon,
+.closeButton:focus .closeIcon {
+  stroke: var(--button-bg-main-hover);
 }
 
 .closeButton:hover .burgerIcon,
@@ -87,7 +94,7 @@
   width: 0;
   height: 1px;
   background-color: var(--link-color);
-  transition: var(--transition);
+  transition: all var(--transition);
 }
 
 .mobNavLink:hover::after,
@@ -109,7 +116,7 @@
   border-radius: 64px;
   height: 46px;
   text-decoration: none;
-  transition: var(--transition);
+  transition: all var(--transition);
   margin: 0 auto;
 }
 
@@ -164,15 +171,16 @@
   position: absolute;
   content: "";
   width: 1px;
-  height: 30px;
+  height: 40px;
   background: #374f42;
   right: -16px;
-  bottom: -2px;
+  bottom: 0;
 }
 
 .avatar {
   width: 40px;
   height: 40px;
+  border-radius: 256px;
 }
 
 .name {
@@ -192,7 +200,14 @@
 }
 
 .exitIcon {
-  stroke: var(--main-icon-fill)
+  stroke: var(--button-bg-main);
+  fill: none;
+  transition: all var(--transition);
+}
+
+.exitButton:hover .exitIcon,
+.exitButton:focus .exitIcon {
+  stroke: var(--button-bg-main-hover);
 }
 
 @media screen and (min-width:768px) {
@@ -221,5 +236,9 @@
   .avatar {
     width: 32px;
     height: 32px;
+  }
+
+  .avatarNameContainer::after {
+    bottom: -3px;
   }
 }
