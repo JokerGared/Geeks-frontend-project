@@ -1,34 +1,23 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import ArticlesList from "../../components/ArticlesList/ArticlesList";
-import styles from "./ArticlesPage.module.css";
+import { useDispatch, useSelector } from 'react-redux';
+
+import s from './ArticlesPage.module.css';
+import { fetchArticles } from '../../redux/articles/operations';
+import { useEffect } from 'react';
+import ArticlesList from '../../components/ArticlesList/ArticlesList';
 
 const ArticlesPage = () => {
-  const [articles, setArticles] = useState([]);
-  const [selectedFilter, setSelectedFilter] = useState("popular");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  
+  const articles = useSelector(selectArticles);
+  const isLoading = useSelector(selectArticlesLoading);
+  const error = useSelector(selectArticlesError);
+  const hasNextPage()
 
-  useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        const response = await axios.get(
-          "https://your-backend-api.com/articles"
-        );
-        setArticles(response.data);
-      } catch (err) {
-        setError("Failed to retrieve articles");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const dispatch = useDispatch();
+useEffect(()=>{dispatch(fetchArticles(1))},[dispatch])
 
-    fetchArticles();
-  }, []);
-
+}
   return (
-    <div className={styles.articlesPageWrapper}>
+    <div className={s.articlesPageWrapper}>
       <h2 className={styles.pageTitle}>Articles</h2>
 
       <div className={styles.counterContainer}>
@@ -46,10 +35,19 @@ const ArticlesPage = () => {
         </select>
       </div>
 
-      {loading && <p>Loading...</p>}
+      {isLoading && <p>Loading...</p>}
       {error && <p className={styles.error}>{error}</p>}
 
-      {!loading && !error && <ArticlesList articles={articles} />}
+      {!isLoading && !error && (
+        <>
+          <ArticlesList articles={articles} />
+          {hasNextPage && (
+            <button onClick={loadMore} className={s.loadMoreBtn}>
+              Load More
+            </button>
+          )}
+        </>
+      )}
     </div>
   );
 };
