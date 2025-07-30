@@ -1,18 +1,43 @@
+import { useParams, Navigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { toast } from 'react-hot-toast';
+
 import s from './AuthorProfilePage.module.css';
-import MyProfile from '../MyProfile/MyProfile';
+import { selectUser } from '../../redux/auth/selectors';
+import { fetchAuthorById } from '../../redux/authors/operations';
+import { selectAuthorsError } from '../../redux/authors/selectors';
 import PublicProfile from '../../components/PublicProfile/PublicProfile';
 
 const AuthorProfilePage = () => {
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { authorId } = useParams();
+  const user = useSelector(selectUser);
+  const error = useSelector(selectAuthorsError);
+  const dispatch = useDispatch();
 
-  let currentUser;
-  return (
-    <div>
-      <h2>Author's articles</h2>
+  useEffect(() => {
+    if (authorId !== user._id) {
+      dispatch(fetchAuthorById(authorId));
+    }
+  }, [dispatch, authorId, user._id]);
 
-      {currentUser ? <MyProfile /> : <PublicProfile />}
-    </div>
-  );
+  useEffect(() => {
+    if (error) {
+      toast.error('This author was not found');
+    }
+  }, [error]);
+
+  if (authorId === user._id) return <Navigate to="/profile" />;
+
+  if (error) {
+    return (
+      <div className={s.errorWrapper}>
+        <p className={s.error}>This author was not found</p>
+      </div>
+    );
+  }
+
+  return <PublicProfile />;
 };
 
 export default AuthorProfilePage;
