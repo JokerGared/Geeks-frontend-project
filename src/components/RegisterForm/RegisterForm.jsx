@@ -23,7 +23,7 @@ const validationSchema = Yup.object().shape({
     .max(32, 'Name must be at most 32 characters')
     .required('Name is required'),
   email: Yup.string()
-    .max(32, 'Name must be at most 32 characters')
+    .max(64, 'Name must be at most 64 characters')
     .matches(emailRegular, 'Invalid email address')
     .required('Email is required'),
   password: Yup.string()
@@ -151,7 +151,7 @@ const RegisterForm = () => {
                         type={showPassword ? 'text' : 'password'}
                         name="confirmPassword"
                         className={`${s.input} ${
-                          errors.password && touched.password
+                          errors.confirmPassword && touched.confirmPassword
                             ? s.inputError
                             : ''
                         }`}
