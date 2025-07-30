@@ -29,7 +29,7 @@ const UploadForm = () => {
       // dispatch(setPhotoData(selectedImage));
       console.log('Фото загружено:', selectedImage);
     }
-    navigate('/HomeAuthorised');
+    navigate('/');
   };
 
   const handleClose = () => {

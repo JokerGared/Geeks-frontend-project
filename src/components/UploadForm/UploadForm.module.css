@@ -71,7 +71,7 @@
   height: 136px;
   border-radius: 50%;
   object-fit: cover;
-  cursor: pointer;
+  /* cursor: pointer; */
   transition: opacity 0.2s;
 }
 
@@ -102,7 +102,7 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   stroke: black;
@@ -110,8 +110,8 @@
 }
 
 .cameraIcon {
-  width: 48px;
-  height: 48px;
+  width: 124px;
+  height: 124px;
   /* color: white; */
 }
 
