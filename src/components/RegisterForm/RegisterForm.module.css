@@ -45,7 +45,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 27px;
+  gap: 36px;
   align-self: stretch;
   width: 100%;
 }
@@ -54,12 +54,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
+  gap: 26px;
   align-self: stretch;
   width: 100%;
 }
 
 .labelInputContainer {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -106,7 +107,7 @@
 .error {
   font-size: 12px;
   color: var(--error-text-color);
-  margin-top: 64px;
+  top: 100%;
   position: absolute;
 }
 
@@ -137,7 +138,8 @@
   transform: translateY(-50%);
   width: 24px;
   height: 24px;
-  color: #595d62;
+  stroke: var(--secondary-icon-fill);
+  fill: none;
   cursor: pointer;
 }
 

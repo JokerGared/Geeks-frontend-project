@@ -2,10 +2,9 @@ import s from './RegisterForm.module.css';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
-import { EyeIcon, EyeOff } from 'lucide-react';
 import { useDispatch } from 'react-redux';
 import { setRegistrationFormData } from '../../redux/auth/slice';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PasswordStrengthBar from 'react-password-strength-bar';
 
 const initialValues = {
@@ -45,10 +44,23 @@ const RegisterForm = () => {
     navigate('/photo');
   };
 
-  const eyeIcon = showPassword ? (
-    <EyeIcon className={s.eyeIcon} onClick={() => setShowPassword(false)} />
-  ) : (
-    <EyeOff className={s.eyeIcon} onClick={() => setShowPassword(true)} />
+  // const eyeIcon = showPassword ? (
+  //   <EyeIcon className={s.eyeIcon} onClick={() => setShowPassword(false)} />
+  // ) : (
+  //   <EyeOff className={s.eyeIcon} onClick={() => setShowPassword(true)} />
+  // );
+
+  const iconId = showPassword ? 'icon-close-eye' : 'icon-open-eye';
+  const ariaLabel = showPassword ? 'Hide password' : 'Show password';
+
+  const eyeIcon = (
+    <svg
+      className={s.eyeIcon}
+      onClick={() => setShowPassword(!showPassword)}
+      aria-label={ariaLabel}
+    >
+      <use href={`/public/icons.svg#${iconId}`}></use>
+    </svg>
   );
 
   return (
@@ -181,9 +193,9 @@ const RegisterForm = () => {
 
           <p className={s.loginPrompt}>
             <span>Already have an account? </span>
-            <a href="/login" className={s.loginLinkBottom}>
+            <Link to="/login" className={s.loginLinkBottom}>
               Log in
-            </a>
+            </Link>
           </p>
         </div>
       </div>
