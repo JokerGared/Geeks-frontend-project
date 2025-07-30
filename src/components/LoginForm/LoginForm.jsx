@@ -1,11 +1,13 @@
 import s from './LoginForm.module.css';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { EyeIcon, EyeOff } from 'lucide-react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setLoginFormData } from '../../redux/auth/slice';
+import { toast } from 'react-toastify';
+import { selectError } from '../../redux/auth/selectors';
 
 const initialValues = {
   email: '',
@@ -16,7 +18,7 @@ const emailRegular = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
-    .max(32, 'Name must be at most 32 characters')
+    .max(64, 'Name must be at most 64 characters')
     .matches(emailRegular, 'Invalid email address')
     .required('Email is required'),
   password: Yup.string()
@@ -29,10 +31,25 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const error = useSelector(selectError);
+
+  // ADD useEffect for errors and show toast
+  useEffect(() => {
+    if (error) {
+      toast.error(error, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+  }, [error]);
 
   const handleSubmit = (values) => {
     dispatch(setLoginFormData(values));
-    navigate('/HomeAuthorised');
+    navigate('/');
   };
 
   const eyeIcon = showPassword ? (
@@ -89,7 +106,7 @@ const LoginForm = () => {
                             : ''
                         }`}
                         placeholder="*********"
-                        autoComplete="new-password"
+                        autoComplete="current-password"
                       />
                       {eyeIcon}
                     </div>
