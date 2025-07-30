@@ -3,11 +3,10 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { setLoginFormData } from '../../redux/auth/slice';
 import { toast } from 'react-toastify';
 import { selectError } from '../../redux/auth/selectors';
-import { Link } from 'react-router-dom';
 
 const initialValues = {
   email: '',
