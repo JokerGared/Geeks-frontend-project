@@ -1,0 +1,159 @@
+.uploadContainer {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uploadCard {
+  width: 100%;
+  max-width: 392px;
+  background-color: var(--card-bg);
+  border-radius: 32px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 48px 32px;
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.closeIcon {
+  width: 24px;
+  height: 24px;
+  color: var(--color);
+}
+
+.title {
+  align-self: stretch;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color);
+  text-align: center;
+  margin: 0;
+}
+
+.imageContainer {
+  position: relative;
+}
+
+.profileImage {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.profileImage:hover {
+  opacity: 0.8;
+}
+
+.placeholderImage {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background-color: var(--button-bg-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.placeholderImage:hover {
+  background-color: var(--button-bg-main-hover);
+}
+
+.cameraIconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cameraIcon {
+  width: 48px;
+  height: 48px;
+  color: white;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.buttonSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 27px;
+  align-self: stretch;
+  width: 100%;
+}
+
+.saveButton {
+  width: 100%;
+  background-color: var(--button-bg-main);
+  border-radius: 64px;
+  color: var(--button-color-main);
+  font-weight: 700;
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.saveButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  background-color: var(--button-bg-main);
+}
+
+.saveButton:hover:not(:disabled) {
+  background: var(--button-bg-main-hover);
+}
+
+.saveButton:focus {
+  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
+  background: var(--button-bg-main);
+}
+
+/* Tablet (min-width: 768px) */
+@media only screen and (min-width: 768px) {
+  .uploadCard {
+    max-width: 522px;
+  }
+}
+
+/* Desktop (min-width: 1440px) */
+@media only screen and (min-width: 1440px) {
+  .uploadCard {
+    max-width: 392px;
+  }
+}
