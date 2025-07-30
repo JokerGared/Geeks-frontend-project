@@ -2,12 +2,12 @@ import s from './LoginForm.module.css';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useState, useEffect } from 'react';
-import { EyeIcon, EyeOff } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setLoginFormData } from '../../redux/auth/slice';
 import { toast } from 'react-toastify';
 import { selectError } from '../../redux/auth/selectors';
+import { Link } from 'react-router-dom';
 
 const initialValues = {
   email: '',
@@ -33,7 +33,6 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const error = useSelector(selectError);
 
-  // ADD useEffect for errors and show toast
   useEffect(() => {
     if (error) {
       toast.error(error, {
@@ -52,10 +51,17 @@ const LoginForm = () => {
     navigate('/');
   };
 
-  const eyeIcon = showPassword ? (
-    <EyeIcon className={s.eyeIcon} onClick={() => setShowPassword(false)} />
-  ) : (
-    <EyeOff className={s.eyeIcon} onClick={() => setShowPassword(true)} />
+  const iconId = showPassword ? 'icon-close-eye' : 'icon-open-eye';
+  const ariaLabel = showPassword ? 'Hide password' : 'Show password';
+
+  const eyeIcon = (
+    <svg
+      className={s.eyeIcon}
+      onClick={() => setShowPassword(!showPassword)}
+      aria-label={ariaLabel}
+    >
+      <use href={`icons.svg#${iconId}`}></use>
+    </svg>
   );
 
   return (
@@ -99,7 +105,6 @@ const LoginForm = () => {
                       <Field
                         type={showPassword ? 'text' : 'password'}
                         name="password"
-                        // className={s.input}
                         className={`${s.input} ${
                           errors.password && touched.password
                             ? s.inputError
@@ -131,9 +136,9 @@ const LoginForm = () => {
 
           <p className={s.loginPrompt}>
             <span>Don’t have an account? </span>
-            <a href="/register" className={s.registerLinkBottom}>
+            <Link to="/register" className={s.registerLinkBottom}>
               Register
-            </a>
+            </Link>
           </p>
         </div>
       </div>
