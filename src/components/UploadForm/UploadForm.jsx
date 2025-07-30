@@ -1,21 +1,16 @@
 import s from './UploadForm.module.css';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { X, Camera } from 'lucide-react';
 
 const UploadForm = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       setSelectedImage(file);
-
-      // Создаем preview изображения
       const reader = new FileReader();
       reader.onload = (e) => {
         setImagePreview(e.target.result);
@@ -26,8 +21,6 @@ const UploadForm = () => {
 
   const handleSubmit = () => {
     if (selectedImage) {
-      // dispatch(setPhotoData(selectedImage));
-      console.log('Фото загружено:', selectedImage);
     }
     navigate('/');
   };

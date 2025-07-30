@@ -13,8 +13,8 @@
   max-width: 360px;
   background-color: var(--card-bg);
   border-radius: 32px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05); */
 }
 
 .cardContent {
@@ -30,16 +30,13 @@
   position: absolute;
   top: 16px;
   right: 16px;
-  /* padding: 8px; */
   background: transparent;
   border: none;
   cursor: pointer;
-  /* border-radius: 4px; */
   display: flex;
   align-items: center;
   justify-content: center;
   stroke: var(--color);
-  /* fill: none; */
 }
 
 .closeButton:hover,
@@ -71,7 +68,6 @@
   height: 136px;
   border-radius: 50%;
   object-fit: cover;
-  /* cursor: pointer; */
   transition: opacity 0.2s;
 }
 
@@ -112,7 +108,6 @@
 .cameraIcon {
   width: 124px;
   height: 124px;
-  /* color: white; */
 }
 
 .hiddenInput {
@@ -135,24 +130,25 @@
   color: var(--button-color-main);
   font-weight: 700;
   border: none;
-  padding: 12px 24px;
-  cursor: pointer;
-  transition: var(--transition);
+  padding: 12px;
 }
 
 .saveButton:disabled {
+  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
+  background: var(--button-bg-main);
   opacity: 0.3;
   cursor: not-allowed;
-  background-color: var(--button-bg-main);
 }
 
-.saveButton:hover:not(:disabled) {
+.saveButton:hover {
   background: var(--button-bg-main-hover);
+  transition: var(--transition);
 }
 
 .saveButton:focus {
   box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
   background: var(--button-bg-main);
+  transition: var(--transition);
 }
 
 /* Tablet (min-width: 768px) */
