@@ -33,7 +33,7 @@ const UploadForm = () => {
   };
 
   const handleClose = () => {
-    navigate('/register');
+    navigate('/');
   };
 
   const triggerFileInput = () => {
@@ -44,8 +44,14 @@ const UploadForm = () => {
     <div className={s.uploadContainer}>
       <div className={s.uploadCard}>
         <div className={s.cardContent}>
-          <button className={s.closeButton} onClick={handleClose}>
-            <X className={s.closeIcon} />
+          <button
+            className={s.closeButton}
+            onClick={handleClose}
+            aria-label="Close"
+          >
+            <svg aria-hidden="true" className={s.closeIcon}>
+              <use href="/icons.svg#icon-close" />
+            </svg>
           </button>
 
           <h1 className={s.title}>Upload your photo</h1>
@@ -59,9 +65,17 @@ const UploadForm = () => {
                 onClick={triggerFileInput}
               />
             ) : (
-              <div className={s.placeholderImage} onClick={triggerFileInput}>
+              <div
+                className={s.placeholderImage}
+                onClick={triggerFileInput}
+                role="button"
+                tabIndex={0}
+                aria-label="Upload photo"
+              >
                 <div className={s.cameraIconContainer}>
-                  <Camera className={s.cameraIcon} />
+                  <svg className={s.cameraIcon} aria-hidden="true">
+                    <use href="/icons.svg#icon-Camera" />
+                  </svg>
                 </div>
               </div>
             )}

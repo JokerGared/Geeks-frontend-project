@@ -10,7 +10,7 @@
 
 .uploadCard {
   width: 100%;
-  max-width: 392px;
+  max-width: 360px;
   background-color: var(--card-bg);
   border-radius: 32px;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
@@ -22,7 +22,7 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  padding: 48px 32px;
+  padding: 32px 32px;
   position: relative;
 }
 
@@ -30,24 +30,27 @@
   position: absolute;
   top: 16px;
   right: 16px;
-  padding: 8px;
+  /* padding: 8px; */
   background: transparent;
   border: none;
   cursor: pointer;
-  border-radius: 4px;
+  /* border-radius: 4px; */
   display: flex;
   align-items: center;
   justify-content: center;
+  stroke: var(--color);
+  /* fill: none; */
 }
 
-.closeButton:hover {
-  background: rgba(0, 0, 0, 0.05);
+.closeButton:hover,
+.closeButton:focus {
+  stroke: var(--button-bg-main-hover);
+  transition: var(--transition);
 }
 
 .closeIcon {
   width: 24px;
   height: 24px;
-  color: var(--color);
 }
 
 .title {
@@ -64,8 +67,8 @@
 }
 
 .profileImage {
-  width: 160px;
-  height: 160px;
+  width: 136px;
+  height: 136px;
   border-radius: 50%;
   object-fit: cover;
   cursor: pointer;
@@ -77,8 +80,8 @@
 }
 
 .placeholderImage {
-  width: 160px;
-  height: 160px;
+  width: 136px;
+  height: 136px;
   border-radius: 50%;
   background-color: var(--button-bg-main);
   display: flex;
@@ -88,20 +91,28 @@
   transition: background-color 0.2s;
 }
 
-.placeholderImage:hover {
+.placeholderImage:hover,
+.placeholderImage:focus {
   background-color: var(--button-bg-main-hover);
+  transition: var(--transition);
 }
 
 .cameraIconContainer {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  stroke: black;
+  fill: none;
 }
 
 .cameraIcon {
   width: 48px;
   height: 48px;
-  color: white;
+  /* color: white; */
 }
 
 .hiddenInput {
