@@ -1,13 +1,14 @@
+import clsx from 'clsx';
 import s from './AuthorsItem.module.css';
 import { Link } from 'react-router-dom';
 
-const AuthorsItem = ({ id, avatar, name, avatarClassName = '' }) => {
+const AuthorsItem = ({ _id, name, avatarUrl, avatarClassName = '' }) => {
   return (
-    <Link to={`/authors/${id}`} className={s.card}>
+    <Link to={`/authors/${_id}`} className={s.card}>
       <img
-        src={avatar}
+        src={avatarUrl}
         alt={`${name}'s avatar`}
-        className={`${s.avatar} ${avatarClassName}`}
+        className={clsx(s.avatar, avatarClassName)}
       />
       <p className={s.name}>{name}</p>
     </Link>

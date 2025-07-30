@@ -8,7 +8,7 @@
 .avatar {
   width: 148px;
   height: 148px;
-  border-radius: 256px;
+  border-radius: 50%;
   object-fit: cover;
 }
 

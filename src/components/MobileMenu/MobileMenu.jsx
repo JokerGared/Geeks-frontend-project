@@ -2,25 +2,44 @@ import { useEffect } from 'react';
 import s from './MobileMenu.module.css';
 import clsx from 'clsx';
 import { Link, NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { selectModalType } from '../../redux/modal/selectors';
+import { closeModal, openModal } from '../../redux/modal/slice';
+import { MODALS } from '../../constants/modals';
 
 const handleActiveClass = ({ isActive }) => {
   return clsx(s.mobNavLink, isActive && s.active);
 };
 
-const MobileMenu = ({ isOpen, onCloseMobileMenu }) => {
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isLoggedIn = true;
+const MobileMenu = () => {
+  const avatar = 'https://i.pravatar.cc/150?img=5';
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const modalType = useSelector(selectModalType);
+  const isOpen = modalType === MODALS.MOBILE_MENU;
+
+  const dispatch = useDispatch();
+
+  const handleCloseMobileMenu = () => {
+    dispatch(closeModal());
+  };
 
   const handleBackDropClick = (e) => {
     if (e.target === e.currentTarget) {
-      onCloseMobileMenu();
+      handleCloseMobileMenu();
     }
+  };
+
+  const handleOpenConfirmExitModal = () => {
+    dispatch(openModal({ type: 'modalLogoutConfirm' }));
+    handleCloseMobileMenu();
   };
 
   useEffect(() => {
     const handleKeyDownClick = (e) => {
       if (e.key === 'Escape') {
-        onCloseMobileMenu();
+        handleCloseMobileMenu();
       }
     };
 
@@ -35,7 +54,7 @@ const MobileMenu = ({ isOpen, onCloseMobileMenu }) => {
     >
       <div className={clsx(s.mobileMenu)}>
         <div className={clsx(s.logoCloseButtonContainer)}>
-          <Link to="/" onClick={onCloseMobileMenu}>
+          <Link to="/" onClick={handleCloseMobileMenu}>
             <img src="/logo.svg" alt="Logo" className={clsx(s.logo)} />
           </Link>
 
@@ -44,7 +63,7 @@ const MobileMenu = ({ isOpen, onCloseMobileMenu }) => {
               <NavLink
                 to="/create"
                 className={clsx(s.tabCreateLink)}
-                onClick={onCloseMobileMenu}
+                onClick={handleCloseMobileMenu}
               >
                 Create an article
               </NavLink>
@@ -52,13 +71,13 @@ const MobileMenu = ({ isOpen, onCloseMobileMenu }) => {
               <NavLink
                 to="/register"
                 className={clsx(s.tabJoinLink)}
-                onClick={onCloseMobileMenu}
+                onClick={handleCloseMobileMenu}
               >
                 Join now
               </NavLink>
             )}
             <button
-              onClick={onCloseMobileMenu}
+              onClick={handleCloseMobileMenu}
               className={clsx(s.closeButton)}
               aria-label="Close mobile menu"
             >
@@ -78,21 +97,21 @@ const MobileMenu = ({ isOpen, onCloseMobileMenu }) => {
           <NavLink
             to="/"
             className={handleActiveClass}
-            onClick={onCloseMobileMenu}
+            onClick={handleCloseMobileMenu}
           >
             Home
           </NavLink>
           <NavLink
             to="/articles"
             className={handleActiveClass}
-            onClick={onCloseMobileMenu}
+            onClick={handleCloseMobileMenu}
           >
             Articles
           </NavLink>
           <NavLink
             to="/authors"
             className={handleActiveClass}
-            onClick={onCloseMobileMenu}
+            onClick={handleCloseMobileMenu}
             end
           >
             Creators
@@ -103,14 +122,14 @@ const MobileMenu = ({ isOpen, onCloseMobileMenu }) => {
               <NavLink
                 to={'/profile'}
                 className={handleActiveClass}
-                onClick={onCloseMobileMenu}
+                onClick={handleCloseMobileMenu}
               >
                 My Profile
               </NavLink>
               <NavLink
                 to="/create"
                 className={clsx(s.mobCreateLink)}
-                onClick={onCloseMobileMenu}
+                onClick={handleCloseMobileMenu}
               >
                 Create an article
               </NavLink>
@@ -120,14 +139,14 @@ const MobileMenu = ({ isOpen, onCloseMobileMenu }) => {
               <NavLink
                 to="/login"
                 className={handleActiveClass}
-                onClick={onCloseMobileMenu}
+                onClick={handleCloseMobileMenu}
               >
                 Log in
               </NavLink>
               <NavLink
                 to="/register"
                 className={clsx(s.mobJoinLink)}
-                onClick={onCloseMobileMenu}
+                onClick={handleCloseMobileMenu}
               >
                 Join now
               </NavLink>
@@ -137,14 +156,11 @@ const MobileMenu = ({ isOpen, onCloseMobileMenu }) => {
           {isLoggedIn && (
             <div className={clsx(s.avatarContainer)}>
               <div className={clsx(s.avatarNameContainer)}>
-                <img
-                  src="/avatar.png"
-                  alt="Avatar"
-                  className={clsx(s.avatar)}
-                />
+                <img src={avatar} alt="Avatar" className={clsx(s.avatar)} />
                 <p className={clsx(s.name)}>Naomi</p>
               </div>
               <button
+                onClick={handleOpenConfirmExitModal}
                 type="button"
                 className={clsx(s.exitButton)}
                 aria-label="Exit from account"

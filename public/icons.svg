@@ -19,7 +19,20 @@
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.422" d="m7.467 4.622 9.6 9.6m0 0-9.6 9.6m9.6-9.6 9.6 9.6m-9.6-9.6 9.6-9.6"/>
     </symbol>
     <symbol id="icon-exit" viewBox="0 0 32 32">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.28" d="M13.194 6.88H9.686A2.806 2.806 0 0 0 6.88 9.686v12.628a2.806 2.806 0 0 0 2.806 2.806h3.508M11.68 16h14.031m0 0-4.209 4.209M25.711 16l-4.209-4.209"/>
+      <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.28" d="M13.194 6.88h-3.508c-1.55 0-2.806 1.256-2.806 2.806v12.628c0 1.55 1.256 2.806 2.806 2.806h3.508M11.68 16h14.031M25.711 16l-4.209 4.209M25.711 16l-4.209-4.209"></path>
+    </symbol>
+    <symbol id="icon-open-eye" viewBox="0 0 32 32">
+      <path stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.3333" d="M15.654 11.909c-4.779 0-8.654 4.621-8.654 5.795s3.874 5.795 8.654 5.795c4.779 0 8.654-4.621 8.654-5.795s-3.875-5.795-8.654-5.795zM15.654 11.909c-2.103 0-3.808 1.679-3.808 3.75s1.705 3.75 3.808 3.75c2.103 0 3.808-1.679 3.808-3.75s-1.705-3.75-3.808-3.75zM25 11.909c-2.636-2.166-5.713-3.409-9-3.409s-6.364 1.243-9 3.409"></path>
+    </symbol>
+    <symbol id="icon-close-eye" viewBox="0 0 31 32">
+      <path stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.28" d="M18.446 22.384c-1.042 0.484-2.2 0.799-3.418 0.799-4.588 0-8.308-4.469-8.308-5.604 0-0.644 1.195-2.358 3.066-3.723M22.339 19.375c0.636-0.765 0.997-1.442 0.997-1.796 0-1.135-3.719-5.604-8.308-5.604 2.019 0 3.655 1.623 3.655 3.626M15.028 19.227c-2.019 0-3.655-1.623-3.655-3.626M24 11.975c-2.53-2.094-5.484-3.296-8.64-3.296-1.137 0-2.248 0.156-3.323 0.454M6.72 11.975c0.235-0.194 0.473-0.381 0.714-0.559M6.72 7.36l16.046 16.2"></path>
+    </symbol>
+    <symbol id="icon-check" viewBox="0 0 48 32">
+      <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="6" d="M6 13.882l13.333 14.118 22.667-24"></path>
+    </symbol>
+    <symbol id="icon-Camera" viewBox="0 0 38 32">
+      <path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="0.6598" d="M23.503 17.461c0 2.018-1.956 3.654-4.369 3.654s-4.37-1.636-4.37-3.654c0-2.018 1.956-3.654 4.37-3.654s4.37 1.636 4.37 3.654z"></path>
+      <path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="0.6598" d="M7.773 22.5v-8.906c0-1.496 1.451-2.71 3.241-2.71 1.227 0 2.35-0.58 2.898-1.498l0.734-1.229c0.608-1.016 1.85-1.658 3.209-1.658h2.557c1.359 0 2.601 0.642 3.209 1.658l0.734 1.228c0.549 0.918 1.671 1.498 2.898 1.498 1.79 0 3.241 1.213 3.241 2.71v8.906c0 1.657-1.606 3-3.587 3h-15.547c-1.981 0-3.587-1.343-3.587-3z"></path>
     </symbol>
   </defs>
 </svg>

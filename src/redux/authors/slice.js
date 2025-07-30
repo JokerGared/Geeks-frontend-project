@@ -6,6 +6,10 @@ const initialState = {
   current: null,
   isLoading: false,
   error: null,
+  page: 1,
+  totalPages: 1,
+  hasNextPage: false,
+  hasPreviousPage: false,
 };
 
 const authorsSlice = createSlice({
@@ -19,7 +23,11 @@ const authorsSlice = createSlice({
       })
       .addCase(fetchAuthors.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.list = action.payload;
+        state.list = [...state.list, ...action.payload.authors];
+        state.page = action.payload.page;
+        state.totalPages = action.payload.totalPages;
+        state.hasNextPage = action.payload.hasNextPage;
+        state.hasPreviousPage = action.payload.hasPreviousPage;
       })
       .addCase(fetchAuthors.rejected, (state, action) => {
         state.isLoading = false;
@@ -36,6 +44,7 @@ const authorsSlice = createSlice({
       .addCase(fetchAuthorById.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+        state.current = null;
       });
   },
 });
