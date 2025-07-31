@@ -1,8 +1,6 @@
 .create-article-form-container{
     display: flex;
     flex-direction: column;
-    /* gap: 16px; */
-    /* max-width: 361px; */
 }
 
 .create-article-form-img-title-wrapper,
@@ -152,6 +150,40 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.create-article-form-upload-with-button-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+
+.create-article-form-update-img-button{
+    margin-top: 12px;
+    width: 100%;
+    max-width: 361px;
+    height: 46px;
+    opacity: 1;
+    border-radius: 64px;
+    padding-top: 12px;
+    padding-right: 16px;
+    padding-bottom: 12px;
+    padding-left: 16px;
+    gap: 12;
+    background: rgba(100, 145, 121, 1);
+
+
+    font-family: 'Manrope';
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: rgba(247, 255, 251, 1);
+    cursor: pointer;
+}
+
 @media screen and (min-width: 768px) {
     .create-article-form-img-title-wrapper{
       display: flex;
@@ -159,8 +191,7 @@
     }
 
     .imageUploadArea {
-      width: 100%;
-      max-width: 340px;
+      width: 340px;
       height: 219px;
     }
 
@@ -183,8 +214,13 @@
     }
 
     .fileInput {
-        width: 340px;
-        height: 219px;
+      width: 340px;
+      height: 219px;
+    }
+    .create-article-form-upload-with-button-wrapper{
+      display: flex;
+      flex-direction: column;
+      width: 340px
     }
 }
 
@@ -197,19 +233,26 @@
       display: flex;
       position: relative;
     }  
-  
-    .create-article-form-title-wrapper{
-      display: flex;
-      flex-direction: column;
-    }
 
     .imageUploadArea {
+      width: 100%;
+      max-width: 391px;
+      height: 280px;
       position: absolute;
       right: 0;
       top: 24px;
       width: 100%;
+    }
+
+    .create-article-form-update-img-button{
+      position: absolute;
+      right: 0;
+      top: 328px;
+      width: 100%;
+    }
+
+    .create-article-form-update-img-button{
       max-width: 391px;
-      height: 280px;
     }
 
     .create-article-form-input-title{
