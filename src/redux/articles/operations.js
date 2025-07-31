@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { toast } from 'react-hot-toast';
+import axios from 'axios';
 
 export const fetchArticles = createAsyncThunk(
   'articles/fetchAll',
