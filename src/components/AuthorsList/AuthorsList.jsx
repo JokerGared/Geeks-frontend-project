@@ -8,7 +8,7 @@ import {
   selectAuthors,
   selectAuthorsLoading,
   selectAuthorsError,
-  selectHasNextPage,
+  selectAuthorsHasNextPage,
 } from '../../redux/authors/selectors';
 
 import { fetchAuthors } from '../../redux/authors/operations';
@@ -18,7 +18,7 @@ const AuthorsList = () => {
   const authors = useSelector(selectAuthors);
   const isLoading = useSelector(selectAuthorsLoading);
   const error = useSelector(selectAuthorsError);
-  const hasNextPage = useSelector(selectHasNextPage);
+  const hasNextPage = useSelector(selectAuthorsHasNextPage);
 
   const [page, setPage] = useState(1);
 
