@@ -3,17 +3,14 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  /* row-gap: 28px; */
   gap: 16px;
   margin-bottom: 24px;
 }
 
 .loadMore {
   font-size: 18px;
-  /* border: none; */
   background-color: var(--button-bg-main);
   color: var(--button-color-main);
-  /* cursor: pointer; */
   font-weight: 700;
   line-height: 1;
   border-radius: 64px;
