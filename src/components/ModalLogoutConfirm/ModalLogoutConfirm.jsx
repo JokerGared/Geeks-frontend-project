@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { closeModal } from "../../redux/modal/slice";
 import { logOut } from "../../redux/auth/operations";
-import { persistor } from "../../redux/store";
 
 const ModalLogoutConfirm = () => {
     const dispatch = useDispatch();
@@ -26,7 +25,6 @@ const ModalLogoutConfirm = () => {
     const handleLogout = async () => {
         try {
             await dispatch(logOut()).unwrap();
-            await persistor.purge();
         } catch (error) {
             console.error("Logout error:", error);
         } finally {
