@@ -1,62 +1,60 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import s from './ModalErrorSave.module.css';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import s from "./ModalErrorSave.module.css";
+import { closeModal } from "../../redux/modal/slice";
 
-const ModalErrorSave = ({ onClose }) => {
-  const navigate = useNavigate();
-  const [show, setShow] = useState(false);
+const ModalErrorSave = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [show, setShow] = useState(false);
 
-  useEffect(() => {
-   
-    const timer = setTimeout(() => setShow(true), 0);
-    
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
+    useEffect(() => {
+        const timer = requestAnimationFrame(() => setShow(true));
+        const handleKeyDown = (e) => {
+            if (e.key === "Escape") {
+                dispatch(closeModal());
+            }
+        };
+        document.addEventListener("keydown", handleKeyDown);
+        return () => {
+            cancelAnimationFrame(timer);
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [dispatch]);
+
+    const handleNavigate = (path) => {
+        dispatch(closeModal());
+        requestAnimationFrame(() => navigate(path));
     };
-    document.addEventListener('keydown', handleKeyDown);
 
-    return () => {
-      clearTimeout(timer);
-      document.removeEventListener('keydown', handleKeyDown);
+    const handleClose = () => {
+        dispatch(closeModal());
     };
-  }, [onClose]);
 
-  return (
-    <div
-      className={`${s.modalBackdrop} ${show ? s.show : ''}`}
-      onClick={onClose}
-    >
-      <div className={s.modalWindow} onClick={(e) => e.stopPropagation()}>
-        <button
-          className={s.modalClose}
-          aria-label="Close modal"
-          onClick={onClose}
-        >
-          <svg className={s.modalCloseSvg}>
-            <use href="/icons.svg#icon-close"></use>
-          </svg>
-        </button>
-        <h2 className={s.modalTitle}>Error while saving</h2>
-        <p className={s.modalText}>
-          To save this article, you need to <br /> authorize first
-        </p>
-        <div className={s.modalActions}>
-          <button
-            onClick={() => navigate('/login')}
-            className={s.modalBtnLogin}
-          >
-            Login
-          </button>
-          <button
-            onClick={() => navigate('/register')}
-            className={s.modalBtnRegister}
-          >
-            Register
-          </button>
+    return (
+        <div className={`${s.modalBackdrop} ${show ? s.show : ""}`} onClick={handleClose}>
+            <div className={s.modalWindow} onClick={(e) => e.stopPropagation()}>
+                <button className={s.modalClose} aria-label="Close modal" onClick={handleClose}>
+                    <svg className={s.modalCloseSvg}>
+                        <use href="/icons.svg#icon-close" />
+                    </svg>
+                </button>
+                <h2 className={s.modalTitle}>Error while saving</h2>
+                <p className={s.modalText}>
+                    To save this article, you need to <br /> authorize first
+                </p>
+                <div className={s.modalActions}>
+                    <button onClick={() => handleNavigate("/login")} className={s.modalBtnLogin}>
+                        Login
+                    </button>
+                    <button onClick={() => handleNavigate("/register")} className={s.modalBtnRegister}>
+                        Register
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default ModalErrorSave;

@@ -1,38 +1,59 @@
-import s from "./ModalAddArticle.module.css";
+import s from "./ModalLogoutConfirm.module.css";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { closeModal } from "../../redux/modal/slice";
+import { logOut } from "../../redux/auth/operations";
+// import { persistor } from "../../redux/store";
 
-const ModalAddArticle = ({ onClose, onConfirm }) => {
-        const [show, setShow] = useState(false);
+const ModalLogoutConfirm = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
-        const timer = setTimeout(() => setShow(true), 0);
-
+        const timer = requestAnimationFrame(() => setShow(true));
         const handleKeyDown = (e) => {
-            if (e.key === "Escape") onClose();
+            if (e.key === "Escape") dispatch(closeModal());
         };
         document.addEventListener("keydown", handleKeyDown);
-
         return () => {
-            clearTimeout(timer);
+            cancelAnimationFrame(timer);
             document.removeEventListener("keydown", handleKeyDown);
         };
-    }, [onClose]);
+    }, [dispatch]);
+
+    const handleLogout = async () => {
+        try {
+            await dispatch(logOut()).unwrap();
+            //       await persistor.purge();
+        } catch (error) {
+            console.error("Logout error:", error);
+        } finally {
+            dispatch(closeModal());
+            navigate("/login");
+        }
+    };
+
+    const handleCancel = () => {
+        dispatch(closeModal());
+    };
 
     return (
-        <div className={`${s.modalBackdrop} ${show ? s.show : ""}`} onClick={onClose}>
+        <div className={`${s.modalBackdrop} ${show ? s.show : ""}`} onClick={handleCancel}>
             <div className={s.modalWindow} onClick={(e) => e.stopPropagation()}>
-                <button className={s.modalClose} aria-label="Close modal" onClick={onClose}>
+                <button className={s.modalClose} aria-label="Close modal" onClick={handleCancel}>
                     <svg className={s.modalCloseSvg}>
                         <use href="/icons.svg#icon-close"></use>
                     </svg>
                 </button>
-                <h2 className={s.modalTitle}>Are you shure?</h2>
+                <h2 className={s.modalTitle}>Are you sure?</h2>
                 <p className={s.modalText}>We will miss you!</p>
                 <div className={s.modalActions}>
-                    <button onClick={onConfirm}  className={s.modalBtnRegister}>
+                    <button onClick={handleLogout} className={s.modalBtnRegister}>
                         Log out
                     </button>
-                    <button onClick={onClose} className={s.modalBtnLogin}>
+                    <button onClick={handleCancel} className={s.modalBtnLogin}>
                         Cancel
                     </button>
                 </div>
@@ -41,4 +62,4 @@ const ModalAddArticle = ({ onClose, onConfirm }) => {
     );
 };
 
-export default ModalAddArticle;
+export default ModalLogoutConfirm;
