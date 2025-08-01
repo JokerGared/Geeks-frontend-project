@@ -4,7 +4,7 @@ import { toast } from 'react-hot-toast';
 
 export const fetchArticles = createAsyncThunk(
   'articles/fetchAll',
-  async (page, thunkAPI) => {
+  async (page = 1, thunkAPI) => {
     try {
       const { data } = await axios.get(`/articles?page=${page}&perPage=12`);
       return data.data;
