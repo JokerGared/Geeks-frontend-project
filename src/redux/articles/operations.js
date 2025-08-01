@@ -6,7 +6,7 @@ export const fetchArticles = createAsyncThunk(
   'articles/fetchAll',
   async (page, thunkAPI) => {
     try {
-      const { data } = await axios.get(`/articles?page=${page}&limit=12`);
+      const { data } = await axios.get(`/articles?page=${page}&perPage=12`);
       return data.data;
     } catch (error) {
       toast.error('Failed to load articles');
@@ -38,9 +38,15 @@ export const createArticle = createAsyncThunk(
     if (credentials.desc) {
       formData.append('desc', credentials.desc);
     }
-
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+    if (!token) return thunkAPI.rejectWithValue('No token');
     try {
-      const response = await axios.post('/articles', formData);
+      const response = await axios.post('/articles', formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return response.data.data;
     } catch (error) {
       const message = error.response?.data?.message || error.message;
