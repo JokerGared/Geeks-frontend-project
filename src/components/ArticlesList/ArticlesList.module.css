@@ -1,5 +1,6 @@
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+.articlesList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 4 колонки */
+  grid-template-rows: repeat(4, auto); /* 3 рядки */
+  gap: 16px; /* або будь-який інтервал між елементами */
 }

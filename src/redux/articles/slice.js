@@ -57,10 +57,11 @@ const articlesSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchArticlesByAuthorId.fulfilled, (state, action) => {
+        console.log('payload:', action.payload);
         state.isLoading = false;
         state.authorArticles = [
           ...state.authorArticles,
-          ...action.payload.articles,
+          ...action.payload.data,
         ];
         state.page = action.payload.page;
         state.totalPages = action.payload.totalPages;
