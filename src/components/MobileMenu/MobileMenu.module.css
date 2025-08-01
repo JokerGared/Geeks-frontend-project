@@ -28,6 +28,7 @@
   max-width: 393px;
   background-color: var(--card-bg);
   padding: 24px 16px;
+  border-radius: 32px;
 }
 
 .logoCloseButtonContainer {

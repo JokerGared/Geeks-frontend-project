@@ -3,7 +3,7 @@
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
-  src: url('../fonts/manrope-v19-latin-regular.woff2') format('woff2');
+  src: url('../fonts/manrope-v19-cyrillic_latin-regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -11,7 +11,7 @@
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 700;
-  src: url('../fonts/manrope-v19-latin-700.woff2') format('woff2');
+  src: url('../fonts/manrope-v19-cyrillic_latin-700.woff2') format('woff2');
 }
 
 @font-face {
@@ -24,10 +24,10 @@
 
 @font-face {
   font-display: swap;
-  font-family: 'Merienda';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 800;
-  src: url('../fonts/manrope-v19-latin-800.woff2') format('woff2');
+  src: url('../fonts/manrope-v19-cyrillic_latin-800.woff2') format('woff2');
 }
 
 :root {
@@ -143,4 +143,22 @@ address {
 
 section {
   padding-bottom: 72px;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+header,
+footer {
+  flex-shrink: 0;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

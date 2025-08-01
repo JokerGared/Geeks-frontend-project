@@ -41,7 +41,7 @@ const PublicProfile = () => {
           <p>{articlesAmount}</p>
         </div>
       </div>
-      <ArticlesLis />
+      <ArticlesList />
 
       {/* <ul className={s.articlesList}>
         {articles.map((item) => (

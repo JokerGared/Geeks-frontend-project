@@ -7,3 +7,8 @@ export const selectAuthorArticles = (state) => state.articles.authorArticles;
 export const selectArticlesLoading = (state) => state.articles.isLoading;
 
 export const selectArticlesError = (state) => state.articles.error;
+
+export const selectArticlesHasNextPage = (state) => state.articles.hasNextPage;
+
+export const selectArticlesHasPreviousPage = (state) =>
+  state.articles.hasPreviousPage;
