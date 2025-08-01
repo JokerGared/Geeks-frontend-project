@@ -5,10 +5,11 @@ import Footer from '../Footer/Footer';
 import Container from '../Container/Container';
 import MobileMenu from '../MobileMenu/MobileMenu';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
+import s from './Layout.module.css';
 
 const Layout = () => {
   return (
-    <>
+    <div className={s.layout}>
       <ScrollToTop />
       <Header />
       <main>
@@ -20,7 +21,7 @@ const Layout = () => {
       </main>
       <Footer />
       <MobileMenu />
-    </>
+    </div>
   );
 };
 
