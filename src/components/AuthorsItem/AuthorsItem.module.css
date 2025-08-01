@@ -1,0 +1,26 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatar {
+  width: 148px;
+  height: 148px;
+  border-radius: 256px;
+  object-fit: cover;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #070721;
+}
+
+@media screen and (min-width:768px) {
+  .avatar {
+    width: 262px;
+    height: 262px;
+  }
+}

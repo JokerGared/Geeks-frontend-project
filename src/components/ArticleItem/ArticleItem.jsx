@@ -1,6 +1,7 @@
 import s from './ArticleItem.module.css';
 import ButtonAddToBookmarks from '../ButtonAddToBookmarks/ButtonAddToBookmarks';
 import { Link } from 'react-router-dom';
+
 const ArticleItem = ({ _id, img, title, desc, ownerId }) => {
   return (
     <article className={s.card}>

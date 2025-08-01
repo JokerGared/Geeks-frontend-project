@@ -1,0 +1,90 @@
+.topCreatorsTitleLinkContainer {
+  margin-bottom: 16px;
+}
+
+.topCreatorsTitle {
+  font-weight: 700;
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.topCreatorsLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  color: var(--link-color);
+  position: relative;
+  max-width: 170px;
+}
+
+.topCreatorsLink:hover,
+.topCreatorsLink:focus {
+  color: var(--secondary-icon-fill)
+}
+
+.topCreatorsIcon {
+  stroke: var(--main-icon-fill);
+}
+
+.topCreatorsLink:hover .topCreatorsIcon,
+.topCreatorsLink:focus .topCreatorsIcon {
+  stroke: var(--secondary-icon-fill)
+}
+
+.topCreatorsLink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background-color: var(--link-color);
+  transition: width .3s ease;
+}
+
+.topCreatorsLink:hover::after,
+.topCreatorsLink:focus::after,
+.topCreatorsLink.active::after {
+  width: 100%;
+}
+
+.topCreatorsList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 16px;
+}
+
+@media screen and (min-width:768px) {
+  .topCreatorsTitleLinkContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .topCreatorsTitle {
+    margin-bottom: 0;
+  }
+
+  .topCreatorsList {
+    justify-content: space-between;
+    row-gap: 24px;
+  }
+
+  .topCreatorsList .topCreatorAvatar {
+    width: 216px;
+    height: 216px;
+  }
+}
+
+@media screen and (min-width:1440px) {
+  .topCreatorsTitle {
+    font-size: 40px;
+  }
+
+  .topCreatorsList .topCreatorAvatar {
+    width: 160px;
+    height: 160px;
+  }
+}
