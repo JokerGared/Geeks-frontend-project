@@ -1,14 +1,12 @@
 .registerContainer {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   background-color: var(--background-color);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
-/* Registration Form Styles */
 
 .registrationCard {
   width: 100%;
@@ -183,13 +181,13 @@
   font-weight: 700;
   text-decoration: underline;
   color: #070721;
+  transition: var(--transition);
 }
 
 .loginLinkBottom:hover,
 .loginLinkBottom:focus {
   color: var(--button-bg-main-hover);
   opacity: 0.5;
-  transition: var(--transition);
 }
 
 /* Tablet (min-width: 768px) */

@@ -22,7 +22,7 @@ const validationSchema = Yup.object().shape({
     .max(32, 'Name must be at most 32 characters')
     .required('Name is required'),
   email: Yup.string()
-    .max(64, 'Name must be at most 64 characters')
+    .max(64, 'Email must be at most 64 characters')
     .matches(emailRegular, 'Invalid email address')
     .required('Email is required'),
   password: Yup.string()
@@ -40,15 +40,10 @@ const RegisterForm = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (values) => {
+    console.log('!!!Submitting form values:', values);
     dispatch(setRegistrationFormData(values));
     navigate('/photo');
   };
-
-  // const eyeIcon = showPassword ? (
-  //   <EyeIcon className={s.eyeIcon} onClick={() => setShowPassword(false)} />
-  // ) : (
-  //   <EyeOff className={s.eyeIcon} onClick={() => setShowPassword(true)} />
-  // );
 
   const iconId = showPassword ? 'icon-close-eye' : 'icon-open-eye';
   const ariaLabel = showPassword ? 'Hide password' : 'Show password';
