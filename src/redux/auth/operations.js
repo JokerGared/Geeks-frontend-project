@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios from '../../api/axiosInstance';
 import { toast } from 'react-hot-toast';
 
 const setAuthHeader = (value) => {
@@ -19,14 +19,14 @@ export const register = createAsyncThunk(
       }
 
       const response = await axios.post('/auth/register', formData);
-      setAuthHeader(`Bearer ${response.data.token}`);
-      return response.data;
+      const fetchedData = response.data.data;
+      setAuthHeader(`Bearer ${fetchedData.accessToken}`);
+      return fetchedData;
     } catch (error) {
       const message =
         error.response?.status === 409
           ? 'User with this email is already registered'
-          : error.response?.data?.message || error.message;
-
+          : error.response?.data?.data.message || error.message;
       toast.error(message);
       return thunkAPI.rejectWithValue(message);
     }
@@ -38,13 +38,14 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.post('/auth/login', credentials);
-      setAuthHeader(`Bearer ${response.data.token}`);
+      const fetchedData = response.data.data;
+      setAuthHeader(`Bearer ${fetchedData.accessToken}`);
       return response.data;
     } catch (error) {
       const message =
         error.response?.status === 400
           ? 'Invalid username or password'
-          : error.response?.data?.message || error.message;
+          : error.response?.data?.data.message || error.message;
 
       toast.error(message);
       return thunkAPI.rejectWithValue(message);
@@ -67,7 +68,7 @@ export const refreshUser = createAsyncThunk(
 
       setAuthHeader(`Bearer ${token}`);
       const response = await axios.get('/auth/refresh');
-      return response.data;
+      return response.data.data;
     } catch (error) {
       toast.error('Oops...try again!');
       return thunkAPI.rejectWithValue(error.message);
