@@ -90,10 +90,30 @@
     flex-direction: column;
     border-radius: 32px;
     padding: 12px;
-    width: 392px;
+    width: 340px;
     height: 492px;
     background: var(--card-bg);
   }
+
+  .image {
+    width: 316px;
+  }
+
+  .learnMore {
+    width: 268px;
+  }
 }
+
 @media screen and (min-width: 1440px) {
+  .card {
+    width: 392px;
+  }
+
+  .image {
+    width: 368px;
+  }
+
+  .learnMore {
+    width: 320px;
+  }
 }
