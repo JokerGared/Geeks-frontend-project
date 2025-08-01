@@ -232,6 +232,7 @@
     .create-article-form-container{
       display: flex;
       position: relative;
+      width: 1226px;  
     }  
 
     .imageUploadArea {
