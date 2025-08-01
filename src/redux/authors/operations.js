@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios from '../../api/axiosInstance';
 import { toast } from 'react-hot-toast';
 
 export const fetchAuthors = createAsyncThunk(
