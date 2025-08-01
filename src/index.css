@@ -30,7 +30,6 @@
   src: url('../fonts/manrope-v19-latin-800.woff2') format('woff2');
 }
 
-
 :root {
   --font-family: 'Manrope', sans-serif;
   --secondary-font-family: 'Merienda', sans-serif;
@@ -144,4 +143,22 @@ address {
 
 section {
   padding-bottom: 72px;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+header,
+footer {
+  flex-shrink: 0;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
