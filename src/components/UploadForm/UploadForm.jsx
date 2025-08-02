@@ -50,11 +50,9 @@ const UploadForm = () => {
 
       await dispatch(register(registrationDataWithAvatar)).unwrap();
 
-      // Успешная регистрация и авторизация
       toast.success('Registration successful!');
       navigate('/home-authorised');
     } catch (error) {
-      // Ошибка уже обрабатывается в операции и показывает toast
       console.error('Registration failed:', error);
     } finally {
       setIsSubmitting(false);
