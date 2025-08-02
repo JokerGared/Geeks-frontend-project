@@ -2,14 +2,19 @@ import clsx from 'clsx';
 import s from './UserMenu.module.css';
 import { NavLink } from 'react-router-dom';
 import { openModal } from '../../redux/modal/slice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from '../../redux/auth/selectors';
 
 const handleActiveClass = ({ isActive }) => {
   return clsx(s.navLink, isActive && s.active);
 };
 
 const UserMenu = () => {
-  const avatar = 'https://i.pravatar.cc/150?img=5';
+  const { name, avatarUrl } = useSelector(selectUser);
+
+  const userAvatar = avatarUrl ? avatarUrl : '/images/default-avatar.png';
+  const userName = name ? name : 'No name';
+
   const dispatch = useDispatch();
 
   const handleOpenConfirmExitModal = () => {
@@ -27,8 +32,8 @@ const UserMenu = () => {
 
       <div className={clsx(s.avatarContainer)}>
         <div className={clsx(s.avatarNameContainer)}>
-          <img src={avatar} alt="Avatar" className={clsx(s.avatar)} />
-          <p className={clsx(s.name)}>Naomi</p>
+          <img src={userAvatar} alt="User avatar" className={clsx(s.avatar)} />
+          <p className={clsx(s.name)}>{userName}</p>
         </div>
         <button
           onClick={handleOpenConfirmExitModal}
