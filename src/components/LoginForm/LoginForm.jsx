@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import { selectError } from '../../redux/auth/selectors';
+import { logIn } from '../../redux/auth/operations';
 
 const initialValues = {
   email: '',
@@ -39,7 +40,7 @@ const LoginForm = () => {
   }, [error]);
 
   const handleSubmit = (values, { setSubmitting }) => {
-    dispatch(login(values))
+    dispatch(logIn(values))
       .unwrap()
       .finally(() => {
         setSubmitting(false);
