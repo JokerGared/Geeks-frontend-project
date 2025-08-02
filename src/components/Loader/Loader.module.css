@@ -1,7 +1,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(28, 25, 25, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,12 +10,5 @@
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   opacity: 1;
-  transition: opacity 0.2s ease-in-out;
-}
-
-.inline {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
+  transition: opacity var(--transition);
 }
