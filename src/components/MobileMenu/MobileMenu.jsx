@@ -3,7 +3,7 @@ import s from './MobileMenu.module.css';
 import clsx from 'clsx';
 import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { selectIsLoggedIn, selectUser } from '../../redux/auth/selectors';
 import { selectModalType } from '../../redux/modal/selectors';
 import { closeModal, openModal } from '../../redux/modal/slice';
 import { MODALS } from '../../constants/modals';
@@ -13,10 +13,14 @@ const handleActiveClass = ({ isActive }) => {
 };
 
 const MobileMenu = () => {
-  const avatar = 'https://i.pravatar.cc/150?img=5';
+  const { name, avatarUrl } = useSelector(selectUser);
+
+  const userAvatar = avatarUrl ? avatarUrl : '/images/default-avatar.png';
+  const userName = name ? name : 'No name';
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const modalType = useSelector(selectModalType);
+
   const isOpen = modalType === MODALS.MOBILE_MENU;
 
   const dispatch = useDispatch();
@@ -156,8 +160,8 @@ const MobileMenu = () => {
           {isLoggedIn && (
             <div className={clsx(s.avatarContainer)}>
               <div className={clsx(s.avatarNameContainer)}>
-                <img src={avatar} alt="Avatar" className={clsx(s.avatar)} />
-                <p className={clsx(s.name)}>Naomi</p>
+                <img src={userAvatar} alt="Avatar" className={clsx(s.avatar)} />
+                <p className={clsx(s.name)}>{userName}</p>
               </div>
               <button
                 onClick={handleOpenConfirmExitModal}
