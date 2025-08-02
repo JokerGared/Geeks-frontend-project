@@ -1,12 +1,13 @@
 import s from './AuthorsPage.module.css';
 import AuthorsList from '../../components/AuthorsList/AuthorsList';
+import SectionTitle from '../../components/SectionTitle/SectionTitle';
 
 const AuthorsPage = () => {
   return (
-    <div>
-      <h2>Authors</h2>
+    <section className={s.authorsPage}>
+      <SectionTitle className={s.title}>Authors</SectionTitle>
       <AuthorsList />
-    </div>
+    </section>
   );
 };
 
