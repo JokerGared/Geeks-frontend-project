@@ -3,7 +3,7 @@ import s from './RegisterPage.module.css';
 
 const RegisterPage = () => {
   return (
-    <div>
+    <div className={s.regPageContainers}>
       <RegisterForm />
     </div>
   );
