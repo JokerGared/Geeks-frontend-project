@@ -3,7 +3,7 @@ import UploadForm from '../../components/UploadForm/UploadForm';
 
 const UploadPhotoPage = () => {
   return (
-    <div>
+    <div className={s.uploadPhotoPageContainer}>
       <UploadForm />
     </div>
   );
