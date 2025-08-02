@@ -1,7 +1,6 @@
 .registerContainer {
   position: relative;
   width: 100%;
-  /* min-height: 100vh; */
   background-color: var(--background-color);
   display: flex;
   align-items: center;
@@ -13,6 +12,7 @@
   max-width: 360px;
   background-color: var(--card-bg);
   border-radius: 32px;
+  margin: 45px 0;
 }
 
 .cardContent {
