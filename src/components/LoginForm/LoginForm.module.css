@@ -1,7 +1,6 @@
 .loginContainer {
   position: relative;
   width: 100%;
-  min-height: 100vh;
   background-color: var(--background-color);
   display: flex;
   align-items: center;
@@ -10,9 +9,10 @@
 
 .loginCard {
   width: 100%;
-  max-width: 330px;
+  width: 330px;
   background-color: var(--card-bg);
   border-radius: 32px;
+  margin: 45px 0;
 }
 
 .cardContent {
@@ -134,6 +134,7 @@
   font-weight: 700;
   border: none;
   padding: 12px;
+  transition: var(--transition);
 }
 
 .loginButton:disabled {
@@ -151,7 +152,6 @@
 .loginButton:focus {
   box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
   background: var(--button-bg-main);
-  transition: var(--transition);
 }
 
 .loginPrompt {
@@ -166,25 +166,25 @@
   font-weight: 700;
   text-decoration: underline;
   color: #070721;
+  transition: var(--transition);
 }
 
 .registerLinkBottom:hover,
 .registerLinkBottom:focus {
   color: var(--button-bg-main-hover);
   opacity: 0.5;
-  transition: var(--transition);
 }
 
 /* Tablet (min-width: 768px) */
 @media only screen and (min-width: 768px) {
   .loginCard {
-    max-width: 522px;
+    width: 522px;
   }
 }
 
 /* Desktop (min-width: 1440px) */
 @media only screen and (min-width: 1440px) {
   .loginCard {
-    max-width: 392px;
+    width: 392px;
   }
 }

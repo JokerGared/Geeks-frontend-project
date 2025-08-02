@@ -3,8 +3,6 @@ import Layout from './components/Layout/Layout';
 import { lazy } from 'react';
 import PrivateRoute from './components/Route/PrivateRoute';
 import AuthorsArticles from './components/AuthorsArticles/AuthorsArticles';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const ArticlesPage = lazy(() => import('./pages/ArticlesPage/ArticlesPage'));
@@ -26,47 +24,44 @@ const NotFound = lazy(() => import('./pages/NotFoundPage/NotFound'));
 
 const App = () => {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
 
-          <Route path="register" element={<RegisterPage />} />
-          <Route path="photo" element={<UploadPhotoPage />} />
+        <Route path="register" element={<RegisterPage />} />
+        <Route path="photo" element={<UploadPhotoPage />} />
 
-          <Route path="login" element={<LoginPage />} />
+        <Route path="login" element={<LoginPage />} />
 
-          <Route path="articles" element={<ArticlesPage />} />
-          <Route path="articles/:articleId" element={<ArticlePage />} />
+        <Route path="articles" element={<ArticlesPage />} />
+        <Route path="articles/:articleId" element={<ArticlePage />} />
 
-          <Route path="authors" element={<AuthorsPage />} />
-          <Route path="authors/:authorId" element={<AuthorProfilePage />} />
+        <Route path="authors" element={<AuthorsPage />} />
+        <Route path="authors/:authorId" element={<AuthorProfilePage />} />
 
-          <Route
-            path="profile"
-            element={
-              <PrivateRoute component={<MyProfile />} redirectTo="/login" />
-            }
-          >
-            <Route index element={<AuthorsArticles />} />
-            <Route path="my-articles" element={<AuthorsArticles />} />
-            <Route path="saved" element={<AuthorsArticles />} />
-          </Route>
-
-          <Route
-            path="create"
-            element={
-              <PrivateRoute
-                component={<CreateArticlePage />}
-                redirectTo="/login"
-              />
-            }
-          />
+        <Route
+          path="profile"
+          element={
+            <PrivateRoute component={<MyProfile />} redirectTo="/login" />
+          }
+        >
+          <Route index element={<AuthorsArticles />} />
+          <Route path="my-articles" element={<AuthorsArticles />} />
+          <Route path="saved" element={<AuthorsArticles />} />
         </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <ToastContainer />
-    </>
+
+        <Route
+          path="create"
+          element={
+            <PrivateRoute
+              component={<CreateArticlePage />}
+              redirectTo="/login"
+            />
+          }
+        />
+      </Route>
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 };
 
