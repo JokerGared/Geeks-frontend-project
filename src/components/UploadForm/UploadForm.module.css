@@ -1,0 +1,168 @@
+.uploadContainer {
+  position: relative;
+  width: 100%;
+  background-color: var(--background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uploadCard {
+  width: 100%;
+  max-width: 360px;
+  background-color: var(--card-bg);
+  border-radius: 32px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 32px 32px;
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  stroke: var(--color);
+  transition: var(--transition);
+}
+
+.closeButton:hover,
+.closeButton:focus {
+  stroke: var(--button-bg-main-hover);
+}
+
+.closeIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.title {
+  align-self: stretch;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color);
+  text-align: center;
+  margin: 0;
+}
+
+.imageContainer {
+  position: relative;
+}
+
+.profileImage {
+  width: 136px;
+  height: 136px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: opacity 0.2s;
+}
+
+.profileImage:hover {
+  opacity: 0.8;
+}
+
+.placeholderImage {
+  width: 136px;
+  height: 136px;
+  border-radius: 50%;
+  background-color: var(--button-bg-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  transition: var(--transition);
+}
+
+.placeholderImage:hover,
+.placeholderImage:focus {
+  background-color: var(--button-bg-main-hover);
+}
+
+.cameraIconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  stroke: black;
+  fill: none;
+}
+
+.cameraIcon {
+  width: 124px;
+  height: 124px;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.buttonSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 27px;
+  align-self: stretch;
+  width: 100%;
+}
+
+.saveButton {
+  width: 100%;
+  background-color: var(--button-bg-main);
+  border-radius: 64px;
+  color: var(--button-color-main);
+  font-weight: 700;
+  border: none;
+  padding: 12px;
+  transition: var(--transition);
+}
+
+.saveButton:disabled {
+  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
+  background: var(--button-bg-main);
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.saveButton:hover {
+  background: var(--button-bg-main-hover);
+  transition: var(--transition);
+}
+
+.saveButton:focus {
+  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
+  background: var(--button-bg-main);
+}
+
+/* Tablet (min-width: 768px) */
+@media only screen and (min-width: 768px) {
+  .uploadCard {
+    max-width: 522px;
+  }
+  .cardContent {
+    padding: 48px 32px;
+  }
+}
+
+/* Desktop (min-width: 1440px) */
+@media only screen and (min-width: 1440px) {
+  .uploadCard {
+    max-width: 392px;
+  }
+}
