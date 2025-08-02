@@ -1,7 +1,6 @@
 .uploadContainer {
   position: relative;
   width: 100%;
-  min-height: 100vh;
   background-color: var(--background-color);
   display: flex;
   align-items: center;
@@ -13,8 +12,9 @@
   max-width: 360px;
   background-color: var(--card-bg);
   border-radius: 32px;
-  /* box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05); */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  margin: 30px 0;
 }
 
 .cardContent {
@@ -37,12 +37,12 @@
   align-items: center;
   justify-content: center;
   stroke: var(--color);
+  transition: var(--transition);
 }
 
 .closeButton:hover,
 .closeButton:focus {
   stroke: var(--button-bg-main-hover);
-  transition: var(--transition);
 }
 
 .closeIcon {
@@ -85,12 +85,12 @@
   justify-content: center;
   cursor: pointer;
   transition: background-color 0.2s;
+  transition: var(--transition);
 }
 
 .placeholderImage:hover,
 .placeholderImage:focus {
   background-color: var(--button-bg-main-hover);
-  transition: var(--transition);
 }
 
 .cameraIconContainer {
@@ -131,6 +131,7 @@
   font-weight: 700;
   border: none;
   padding: 12px;
+  transition: var(--transition);
 }
 
 .saveButton:disabled {
@@ -148,7 +149,6 @@
 .saveButton:focus {
   box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
   background: var(--button-bg-main);
-  transition: var(--transition);
 }
 
 /* Tablet (min-width: 768px) */
@@ -156,11 +156,17 @@
   .uploadCard {
     max-width: 522px;
   }
+  .cardContent {
+    padding: 48px 32px;
+  }
 }
 
 /* Desktop (min-width: 1440px) */
 @media only screen and (min-width: 1440px) {
   .uploadCard {
     max-width: 392px;
+  }
+  .cardContent {
+    padding: 48px 32px;
   }
 }

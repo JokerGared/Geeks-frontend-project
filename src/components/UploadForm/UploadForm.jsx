@@ -1,5 +1,5 @@
 import s from './UploadForm.module.css';
-import { useState, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../redux/auth/operations';
@@ -13,6 +13,7 @@ const UploadForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const registrationFormData = useSelector(selectRegistrationFormData);
+  const fileInputRef = useRef();
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -27,11 +28,6 @@ const UploadForm = () => {
   };
 
   const handleSubmit = async () => {
-    if (!selectedImage) {
-      toast.error('Please select a photo to upload');
-      return;
-    }
-
     if (!registrationFormData) {
       toast.error(
         'Registration data is missing. Please start registration again.',
@@ -51,7 +47,6 @@ const UploadForm = () => {
       await dispatch(register(registrationDataWithAvatar)).unwrap();
 
       toast.success('Registration successful!');
-      navigate('/home-authorised');
     } catch (error) {
       console.error('Registration failed:', error);
     } finally {
@@ -59,12 +54,33 @@ const UploadForm = () => {
     }
   };
 
-  const handleClose = () => {
-    navigate('/');
+  const handleClose = async () => {
+    if (!registrationFormData) {
+      toast.error(
+        'Registration data is missing. Please start registration again.',
+      );
+      navigate('/register');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      await dispatch(register(registrationFormData)).unwrap();
+
+      toast.success('Registration successful!');
+    } catch (error) {
+      console.error('Registration failed:', error);
+      toast.error('Registration failed. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const triggerFileInput = () => {
-    document.getElementById('photo-upload').click();
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
   };
 
   return (
@@ -75,6 +91,7 @@ const UploadForm = () => {
             className={s.closeButton}
             onClick={handleClose}
             aria-label="Close"
+            disabled={isSubmitting}
           >
             <svg aria-hidden="true" className={s.closeIcon}>
               <use href="/icons.svg#icon-close" />
@@ -95,6 +112,9 @@ const UploadForm = () => {
               <div
                 className={s.placeholderImage}
                 onClick={triggerFileInput}
+                onKeyDown={(e) =>
+                  e.key === 'Enter' || e.key === ' ' ? triggerFileInput() : null
+                }
                 role="button"
                 tabIndex={0}
                 aria-label="Upload photo"
@@ -108,7 +128,7 @@ const UploadForm = () => {
             )}
 
             <input
-              id="photo-upload"
+              ref={fileInputRef}
               type="file"
               accept="image/*"
               onChange={handleImageChange}
