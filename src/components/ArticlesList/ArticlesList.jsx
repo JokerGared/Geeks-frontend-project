@@ -1,22 +1,32 @@
 import s from './ArticlesList.module.css';
 import ArticleItem from '../ArticleItem/ArticleItem';
 
-const ArticlesList = ({ articles = [], onLoadMore }) => {
-  if (!Array.isArray(articles) || articles.length === 0) {
-    return <p className={s.noArticles}>No articles found.</p>;
-  }
-
+const ArticlesList = ({
+  articles = [],
+  isLoading,
+  hasNextPage,
+  onLoadMore,
+}) => {
   return (
     <div className={s.wrapper}>
-      <ul className={s.articlesList}>
-        {articles.map((item) => (
-          <li key={item._id} className={s.article}>
-            <ArticleItem {...item} />
+      <ul className={s.list}>
+        {articles.map((article) => (
+          <li key={article._id}>
+            <ArticleItem {...article} />
           </li>
         ))}
       </ul>
 
-      {onLoadMore && <LoadMoreBtn onClick={onLoadMore} />}
+      {hasNextPage && (
+        <button
+          type="button"
+          className={s.loadMore}
+          onClick={onLoadMore}
+          disabled={isLoading}
+        >
+          {isLoading ? 'Loading...' : 'Load more'}
+        </button>
+      )}
     </div>
   );
 };

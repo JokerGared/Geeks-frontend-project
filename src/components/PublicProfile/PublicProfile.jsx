@@ -1,33 +1,48 @@
 import s from './PublicProfile.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCurrentAuthor } from '../../redux/authors/selectors';
-import { selectAuthorArticles } from '../../redux/articles/selectors';
-import ArticlesList from '../ArticlesList/ArticlesList';
-import { fetchAuthorById } from '../../redux/authors/operations';
-import { fetchArticlesByAuthorId } from '../../redux/articles/operations';
-import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
+import { selectCurrentAuthor } from '../../redux/authors/selectors';
+import { fetchAuthorById } from '../../redux/authors/operations';
+
+import {
+  selectAuthorArticles,
+  selectIsLoading,
+  selectHasNextPage,
+  selectPage,
+} from '../../redux/articles/selectors';
+import { fetchArticlesByAuthorId } from '../../redux/articles/operations';
+
+import ArticlesList from '../ArticlesList/ArticlesList';
 
 const PublicProfile = () => {
-  // console.log(useParams());
-
   const { authorId } = useParams();
-
   const dispatch = useDispatch();
 
   const author = useSelector(selectCurrentAuthor);
   const articles = useSelector(selectAuthorArticles);
+  const isLoading = useSelector(selectIsLoading);
+  const hasNextPage = useSelector(selectHasNextPage);
+  const page = useSelector(selectPage);
 
+  // Завантаження автора
   useEffect(() => {
     dispatch(fetchAuthorById(authorId));
   }, [dispatch, authorId]);
 
+  // Завантаження статей автора
   useEffect(() => {
     if (author?._id) {
-      dispatch(fetchArticlesByAuthorId({ id: author._id }));
+      dispatch(fetchArticlesByAuthorId({ id: author._id, page: 1 }));
     }
   }, [dispatch, author?._id]);
-  console.log('Articles from redux:', articles);
+
+  const handleLoadMore = () => {
+    if (author?._id && hasNextPage) {
+      dispatch(fetchArticlesByAuthorId({ id: author._id, page: page + 1 }));
+    }
+  };
 
   if (!author) return <p>Loading author...</p>;
 
@@ -49,12 +64,19 @@ const PublicProfile = () => {
             </div>
           )}
         </div>
+
         <div className={s.userInfo}>
           <h2 className={s.authorName}>{name}</h2>
           <p className={s.articleCounter}>{articlesAmount} articles</p>
         </div>
       </div>
-      <ArticlesList articles={articles} />
+
+      <ArticlesList
+        articles={articles}
+        isLoading={isLoading}
+        hasNextPage={hasNextPage}
+        onLoadMore={handleLoadMore}
+      />
     </div>
   );
 };
