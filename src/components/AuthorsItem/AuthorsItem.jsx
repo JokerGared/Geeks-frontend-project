@@ -1,11 +1,11 @@
 import s from './AuthorsItem.module.css';
 import { Link } from 'react-router-dom';
 
-const AuthorsItem = ({ id, avatarUrl, name, avatarClassName }) => {
+const AuthorsItem = ({ _id, avatarUrl, name, avatarClassName }) => {
   const authorName = name.split(' ')[0];
 
   return (
-    <Link to={`/authors/${id}`} className={s.card}>
+    <Link to={`/authors/${_id}`} className={s.card}>
       <img
         src={avatarUrl}
         alt={`${name}'s avatar`}
