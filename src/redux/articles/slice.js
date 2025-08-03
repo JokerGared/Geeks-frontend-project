@@ -59,10 +59,10 @@ const articlesSlice = createSlice({
       .addCase(fetchArticlesByAuthorId.fulfilled, (state, action) => {
         console.log('payload:', action.payload);
         state.isLoading = false;
-        state.authorArticles = [
-          ...state.authorArticles,
-          ...action.payload.data,
-        ];
+        state.authorArticles =
+          action.payload.page === 1
+            ? action.payload.data
+            : [...state.authorArticles, ...action.payload.data];
         state.page = action.payload.page;
         state.totalPages = action.payload.totalPages;
         state.hasNextPage = action.payload.hasNextPage;

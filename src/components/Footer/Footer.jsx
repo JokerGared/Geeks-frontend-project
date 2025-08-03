@@ -26,7 +26,7 @@ const Footer = () => {
           </Link>
 
           {visibleAccountLink && (
-            <Link to={'/profile'} className={clsx(s.footerLink)}>
+            <Link to={'/my-profile'} className={clsx(s.footerLink)}>
               Account
             </Link>
           )}

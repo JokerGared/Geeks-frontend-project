@@ -27,7 +27,7 @@ const AuthorProfilePage = () => {
     }
   }, [error]);
 
-  if (authorId === user._id) return <Navigate to="/profile" />;
+  if (authorId === user._id) return <Navigate to="/my-profile" />;
 
   if (error) {
     return (

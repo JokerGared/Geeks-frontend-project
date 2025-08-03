@@ -12,3 +12,5 @@ export const selectArticlesHasNextPage = (state) => state.articles.hasNextPage;
 
 export const selectArticlesHasPreviousPage = (state) =>
   state.articles.hasPreviousPage;
+
+export const selectArticlesPage = (state) => state.articles.page;

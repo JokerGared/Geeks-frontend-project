@@ -124,7 +124,7 @@ const MobileMenu = () => {
           {isLoggedIn ? (
             <>
               <NavLink
-                to={'/profile'}
+                to={'/my-profile'}
                 className={handleActiveClass}
                 onClick={handleCloseMobileMenu}
               >

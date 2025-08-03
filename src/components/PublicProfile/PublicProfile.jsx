@@ -1,20 +1,26 @@
-import s from './PublicProfile.module.css';
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { selectCurrentAuthor } from '../../redux/authors/selectors';
-import { fetchAuthorById } from '../../redux/authors/operations';
+import ModalErrorSave from '../ModalErrorSave/ModalErrorSave';
+import ArticlesList from '../ArticlesList/ArticlesList';
 
-import {
-  selectAuthorArticles,
-  selectIsLoading,
-  selectHasNextPage,
-  selectPage,
-} from '../../redux/articles/selectors';
+import { fetchAuthorById } from '../../redux/authors/operations';
 import { fetchArticlesByAuthorId } from '../../redux/articles/operations';
 
-import ArticlesList from '../ArticlesList/ArticlesList';
+import { selectCurrentAuthor } from '../../redux/authors/selectors';
+import {
+  selectAuthorArticles,
+  selectArticlesLoading,
+  selectArticlesHasNextPage,
+  selectArticlesPage,
+} from '../../redux/articles/selectors';
+import {
+  selectIsModalOpen,
+  selectModalType,
+} from '../../redux/modal/selectors';
+
+import s from './PublicProfile.module.css';
 
 const PublicProfile = () => {
   const { authorId } = useParams();
@@ -22,16 +28,17 @@ const PublicProfile = () => {
 
   const author = useSelector(selectCurrentAuthor);
   const articles = useSelector(selectAuthorArticles);
-  const isLoading = useSelector(selectIsLoading);
-  const hasNextPage = useSelector(selectHasNextPage);
-  const page = useSelector(selectPage);
+  const isLoading = useSelector(selectArticlesLoading);
+  const hasNextPage = useSelector(selectArticlesHasNextPage);
+  const page = useSelector(selectArticlesPage);
 
-  // Завантаження автора
+  const isModalOpen = useSelector(selectIsModalOpen);
+  const modalType = useSelector(selectModalType);
+
   useEffect(() => {
     dispatch(fetchAuthorById(authorId));
   }, [dispatch, authorId]);
 
-  // Завантаження статей автора
   useEffect(() => {
     if (author?._id) {
       dispatch(fetchArticlesByAuthorId({ id: author._id, page: 1 }));
@@ -39,7 +46,7 @@ const PublicProfile = () => {
   }, [dispatch, author?._id]);
 
   const handleLoadMore = () => {
-    if (author?._id && hasNextPage) {
+    if (author._id && hasNextPage) {
       dispatch(fetchArticlesByAuthorId({ id: author._id, page: page + 1 }));
     }
   };
@@ -77,6 +84,7 @@ const PublicProfile = () => {
         hasNextPage={hasNextPage}
         onLoadMore={handleLoadMore}
       />
+      {isModalOpen && modalType === 'ErrorSave' && <ModalErrorSave />}
     </div>
   );
 };

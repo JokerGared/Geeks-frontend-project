@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 
 import s from './ButtonAddToBookmarks.module.css';
-import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { selectIsLoggedIn, selectUser } from '../../redux/auth/selectors';
 import { openModal } from '../../redux/modal/slice';
 import { selectFavorites } from '../../redux/favorites/selectors';
 import toast from 'react-hot-toast';
@@ -13,14 +13,15 @@ import {
   removeFromFavorites,
 } from '../../redux/favorites/operations';
 
-const ButtonAddToBookmarks = ({ article }) => {
+const ButtonAddToBookmarks = ({ articleId }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const user = useSelector(selectUser);
   const isLoading = useSelector((state) => state.favorites.isLoading);
   const error = useSelector((state) => state.favorites.error);
   const favorites = useSelector(selectFavorites);
   const dispatch = useDispatch();
 
-  const isSaved = favorites.some((item) => item._id === article._id);
+  const isSaved = favorites.some((item) => item._id === articleId);
 
   useEffect(() => {
     if (error) {
@@ -30,13 +31,17 @@ const ButtonAddToBookmarks = ({ article }) => {
 
   const handleClick = () => {
     if (!isLoggedIn) {
-      dispatch(openModal('ErrorSave'));
+      dispatch(openModal({ type: 'ErrorSave', payload: null }));
       return;
     }
+
     if (isSaved) {
-      dispatch(removeFromFavorites(article._id));
-    } else dispatch(addToFavorites(article));
+      dispatch(removeFromFavorites({ userId: user._id, articleId }));
+    } else {
+      dispatch(addToFavorites({ userId: user._id, articleId }));
+    }
   };
+
   const buttonClass = clsx(s.button, { [s.active]: isSaved });
 
   return (
