@@ -35,7 +35,6 @@ export const fetchArticlesByAuthorId = createAsyncThunk(
       const { data } = await axios.get(
         `/users/${id}/user-articles?page=${page}&limit=12`,
       );
-      console.log('response:', data);
       return data.data;
     } catch (error) {
       toast.error("Failed to load author's articles");

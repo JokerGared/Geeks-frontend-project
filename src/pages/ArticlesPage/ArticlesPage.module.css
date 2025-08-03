@@ -1,13 +1,14 @@
-.articlesPageWrapper {
-  padding: 24px;
+.wrapper {
+  padding: 48px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.pageTitle {
-  font-family: "Manrope", sans-serif;
+.title {
   font-weight: 700;
   font-size: 40px;
-  color: #000;
-  margin-bottom: 8px;
+  color: var(--color);
 }
 
 .counterContainer {
@@ -15,30 +16,47 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 8px;
-  margin-bottom: 16px;
 }
 
 .articleCounter {
-  font-family: "Manrope", sans-serif;
   font-weight: 700;
   font-size: 18px;
-  color: #070721;
-  margin: 0;
+  /* color: var(-color); */
 }
 
 .filterSelect {
-  width: 169px;
-  height: 33px;
-  padding: 4px 8px;
-  border: 1px solid #9f9f9f;
-  border-radius: 4px;
-  background: #f7fffb;
-  font-family: "Manrope", sans-serif;
+  display: none;
+}
+
+.error {
   font-weight: 400;
-  font-size: 16px;
-  line-height: 155%;
-  color: #595d62;
-  cursor: not-allowed;
-  margin: 0;
+  font-size: 18px;
+}
+
+.empty {
+  font-weight: 400;
+  font-size: 18px;
+}
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 1440px) {
+  .filterSelect {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 8px;
+    width: 169px;
+    height: 33px;
+    padding: 4px 8px;
+    border: 1px solid #9f9f9f;
+    border-radius: 4px;
+    background: #f7fffb;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 155%;
+    color: #595d62;
+    cursor: not-allowed;
+  }
 }

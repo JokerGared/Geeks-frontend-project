@@ -57,7 +57,6 @@ const articlesSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchArticlesByAuthorId.fulfilled, (state, action) => {
-        console.log('payload:', action.payload);
         state.isLoading = false;
         state.authorArticles =
           action.payload.page === 1

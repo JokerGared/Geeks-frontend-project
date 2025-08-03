@@ -23,3 +23,7 @@
 .active .icon {
   stroke: var(--button-bg-secondary-hover);
 }
+
+.button:hover {
+  border: 2px solid var(--link-color);
+}

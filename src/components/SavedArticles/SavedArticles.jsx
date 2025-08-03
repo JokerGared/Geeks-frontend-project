@@ -8,25 +8,26 @@ import {
   selectFavoritesLoading,
   selectFavoritesPage,
 } from '../../redux/favorites/selectors';
-import { selectUser } from '../../redux/auth/selectors';
 
 const SavedArticles = () => {
   const dispatch = useDispatch();
-  const user = useSelector(selectUser);
+
+  // const token = useSelector((state) => state.auth.token);
+  // console.log('[SavedArticles] token:', token);
+
   const articles = useSelector(selectFavorites);
   const isLoading = useSelector(selectFavoritesLoading);
   const hasNextPage = useSelector(selectFavoritesHasNextPage);
   const page = useSelector(selectFavoritesPage);
 
   useEffect(() => {
-    if (!user?._id) return;
-
-    dispatch(fetchFavorites({ userId: user._id, page: 1 }));
-  }, [dispatch, user?._id]);
+    console.log('[SavedArticles] DISPATCH fetchFavorites');
+    dispatch(fetchFavorites({ page: 1 }));
+  }, [dispatch]);
 
   const loadMore = () => {
-    if (user?._id && hasNextPage) {
-      dispatch(fetchFavorites({ userId: user._id, page: page + 1 }));
+    if (hasNextPage) {
+      dispatch(fetchFavorites({ page: page + 1 }));
     }
   };
 
@@ -43,14 +44,3 @@ const SavedArticles = () => {
 };
 
 export default SavedArticles;
-
-// const SavedArticles = () => {
-//   console.log('[SavedArticles] Монтуюсь');
-
-//   useEffect(() => {
-//     console.log('[SavedArticles] useEffect');
-//   }, []);
-//   return <p>SavedArticles</p>;
-// };
-
-// export default SavedArticles;
