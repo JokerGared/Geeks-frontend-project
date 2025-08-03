@@ -10,6 +10,10 @@ const initialState = {
   items: [],
   isLoading: false,
   error: null,
+  page: 1,
+  totalPages: 1,
+  hasNextPage: false,
+  hasPreviousPage: false,
 };
 
 const favoritesSlice = createSlice({
@@ -23,7 +27,11 @@ const favoritesSlice = createSlice({
       })
       .addCase(fetchFavorites.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = action.payload;
+        state.items = [...state.items, ...action.payload.data];
+        state.page = action.payload.page;
+        state.totalPages = action.payload.totalPages;
+        state.hasNextPage = action.payload.hasNextPage;
+        state.hasPreviousPage = action.payload.hasPreviousPage;
       })
       .addCase(fetchFavorites.rejected, (state, action) => {
         state.isLoading = false;
@@ -35,7 +43,7 @@ const favoritesSlice = createSlice({
       })
       .addCase(addToFavorites.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items.push(action.payload);
+        // state.items.push(action.payload);
       })
       .addCase(addToFavorites.rejected, (state, action) => {
         state.isLoading = false;
@@ -47,18 +55,19 @@ const favoritesSlice = createSlice({
       })
       .addCase(removeFromFavorites.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = state.items.filter(
-          (article) => article._id !== action.payload.articleId,
-        );
+        // state.items = state.items.filter(
+        //   (article) => article._id !== action.payload.articleId,
+        // );
       })
       .addCase(removeFromFavorites.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
       .addCase(logOut.fulfilled, (state) => {
-        state.items = [];
-        state.isLoading = false;
-        state.error = null;
+        // state.items = [];
+        // state.isLoading = false;
+        // state.error = null;
+        return initialState;
       });
   },
 });
