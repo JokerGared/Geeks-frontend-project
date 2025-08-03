@@ -6,8 +6,22 @@ import Container from '../Container/Container';
 import MobileMenu from '../MobileMenu/MobileMenu';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import s from './Layout.module.css';
+import ModalErrorSave from '../ModalErrorSave/ModalErrorSave';
+import ModalLogoutConfirm from '../ModalLogoutConfirm/ModalLogoutConfirm';
+import { useSelector } from 'react-redux';
+import {
+  selectIsModalOpen,
+  selectModalType,
+} from '../../redux/modal/selectors';
+import { MODALS } from '../../constants/modals';
 
 const Layout = () => {
+  const modalType = useSelector(selectModalType);
+  const modalIsOpen = useSelector(selectIsModalOpen);
+  const ErrorSaveIsOpen = modalType === MODALS.MODAL_ERROR_SAVE && modalIsOpen;
+  const LogoutConfirmIsOpen =
+    modalType === MODALS.MODAL_LOGOUT_CONFIRM && modalIsOpen;
+  const mobileMenuIsOpen = MODALS.MOBILE_MENU && modalIsOpen;
   return (
     <div className={s.layout}>
       <ScrollToTop />
@@ -20,7 +34,9 @@ const Layout = () => {
         </Container>
       </main>
       <Footer />
-      <MobileMenu />
+      {ErrorSaveIsOpen && <ModalErrorSave />}
+      {LogoutConfirmIsOpen && <ModalLogoutConfirm />}
+      {mobileMenuIsOpen && <MobileMenu />}
     </div>
   );
 };
