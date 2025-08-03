@@ -23,7 +23,7 @@ const UserMenu = () => {
 
   return (
     <>
-      <NavLink to={`/my-profile`} className={handleActiveClass}>
+      <NavLink to={`/profile`} className={handleActiveClass}>
         My Profile
       </NavLink>
       <NavLink to="/create" className={clsx(s.createLink)}>

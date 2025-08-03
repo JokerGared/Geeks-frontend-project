@@ -55,7 +55,7 @@ const App = () => {
         <Route path="authors/:authorId" element={<AuthorProfilePage />} />
 
         <Route
-          path="my-profile"
+          path="profile"
           element={
             <PrivateRoute component={<MyProfile />} redirectTo="/login" />
           }
