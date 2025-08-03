@@ -1,6 +1,7 @@
 .create-article-form-container{
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .create-article-form-img-title-wrapper,
@@ -9,13 +10,12 @@
 }
 
 .create-article-form-part{
-    padding: 12px 0px;  
+    margin-bottom: 24px;
+    position: relative;
 }
 
 .create-article-form-title{
-    font-family: 'Manrope';
     font-weight: 400;
-    font-style: 'Regular';
     font-size: 18px;
     line-height: 100%;
     margin-right: auto;
@@ -32,9 +32,7 @@
 
 }
 .create-article-form-input-title::placeholder{
-    font-family: 'Manrope';
     font-weight: 400;
-    font-style: 'Regular';
     font-size: 18px;
     line-height: 100%;
 }
@@ -53,9 +51,7 @@
 }
 
 .create-article-form-input-text::placeholder{
-    font-family: 'Manrope';
     font-weight: 400;
-    font-style: 'Regular';
     font-size: 18px;
     line-height: 100%;
     padding-bottom: 300px;
@@ -64,35 +60,26 @@
 .create-article-form-input-title:focus,
 .create-article-form-input-text:focus,
 .create-form-data  {
-    outline: none; 
+    outline: none;   
     border-color: rgba(159, 159, 159, 1);
 }
 
 .publish-article-button{
-    margin-top: 12px;
     width: 100%;
     max-width: 361px;
     height: 46px;
-    opacity: 1;
     border-radius: 64px;
     padding-top: 12px;
     padding-right: 16px;
     padding-bottom: 12px;
     padding-left: 16px;
-    gap: 12;
     background: rgba(100, 145, 121, 1);
 
-
-    font-family: 'Manrope';
     font-weight: 700;
     font-style: Bold;
     font-size: 16px;
     line-height: 100%;
-    letter-spacing: 0%;
-    vertical-align: middle;
     color: rgba(247, 255, 251, 1);
-
-    margin-bottom: 48px;
 }
 
 .imageUploadArea {
@@ -101,8 +88,7 @@
     height: 233px;
     border-radius: 16px;
     background: var(--Gray-3, rgba(159, 159, 159, 1));
-    margin-bottom: 12px;
-    margin-top: 16px;
+    margin-bottom: 24px;
     display: flex;
     align-items: center;
 }
@@ -150,13 +136,17 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.create-article-form-date-publication-wrapper{
+  position: relative;
+  margin-bottom: 24px;
+}
+
 .create-article-form-upload-with-button-wrapper {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
 }
-
 
 .create-article-form-update-img-button{
     margin-top: 12px;
@@ -172,8 +162,6 @@
     gap: 12;
     background: rgba(100, 145, 121, 1);
 
-
-    font-family: 'Manrope';
     font-weight: 700;
     font-style: Bold;
     font-size: 16px;
@@ -182,6 +170,68 @@
     vertical-align: middle;
     color: rgba(247, 255, 251, 1);
     cursor: pointer;
+}
+
+  .create-article-error{
+    position: absolute;        
+    font-size: 14px;           
+    color: var(--error-text-color); 
+    border-color: var(--error-border-color);
+    left: 0;
+    margin-top: 4px;  
+    height: 18px;          
+  }
+
+.create-article-form-input-title,
+.create-article-form-input-text,
+.create-form-data {
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.create-article-form-input-title:hover,
+.create-article-form-input-text:hover,
+.create-form-data:hover {
+  border-color: var(--button-bg-main);
+}
+
+.create-article-form-input-title:focus,
+.create-article-form-input-text:focus,
+.create-form-data:focus {
+  border-color: var(--button-bg-main);
+  box-shadow: 0 0 0 2px rgba(100, 145, 121, 0.2);
+}
+
+.publish-article-button,
+.create-article-form-update-img-button,
+.publish-article-cancelButton {
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.publish-article-button:hover,
+.create-article-form-update-img-button:hover {
+  background-color: var(--button-bg-main-hover);
+  transform: scale(1.02);
+}
+
+.publish-article-cancelButton:hover {
+  background-color: var(--button-bg-secondary-hover);
+  transform: scale(1.02);
+}
+
+.imageUploadArea {
+  transition: background-color var(--transition);
+}
+
+.imageUploadArea:hover {
+  background-color: var(--filter-bg-hover);
+}
+
+.selectedImage {
+  transition: opacity var(--transition);
+}
+
+.selectedImage:hover {
+  opacity: 0.9;
 }
 
 @media screen and (min-width: 768px) {
@@ -261,20 +311,15 @@
     }
     .publish-article-button{
       max-width: 809px;
-      margin-top: 16px;
-      margin-bottom: 49px;
     }
     .create-article-form-input-text{
       max-width: 809px;
       height: 393px;
     }
 
-    .create-article-form-part{
-      padding: 16px 0;
-    }
-
     .fileInput {
-        width: 391px;
-        height: 280px;
+      width: 391px;
+      height: 280px;
     }
 }
+

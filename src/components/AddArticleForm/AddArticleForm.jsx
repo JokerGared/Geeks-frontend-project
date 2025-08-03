@@ -32,7 +32,6 @@ const AddArticleForm = () => {
   }, [editingArticle]); 
 
   const handleSubmit = async (values, {resetForm}) => {
-    console.log('Submitting values:', values);
         try {
           if (editingArticle) {
             const result = await dispatch(updateArticle({
@@ -40,7 +39,7 @@ const AddArticleForm = () => {
               updates: values,
             })).unwrap();
             toast.success('Article updated successfully!');
-            navigate(`/articles/${editingArticle._id || editingArticle.id}`);
+            navigate(`/articles/${editingArticle._id}`);
           } else {
             const result = await dispatch(createArticle(values)).unwrap();
             toast.success('Article published successfully!');
@@ -107,9 +106,9 @@ const AddArticleForm = () => {
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
         {({ setFieldValue }) => (
           <Form className={css["create-article-form-container"]} autoComplete="off">
-            <label className={css["create-article-form-img-title-wrapper"]}>
-              <label htmlFor="" className="create-article-form-upload-with-button-wrapper">
-                <label className={css.imageUploadArea}>
+            <div className={css["create-article-form-img-title-wrapper"]}>
+              <div htmlFor="" className="create-article-form-upload-with-button-wrapper">
+                <div className={css.imageUploadArea}>
                   {selectedImage ? (
                     <img src={selectedImage} alt="Preview" className={css.selectedImage} />
                   ) : (
@@ -125,7 +124,7 @@ const AddArticleForm = () => {
                     className={css.fileInput}
                     ref={fileInputRef}
                   />
-                </label>
+                </div>
                 {editingArticle && (
                   <button 
                     type="button" 
@@ -135,39 +134,41 @@ const AddArticleForm = () => {
                     Edit image
                   </button>
                 )}
-              </label>
-              <label className={css["create-article-form-title-wrapper"]}>
+              </div>
+              <div className={css["create-article-form-title-wrapper"]}>
                 <label className={css["create-article-form-part"]}>
                   <p className={css["create-article-form-title"]}>Title</p>
                   <Field type="text" name="title" className={css["create-article-form-input-title"]} placeholder="Enter the title" />
-                  <ErrorMessage name="title" component="div" style={{ color: "red" }} />
+                  <ErrorMessage className={ css["create-article-error"] } name="title" component="div"/>
                 </label>
                 <label className={css["create-article-form-part"]}>
-                  <p className={css["create-article-form-title"]}>SubTitle</p>
+                  <p className={css["create-article-form-title"]}>Description</p>
                   <Field type="text" name="desc" className={css["create-article-form-input-title"]} placeholder="Enter the Subtitle" />
-                  <ErrorMessage name="desc" component="div" style={{ color: "red" }} />
+                  <ErrorMessage className={ css["create-article-error"] } name="desc" component="div" />
                 </label>
-              </label>
-            </label>
-            <label className={css["create-article-form-part"]}>
+              </div>
+            </div>
+            <div className={css["create-article-form-part"]}>
               <Field as="textarea" innerRef={textareaRef} name="article" className={css["create-article-form-input-text"]} placeholder="Enter a text" onInput={adjustTextareaHeight} onLoad={adjustTextareaHeight} />
-              <ErrorMessage name="article" component="div" style={{ color: "red" }} />
-            </label>
-            <p className={css["create-form-date-text"]}>Date of publication: </p>
-            <Field name="publishDate">
-              {({ field, form }) => (
-                <DatePicker
-                  className={css['create-form-data']}
-                  selected={field.value}
-                  onChange={(date) => form.setFieldValue('publishDate', date)}
-                  minDate={new Date()}
-                  dateFormat="yyyy-MM-dd"
-                  popperPlacement="top-start"
-                />
-              )}
-            </Field>
-            <ErrorMessage name="publishDate" component="div" style={{ color: "red" }} />
-            {editingArticle && (<button type="button" className={css["publish-article-cancelButton"]} onClick={() => navigate(`/articles/${editingArticle.id}`)}>
+              <ErrorMessage className={ css["create-article-error"] } name="article" component="div" />
+            </div>
+            <div className={css["create-article-form-date-publication-wrapper"]}>
+              <p className={css["create-form-date-text"]}>Date of publication: </p>
+              <Field name="publishDate">
+                {({ field, form }) => (
+                  <DatePicker
+                    className={css['create-form-data']}
+                    selected={field.value}
+                    onChange={(date) => form.setFieldValue('publishDate', date)}
+                    minDate={new Date()}
+                    dateFormat="yyyy-MM-dd"
+                    popperPlacement="top-start"
+                  />
+                )}
+              </Field>
+              <ErrorMessage className={css["create-article-error"]} name="publishDate" component="div" />
+            </div>
+            {editingArticle && (<button type="button" className={css["publish-article-cancelButton"]} onClick={() => navigate(`/articles/${editingArticle._id}`)}>
               Cancel changes
             </button>
             )}

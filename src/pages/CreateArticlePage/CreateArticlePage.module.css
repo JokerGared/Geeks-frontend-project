@@ -1,11 +1,13 @@
 .create-article-title{
-    font-family: 'Manrope';
     font-weight: 700;
     font-style: Bold;
     font-size: 40px;
     line-height: 100%;
-    letter-spacing: 0%;
     vertical-align: middle;
-    margin-top: 48px;
+    margin-bottom: 16px;
+}
+
+.create-article-form-container{
+    padding: 48px 0;
 }
 
