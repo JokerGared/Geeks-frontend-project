@@ -3,6 +3,7 @@ import Layout from './components/Layout/Layout';
 import { lazy } from 'react';
 import PrivateRoute from './components/Route/PrivateRoute';
 import AuthorsArticles from './components/AuthorsArticles/AuthorsArticles';
+import RestrictedRoute from './components/Route/RestrictedRoute';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const ArticlesPage = lazy(() => import('./pages/ArticlesPage/ArticlesPage'));
@@ -28,10 +29,23 @@ const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
 
-        <Route path="register" element={<RegisterPage />} />
-        <Route path="photo" element={<UploadPhotoPage />} />
+        <Route
+          path="register"
+          element={
+            <RestrictedRoute component={<RegisterPage />} redirectTo="/" />
+          }
+        />
+        <Route
+          path="photo"
+          element={
+            <RestrictedRoute component={<UploadPhotoPage />} redirectTo="/" />
+          }
+        />
 
-        <Route path="login" element={<LoginPage />} />
+        <Route
+          path="login"
+          element={<RestrictedRoute component={<LoginPage />} redirectTo="/" />}
+        />
 
         <Route path="articles" element={<ArticlesPage />} />
         <Route path="articles/:articleId" element={<ArticlePage />} />

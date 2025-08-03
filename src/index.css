@@ -144,21 +144,3 @@ address {
 section {
   padding-bottom: 72px;
 }
-
-html,
-body {
-  height: 100%;
-  margin: 0;
-}
-
-header,
-footer {
-  flex-shrink: 0;
-}
-
-main {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
