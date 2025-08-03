@@ -3,6 +3,7 @@ import s from './AuthorsItem.module.css';
 import { Link } from 'react-router-dom';
 
 const AuthorsItem = ({ _id, name, avatarUrl, avatarClassName = '' }) => {
+  const authorName = name.split(' ')[0];
   return (
     <Link to={`/authors/${_id}`} className={s.card}>
       <img
@@ -10,7 +11,7 @@ const AuthorsItem = ({ _id, name, avatarUrl, avatarClassName = '' }) => {
         alt={`${name}'s avatar`}
         className={clsx(s.avatar, avatarClassName)}
       />
-      <p className={s.name}>{name}</p>
+      <p className={s.name}>{authorName}</p>
     </Link>
   );
 };

@@ -23,13 +23,11 @@ const AuthorsList = () => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    dispatch(fetchAuthors(1));
-  }, [dispatch]);
+    dispatch(fetchAuthors({ page }));
+  }, [dispatch, page]);
 
   const handleLoadMore = () => {
-    const nextPage = page + 1;
-    dispatch(fetchAuthors(nextPage));
-    setPage(nextPage);
+    setPage((prevPage) => prevPage + 1);
   };
 
   return (

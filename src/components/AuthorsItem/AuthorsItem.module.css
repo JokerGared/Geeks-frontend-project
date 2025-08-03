@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  padding: 12px;
 }
 
 .avatar {

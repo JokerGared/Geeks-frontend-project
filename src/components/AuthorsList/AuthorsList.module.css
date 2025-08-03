@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 16px;
   margin-bottom: 24px;
 }
@@ -29,15 +29,13 @@
 
 @media screen and (min-width: 768px) {
   .list {
-    row-gap: 36px;
     justify-content: space-around;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .list {
-    column-gap: 36px;
-    justify-content: start;
+    justify-content: center;
   }
 
   .loadMore {
