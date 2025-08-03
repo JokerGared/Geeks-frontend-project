@@ -1,0 +1,190 @@
+.loginContainer {
+  position: relative;
+  width: 100%;
+  background-color: var(--background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginCard {
+  width: 100%;
+  width: 330px;
+  background-color: var(--card-bg);
+  border-radius: 32px;
+  margin: 45px 0;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 48px 32px;
+}
+
+.title {
+  align-self: stretch;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color);
+  text-align: center;
+  margin: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 36px;
+  align-self: stretch;
+  width: 100%;
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 26px;
+  align-self: stretch;
+  width: 100%;
+}
+
+.labelInputContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+  width: 100%;
+}
+
+.label {
+  align-self: stretch;
+  font-size: 12px;
+  letter-spacing: 0px;
+  color: var(--color);
+}
+
+.input {
+  background-color: var(--background-color);
+  border: 1px solid #9f9f9f;
+  line-height: 1.5;
+  color: #595d62;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #649179;
+}
+
+.inputError {
+  border: 1px solid var(--error-border-color);
+}
+
+.error {
+  top: 100%;
+  position: absolute;
+  font-size: 12px;
+  color: var(--error-text-color);
+}
+
+.passwordField {
+  position: relative;
+  width: 100%;
+}
+
+.passwordInput {
+  background-color: var(--background-color);
+  border: 1px solid #9f9f9f;
+  line-height: 1.5;
+  color: #595d62;
+  width: 100%;
+  padding: 8px 40px 8px 12px;
+  border-radius: 6px;
+}
+
+.passwordInput:focus {
+  outline: none;
+  border-color: #649179;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  stroke-width: 1px;
+  stroke: var(--secondary-icon-fill);
+  fill: none;
+  cursor: pointer;
+}
+
+.loginButton {
+  width: 100%;
+  background-color: var(--button-bg-main);
+  border-radius: 64px;
+  color: var(--button-color-main);
+  font-weight: 700;
+  border: none;
+  padding: 12px;
+  transition: var(--transition);
+}
+
+.loginButton:disabled {
+  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
+  background: var(--button-bg-main);
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.loginButton:hover {
+  background: var(--button-bg-main-hover);
+  transition: var(--transition);
+}
+
+.loginButton:focus {
+  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
+  background: var(--button-bg-main);
+}
+
+.loginPrompt {
+  align-self: stretch;
+  color: #070721;
+  text-align: center;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.registerLinkBottom {
+  font-weight: 700;
+  text-decoration: underline;
+  color: #070721;
+  transition: var(--transition);
+}
+
+.registerLinkBottom:hover,
+.registerLinkBottom:focus {
+  color: var(--button-bg-main-hover);
+  opacity: 0.5;
+}
+
+/* Tablet (min-width: 768px) */
+@media only screen and (min-width: 768px) {
+  .loginCard {
+    width: 522px;
+  }
+}
+
+/* Desktop (min-width: 1440px) */
+@media only screen and (min-width: 1440px) {
+  .loginCard {
+    width: 392px;
+  }
+}
