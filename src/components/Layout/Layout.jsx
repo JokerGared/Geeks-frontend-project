@@ -6,7 +6,6 @@ import Container from '../Container/Container';
 import MobileMenu from '../MobileMenu/MobileMenu';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import s from './Layout.module.css';
-
 import ModalErrorSave from '../ModalErrorSave/ModalErrorSave';
 import ModalLogoutConfirm from '../ModalLogoutConfirm/ModalLogoutConfirm';
 import { useSelector } from 'react-redux';
@@ -35,7 +34,6 @@ const Layout = () => {
         </Container>
       </main>
       <Footer />
-
       {ErrorSaveIsOpen && <ModalErrorSave />}
       {LogoutConfirmIsOpen && <ModalLogoutConfirm />}
       {mobileMenuIsOpen && <MobileMenu />}
