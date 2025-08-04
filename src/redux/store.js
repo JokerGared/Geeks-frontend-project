@@ -17,6 +17,7 @@ import authorsReducer from './authors/slice';
 import subscriptionsReducer from './subscriptions/slice';
 import favoritesReducer from './favorites/slice';
 import modalReducer from './modal/slice';
+import globalReducer from './loading/slice';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   subscriptions: subscriptionsReducer,
   favorites: favoritesReducer,
   modal: modalReducer,
+  global: globalReducer,
 });
 
 const persistConfig = {

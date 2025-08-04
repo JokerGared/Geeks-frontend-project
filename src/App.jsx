@@ -1,9 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import PrivateRoute from './components/Route/PrivateRoute';
 import AuthorsArticles from './components/AuthorsArticles/AuthorsArticles';
 import RestrictedRoute from './components/Route/RestrictedRoute';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsRefreshing } from './redux/auth/selectors';
+import Loader from './components/Loader/Loader';
+import { refreshUser } from './redux/auth/operations';
+import NotFound from './pages/NotFoundPage/NotFound';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const ArticlesPage = lazy(() => import('./pages/ArticlesPage/ArticlesPage'));
@@ -21,10 +26,18 @@ const UploadPhotoPage = lazy(() =>
 const CreateArticlePage = lazy(() =>
   import('./pages/CreateArticlePage/CreateArticlePage'),
 );
-const NotFound = lazy(() => import('./pages/NotFoundPage/NotFound'));
 
 const App = () => {
-  return (
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
