@@ -1,0 +1,44 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.loadMore {
+  font-size: 18px;
+  background-color: var(--button-bg-main);
+  color: var(--button-color-main);
+  font-weight: 700;
+  line-height: 1;
+  border-radius: 64px;
+  padding: 16px;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 340px;
+  transition: background-color var(--transition);
+}
+
+.loadMore:hover,
+.loadMore:focus {
+  background-color: var(--button-bg-main-hover);
+}
+
+@media screen and (min-width: 768px) {
+  .list {
+    justify-content: space-around;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .list {
+    justify-content: center;
+  }
+
+  .loadMore {
+    max-width: 390px;
+  }
+}
