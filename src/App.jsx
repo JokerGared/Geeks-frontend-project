@@ -4,6 +4,7 @@ import { lazy } from 'react';
 import PrivateRoute from './components/Route/PrivateRoute';
 import AuthorsArticles from './components/AuthorsArticles/AuthorsArticles';
 import RestrictedRoute from './components/Route/RestrictedRoute';
+import NotFound from './pages/NotFoundPage/NotFound';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const ArticlesPage = lazy(() => import('./pages/ArticlesPage/ArticlesPage'));
@@ -21,7 +22,6 @@ const UploadPhotoPage = lazy(() =>
 const CreateArticlePage = lazy(() =>
   import('./pages/CreateArticlePage/CreateArticlePage'),
 );
-const NotFound = lazy(() => import('./pages/NotFoundPage/NotFound'));
 
 const App = () => {
   return (
