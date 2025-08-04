@@ -40,7 +40,7 @@ export const logIn = createAsyncThunk(
       const response = await axios.post('/auth/login', credentials);
       const fetchedData = response.data.data;
       setAuthHeader(`Bearer ${fetchedData.accessToken}`);
-      return response.data;
+      return response.data.data;
     } catch (error) {
       const message =
         error.response?.status === 400

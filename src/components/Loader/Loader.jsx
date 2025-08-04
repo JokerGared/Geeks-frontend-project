@@ -1,10 +1,23 @@
 import { ClipLoader } from 'react-spinners';
-import s from './Loader.module.css';
+import styles from './Loader.module.css';
 
-const Loader = ({ size = 24 }) => {
+const Loader = () => {
   return (
-    <div className={s.loader}>
-      <ClipLoader color="#1b831bbf" size={size} />
+    <div
+      className={styles.overlay}
+      role="status"
+      aria-live="polite"
+      aria-label="Loading content..."
+    >
+      <ClipLoader
+        size={100}
+        color="#4fa94d"
+        aria-hidden="true"
+        cssOverride={{
+          borderWidth: '8px',
+          borderStyle: 'solid',
+        }}
+      />
     </div>
   );
 };

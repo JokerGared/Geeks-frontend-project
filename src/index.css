@@ -159,6 +159,6 @@ footer {
 main {
   flex: 1;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
 }
