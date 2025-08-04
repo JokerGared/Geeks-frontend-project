@@ -1,0 +1,163 @@
+.article-card {
+  border-radius: 32px;
+  padding: 32px 16px 40px 16px;
+  width: 100%;
+  background: var(--card-bg);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.article-card-author,
+.article-card-date {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: var(--font-size);
+  color: var(--color);
+}
+
+.article-card-author a,
+.article-card-date span {
+  font-weight: 400;
+  font-size: var(--font-size);
+  color: var(--color);
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}
+
+.article-card-label {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color);
+  margin-bottom: 8px;
+}
+
+.recommendation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.recommendation-item {
+  border-radius: 32px;
+  padding: 16px;
+  width: 100%;
+  max-width: 329px;
+  background: var(--background-color);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.item-title {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: var(--font-size);
+  color: var(--color);
+  margin: 0;
+  word-break: break-word;
+  max-width: calc(100% - 48px);
+}
+
+.item-author {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  color: var(--color);
+}
+
+.item-link {
+  border: 1px solid var(--link-color);
+  border-radius: 64px;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1px;
+  stroke: var(--secondary-icon-fill);
+}
+
+.save-button {
+  border-radius: 64px;
+  padding: 16px;
+  width: 100%;
+  max-width: 361px;
+  height: 57px;
+  background: var(--button-bg-main);
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  border: none;
+  box-sizing: border-box;
+}
+
+.save-icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1px;
+  stroke: var(--button-color-main);
+}
+
+.save-button-text {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--button-color-main);
+}
+
+@media (min-width: 768px) {
+  .article-card {
+    width: 704px;
+    height: 539px;
+    padding: 32px 32px 40px 32px;
+  }
+
+  .recommendation-item {
+    width: 640px;
+    height: 105px;
+    max-width: 640px;
+  }
+
+  .save-button {
+    width: 704px;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .article-card {
+    width: 393px;
+    height: 551px;
+  }
+
+  .recommendation-item {
+    width: 329px;
+    height: 109px;
+    max-width: 100%;
+  }
+
+  .save-button {
+    width: 393px;
+    max-width: 100%;
+  }
+}
