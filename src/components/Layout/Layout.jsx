@@ -18,10 +18,12 @@ import { MODALS } from '../../constants/modals';
 const Layout = () => {
   const modalType = useSelector(selectModalType);
   const modalIsOpen = useSelector(selectIsModalOpen);
+
   const ErrorSaveIsOpen = modalType === MODALS.MODAL_ERROR_SAVE && modalIsOpen;
   const LogoutConfirmIsOpen =
     modalType === MODALS.MODAL_LOGOUT_CONFIRM && modalIsOpen;
   const mobileMenuIsOpen = MODALS.MOBILE_MENU && modalIsOpen;
+
   return (
     <div className={s.layout}>
       <ScrollToTop />
@@ -34,6 +36,7 @@ const Layout = () => {
         </Container>
       </main>
       <Footer />
+
       {ErrorSaveIsOpen && <ModalErrorSave />}
       {LogoutConfirmIsOpen && <ModalLogoutConfirm />}
       {mobileMenuIsOpen && <MobileMenu />}

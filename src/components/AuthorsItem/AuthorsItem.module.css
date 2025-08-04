@@ -1,0 +1,34 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+}
+
+.avatar {
+  max-width: 148px;
+  max-height: 148px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  max-width: 140px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #070721;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media screen and (min-width: 768px) {
+  .avatar {
+    max-width: 262px;
+    max-height: 262px;
+  }
+
+  .name {
+    max-width: 240px;
+  }
+}
