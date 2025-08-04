@@ -1,0 +1,21 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  row-gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .list {
+    justify-content: center;
+    gap: 24px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .loadMore {
+    max-width: 390px;
+  }
+}

@@ -64,10 +64,11 @@ export const refreshUser = createAsyncThunk(
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
+
       if (!token) throw new Error('No token found');
 
       setAuthHeader(`Bearer ${token}`);
-      const response = await axios.get('/auth/refresh');
+      const response = await axios.post('/auth/refresh');
       return response.data.data;
     } catch (error) {
       toast.error('Oops...try again!');
