@@ -15,7 +15,7 @@ const ArticleItem = ({ _id, img, title, desc, ownerId }) => {
       <img src={img} alt={title} className={s.image} />
 
       <div className={s.content}>
-        <p className={s.author}>{user.name}</p>
+        <p className={s.author}>{ownerId.name}</p>
         <p className={s.title}>{title}</p>
 
         <p className={s.desc}>{desc}</p>

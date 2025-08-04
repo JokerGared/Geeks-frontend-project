@@ -68,23 +68,18 @@
   }
 
   .topCreatorsList {
-    justify-content: space-between;
-    row-gap: 24px;
+    justify-content: center;
+    gap: 24px;
   }
 
   .topCreatorsList .topCreatorAvatar {
-    width: 216px;
-    height: 216px;
+    width: 160px;
+    height: 160px;
   }
 }
 
 @media screen and (min-width:1440px) {
   .topCreatorsTitle {
     font-size: 40px;
-  }
-
-  .topCreatorsList .topCreatorAvatar {
-    width: 160px;
-    height: 160px;
   }
 }
