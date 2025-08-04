@@ -31,7 +31,9 @@ const AuthorsPage = () => {
   }, [dispatch, page]);
 
   const handleLoadMore = () => {
-    setPage((prevPage) => prevPage + 1);
+    const nextPage = page + 1;
+    setPage(nextPage);
+    dispatch(fetchAuthors(nextPage));
   };
   return (
     <section className={s.authorsPage}>
