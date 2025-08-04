@@ -4,6 +4,8 @@
   box-sizing: border-box;
   width: 100%;
   gap: 16px;
+  padding-top: 48px;
+  padding-bottom: calc(80px + 48px);
 }
 
 .title {
@@ -35,7 +37,10 @@
 @media (min-width: 768px) {
   .page {
     max-width: 704px;
+    min-height: auto;
     border-radius: 24px;
+    padding-top: 48px;
+    padding-bottom: calc(80px + 48px);
   }
 
   .title {
@@ -52,7 +57,7 @@
   .page {
     max-width: 1225px;
     margin: 0 auto;
-    padding: 0 16px;
+    padding: 48px 16px;
     gap: 32px;
     display: flex;
     flex-direction: column;

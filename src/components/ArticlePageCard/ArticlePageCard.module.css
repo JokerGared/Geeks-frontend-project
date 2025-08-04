@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  height: 551px;
 }
 
 .article-card-author,
@@ -17,13 +18,16 @@
   color: var(--color);
 }
 
-.article-card-author a,
+.article-card-author-link,
 .article-card-date span {
   font-weight: 400;
   font-size: var(--font-size);
   color: var(--color);
+}
+
+.article-card-author-link {
   text-decoration: underline;
-  text-decoration-skip-ink: none;
+  color: inherit;
 }
 
 .article-card-label {
