@@ -4,8 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 import ArticlePageCard from '../../components/ArticlePageCard/ArticlePageCard';
-import { fetchArticles } from '../../redux/articles/operations';
 import {
+  fetchArticleById,
+  fetchArticles,
+} from '../../redux/articles/operations';
+import {
+  selectArticleById,
   selectArticles,
   selectArticlesLoading,
   selectArticlesError,
@@ -14,17 +18,21 @@ import {
 const ArticlePage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+
+  const article = useSelector((state) => selectArticleById(state, id));
   const articles = useSelector(selectArticles);
   const isLoading = useSelector(selectArticlesLoading);
   const error = useSelector(selectArticlesError);
 
   useEffect(() => {
+    if (id) {
+      dispatch(fetchArticleById(id));
+    }
+
     if (!articles.length) {
       dispatch(fetchArticles());
     }
-  }, [dispatch, articles]);
-
-  const article = articles.find((item) => item._id === id);
+  }, [dispatch, id, articles]);
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
