@@ -4,14 +4,15 @@ import s from './ButtonAddToBookmarks.module.css';
 
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import { openModal } from '../../redux/modal/slice';
-import { selectFavorites } from '../../redux/favorites/selectors';
+import { MODALS } from '../../constants/modals';
 
+import { selectFavorites } from '../../redux/favorites/selectors';
 import {
   addToFavorites,
   removeFromFavorites,
 } from '../../redux/favorites/operations';
+
 import toast from 'react-hot-toast';
-import Loader from '../Loader/Loader';
 
 const ButtonAddToBookmarks = ({ article }) => {
   const dispatch = useDispatch();
@@ -29,9 +30,10 @@ const ButtonAddToBookmarks = ({ article }) => {
 
   const handleClick = async () => {
     if (!isLoggedIn) {
-      dispatch(openModal('ErrorSave'));
+      dispatch(openModal({ type: MODALS.MODAL_ERROR_SAVE }));
       return;
     }
+
     try {
       if (isSaved) {
         await dispatch(
