@@ -10,6 +10,7 @@ import {
 } from '../../redux/articles/selectors';
 import { selectCurrentAuthor } from '../../redux/authors/selectors';
 import { selectUser } from '../../redux/auth/selectors';
+import ArticlesEmpty from '../ArticlesEmpty/ArticlesEmpty';
 
 const AuthorsArticles = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,10 @@ const AuthorsArticles = () => {
       dispatch(fetchArticlesByAuthorId({ id: author._id, page: page + 1 }));
     }
   };
+
+  if (!isLoading && articles.length === 0) {
+    return <ArticlesEmpty />;
+  }
   return (
     <ArticlesList
       articles={articles}

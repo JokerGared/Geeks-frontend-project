@@ -78,12 +78,16 @@ const PublicProfile = () => {
         </div>
       </div>
 
-      <ArticlesList
-        articles={articles}
-        isLoading={isLoading}
-        hasNextPage={hasNextPage}
-        onLoadMore={handleLoadMore}
-      />
+      {articles.length === 0 && !isLoading ? (
+        <ArticlesEmpty />
+      ) : (
+        <ArticlesList
+          articles={articles}
+          isLoading={isLoading}
+          hasNextPage={hasNextPage}
+          onLoadMore={handleLoadMore}
+        />
+      )}
       {isModalOpen && modalType === 'ErrorSave' && <ModalErrorSave />}
     </div>
   );

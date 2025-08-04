@@ -43,7 +43,8 @@ const favoritesSlice = createSlice({
       })
       .addCase(addToFavorites.fulfilled, (state, action) => {
         state.isLoading = false;
-        // state.items.push(action.payload);
+        state.items.push(action.payload);
+        return { articleId };
       })
       .addCase(addToFavorites.rejected, (state, action) => {
         state.isLoading = false;
@@ -55,9 +56,9 @@ const favoritesSlice = createSlice({
       })
       .addCase(removeFromFavorites.fulfilled, (state, action) => {
         state.isLoading = false;
-        // state.items = state.items.filter(
-        //   (article) => article._id !== action.payload.articleId,
-        // );
+        state.items = state.items.filter(
+          (article) => article._id !== action.payload.articleId,
+        );
       })
       .addCase(removeFromFavorites.rejected, (state, action) => {
         state.isLoading = false;

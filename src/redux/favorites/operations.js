@@ -32,7 +32,7 @@ export const fetchFavorites = createAsyncThunk(
 
 export const addToFavorites = createAsyncThunk(
   'favorites/add',
-  async ({ userId, articleId }, thunkAPI) => {
+  async ({ articleId }, thunkAPI) => {
     const state = thunkAPI.getState();
     const token = state.auth.token;
     if (!token) return thunkAPI.rejectWithValue('No token');
@@ -55,7 +55,7 @@ export const addToFavorites = createAsyncThunk(
 
 export const removeFromFavorites = createAsyncThunk(
   'favorites/remove',
-  async ({ userId, articleId }, thunkAPI) => {
+  async ({ articleId }, thunkAPI) => {
     const state = thunkAPI.getState();
     const token = state.auth.token;
     if (!token) return thunkAPI.rejectWithValue('No token');

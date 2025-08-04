@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import { lazy } from 'react';
 import PrivateRoute from './components/Route/PrivateRoute';
@@ -60,7 +60,7 @@ const App = () => {
             <PrivateRoute component={<MyProfile />} redirectTo="/login" />
           }
         >
-          <Route index element={<AuthorsArticles />} />
+          <Route index element={<Navigate to="my-articles" replace />} />
           <Route path="my-articles" element={<AuthorsArticles />} />
           <Route path="saved" element={<SavedArticles />} />
         </Route>

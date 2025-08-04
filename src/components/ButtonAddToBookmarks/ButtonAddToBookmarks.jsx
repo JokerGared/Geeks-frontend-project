@@ -1,46 +1,50 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
-
 import s from './ButtonAddToBookmarks.module.css';
-import { selectIsLoggedIn, selectUser } from '../../redux/auth/selectors';
+
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import { openModal } from '../../redux/modal/slice';
 import { selectFavorites } from '../../redux/favorites/selectors';
-import toast from 'react-hot-toast';
-import Loader from '../Loader/Loader';
+
 import {
   addToFavorites,
   removeFromFavorites,
 } from '../../redux/favorites/operations';
+import toast from 'react-hot-toast';
+import Loader from '../Loader/Loader';
 
 const ButtonAddToBookmarks = ({ articleId }) => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  const user = useSelector(selectUser);
-  const isLoading = useSelector((state) => state.favorites.isLoading);
-  const error = useSelector((state) => state.favorites.error);
-  const favorites = useSelector(selectFavorites);
   const dispatch = useDispatch();
 
-  const isSaved = favorites.some((item) => item._id === articleId);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const favorites = useSelector(selectFavorites);
+  const isLoading = useSelector((state) => state.favorites.isLoading);
+  const error = useSelector((state) => state.favorites.error);
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-    }
-  }, [error]);
+  if (!articleId) return null;
 
-  const handleClick = () => {
+  const isSaved =
+    Array.isArray(favorites) &&
+    favorites.some((item) => item?._id === articleId);
+
+  const handleClick = async () => {
     if (!isLoggedIn) {
-      dispatch(openModal({ type: 'ErrorSave', payload: null }));
+      dispatch(openModal('ErrorSave'));
       return;
     }
 
-    if (isSaved) {
-      dispatch(removeFromFavorites({ userId: user._id, articleId }));
-    } else {
-      dispatch(addToFavorites({ userId: user._id, articleId }));
+    try {
+      if (isSaved) {
+        await dispatch(removeFromFavorites({ articleId })).unwrap();
+      } else {
+        await dispatch(addToFavorites({ articleId })).unwrap();
+      }
+    } catch (err) {
+      toast.error('Failed to update favorites');
     }
   };
+
+  if (error) toast.error(error);
 
   const buttonClass = clsx(s.button, { [s.active]: isSaved });
 

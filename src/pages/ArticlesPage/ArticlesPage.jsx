@@ -8,20 +8,23 @@ import {
   selectArticlesLoading,
   selectArticlesError,
   selectArticlesHasNextPage,
-  selectArticlesPage,
 } from '../../redux/articles/selectors';
 import { fetchArticles } from '../../redux/articles/operations';
 
 import ArticlesList from '../../components/ArticlesList/ArticlesList';
 import Loader from '../../components/Loader/Loader';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
+import { fetchFavorites } from '../../redux/favorites/operations';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { selectFavorites } from '../../redux/favorites/selectors';
 
 const ArticlesPage = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
-
+  const favorites = useSelector(selectFavorites);
   const articles = useSelector(selectArticles);
   const isLoading = useSelector(selectArticlesLoading);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const error = useSelector(selectArticlesError);
   const hasNextPage = useSelector(selectArticlesHasNextPage);
 
@@ -32,12 +35,18 @@ const ArticlesPage = () => {
   }, [dispatch, page]);
 
   useEffect(() => {
+    if (isLoggedIn && favorites.length === 0) {
+      dispatch(fetchFavorites({ page: 1 }));
+    }
+  }, [dispatch, isLoggedIn, favorites.length]);
+
+  useEffect(() => {
     if (error) toast.error(error);
   }, [error]);
 
   const onLoadMore = () => {
     if (hasNextPage && !isLoading) {
-      dispatch(setPage(page + 1));
+      setPage((prev) => prev + 1); // ✅
     }
   };
 
