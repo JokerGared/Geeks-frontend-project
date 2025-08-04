@@ -19,9 +19,11 @@ const SavedArticles = () => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    console.log('[SavedArticles] DISPATCH fetchFavorites');
-    dispatch(fetchFavorites({ page }));
-  }, [dispatch, page]);
+    if (page === 1 && articles.length === 0) {
+      console.log('[SavedArticles] Initial fetch');
+      dispatch(fetchFavorites({ page: 1 }));
+    }
+  }, [dispatch, page, articles.length]);
 
   const loadMore = () => {
     if (hasNextPage) {
