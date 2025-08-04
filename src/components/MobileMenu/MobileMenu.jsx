@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import s from './MobileMenu.module.css';
 import clsx from 'clsx';
 import { Link, NavLink } from 'react-router-dom';
@@ -20,10 +20,19 @@ const MobileMenu = () => {
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const modalType = useSelector(selectModalType);
-
   const isOpen = modalType === MODALS.MOBILE_MENU;
 
   const dispatch = useDispatch();
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      const timer = requestAnimationFrame(() => setShow(true));
+      return () => cancelAnimationFrame(timer);
+    } else {
+      setShow(false);
+    }
+  }, [isOpen]);
 
   const handleCloseMobileMenu = () => {
     dispatch(closeModal());
@@ -36,11 +45,13 @@ const MobileMenu = () => {
   };
 
   const handleOpenConfirmExitModal = () => {
-    dispatch(openModal({ type: 'modalLogoutConfirm' }));
     handleCloseMobileMenu();
+    dispatch(openModal({ type: 'modalLogoutConfirm' }));
   };
 
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleKeyDownClick = (e) => {
       if (e.key === 'Escape') {
         handleCloseMobileMenu();
@@ -53,7 +64,7 @@ const MobileMenu = () => {
 
   return (
     <div
-      className={clsx(s.mobileBackdrop, isOpen && s.isOpen)}
+      className={clsx(s.mobileBackdrop, show && s.show)}
       onClick={handleBackDropClick}
     >
       <div className={clsx(s.mobileMenu)}>
