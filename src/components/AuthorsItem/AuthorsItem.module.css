@@ -7,21 +7,28 @@
 }
 
 .avatar {
-  width: 148px;
-  height: 148px;
+  max-width: 148px;
+  max-height: 148px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-@media screen and (min-width: 768px) {
-  .avatar {
-    width: 262px;
-    height: 262px;
-  }
-}
-
 .name {
+  max-width: 140px;
   font-size: 24px;
   font-weight: 700;
   color: #070721;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media screen and (min-width: 768px) {
+  .avatar {
+    max-width: 262px;
+    max-height: 262px;
+  }
+
+  .name {
+    max-width: 240px;
+  }
 }
