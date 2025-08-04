@@ -80,31 +80,17 @@
   transition: var(--transition);
 }
 
-.learnMore:hover,
-.learnMore:focus {
-  color: var(--button-color-main);
-  background-color: var(--link-color);
-}
-
 @media screen and (min-width: 768px) {
   .card {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-direction: column;
-    border-radius: 32px;
-    padding: 12px;
-    max-width: 340px;
-    height: 492px;
-    background: var(--card-bg);
+    width: 340px;
   }
 
   .image {
-    max-width: 316px;
+    width: 316px;
   }
 
   .learnMore {
-    max-width: 268px;
+    width: 268px;
   }
 }
 
@@ -119,5 +105,11 @@
 
   .learnMore {
     min-width: 320px;
+  }
+
+  .learnMore:hover,
+  .learnMore:focus {
+    color: var(--button-color-main);
+    background-color: var(--link-color);
   }
 }
