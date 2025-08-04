@@ -1,26 +1,25 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectArticles } from '../../redux/articles/selectors';
-import { selectUser } from '../../redux/auth/selectors';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
+import { format } from 'date-fns';
 import s from './ArticlePageCard.module.css';
+import { useEffect } from 'react';
+import { fetchArticles } from '../../redux/articles/operations';
 
-const ArticlePageCard = () => {
+const ArticlePageCard = ({ article }) => {
+  const dispatch = useDispatch();
   const articles = useSelector(selectArticles);
-  const user = useSelector(selectUser);
   const navigate = useNavigate();
+  useEffect(() => {
+    if (articles.length === 0) dispatch(fetchArticles(1));
+  }, [dispatch]);
 
-  const mainArticle = articles[0];
-  const recommended = articles.slice(0, 3);
+  const recommendedArticles = articles
+    .filter((art) => art._id !== article._id)
+    .slice(0, 3);
 
-  if (!mainArticle) {
-    return <div className={s['article-card']}>Loading...</div>;
-  }
-
-  const { ownerId, date, _id, title, article } = mainArticle;
-
-  const isOwn = ownerId === user?._id;
+  const { ownerId, date } = article;
 
   return (
     <div className={s['article-card']}>
@@ -35,13 +34,13 @@ const ArticlePageCard = () => {
       </p>
 
       <p className={s['article-card-date']}>
-        Published on: <span>{date}</span>
+        Published on: <span>{format(new Date(date), 'dd.MM.yyyy')}</span>
       </p>
 
       <div className={s['article-card-label']}>You may also be interested</div>
 
       <div className={s['recommendation-list']}>
-        {recommended.map(({ _id, title, ownerId }) => (
+        {recommendedArticles.map(({ _id, title, ownerId }) => (
           <div key={_id} className={s['recommendation-item']}>
             <div className={s['item-top']}>
               <h3 className={s['item-title']}>{title}</h3>
@@ -57,13 +56,6 @@ const ArticlePageCard = () => {
             <p className={s['item-author']}>{ownerId?.name}</p>
           </div>
         ))}
-      </div>
-
-      <div className={s['save-button']}>
-        <span className={s['save-button-text']}>Save</span>
-        <svg className={s['save-icon']}>
-          <use href="/icons.svg#icon-save" />
-        </svg>
       </div>
     </div>
   );

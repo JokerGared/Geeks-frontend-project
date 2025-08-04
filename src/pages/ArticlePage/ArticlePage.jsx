@@ -15,7 +15,9 @@ const ArticlePage = () => {
     dispatch(fetchArticleById(articleId));
   }, [dispatch, articleId]);
 
-  if (!article) return <p className={styles.text}>Loading...</p>;
+  if (!article) return null;
+
+  const formattedText = article.article.replace(/\/n/g, '\n');
 
   return (
     <section className={styles.page}>
@@ -24,11 +26,16 @@ const ArticlePage = () => {
 
       <div className={styles.contentWrapper}>
         <div className={styles.textWrapper}>
-          <p className={styles.text}>{article.article}</p>
+          <p className={styles.text}>{formattedText}</p>
         </div>
-
         <div className={styles.cardWrapper}>
-          <ArticlePageCard />
+          <ArticlePageCard article={article} />
+          <div className={styles['save-button']}>
+            <span className={styles['save-button-text']}>Save</span>
+            <svg className={styles['save-icon']} width={24} height={24}>
+              <use href="/icons.svg#icon-save" />
+            </svg>
+          </div>
         </div>
       </div>
     </section>

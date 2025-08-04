@@ -2,12 +2,12 @@
   border-radius: 32px;
   padding: 32px 16px 40px 16px;
   width: 100%;
-  background: var(--card-bg);
-  box-sizing: border-box;
+  background-color: var(--card-bg);
   display: flex;
   flex-direction: column;
   gap: 15px;
-  height: 551px;
+  min-height: 551px;
+  margin-bottom: 24px;
 }
 
 .article-card-author,
@@ -98,43 +98,10 @@
   stroke: var(--secondary-icon-fill);
 }
 
-.save-button {
-  border-radius: 64px;
-  padding: 16px;
-  width: 100%;
-  max-width: 361px;
-  height: 57px;
-  background: var(--button-bg-main);
-  margin-top: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  cursor: pointer;
-  border: none;
-  box-sizing: border-box;
-  fill: none;
-}
-
-.save-icon {
-  width: 20px;
-  height: 20px;
-  stroke-width: 1px;
-  stroke: var(--button-color-main);
-}
-
-.save-button-text {
-  font-family: var(--font-family);
-  font-weight: 700;
-  font-size: 18px;
-  color: var(--button-color-main);
-  fill: none;
-}
-
 @media (min-width: 768px) {
   .article-card {
     width: 704px;
-    height: 539px;
+    min-height: 539px;
     padding: 32px 32px 40px 32px;
   }
 
@@ -143,29 +110,17 @@
     height: 105px;
     max-width: 640px;
   }
-
-  .save-button {
-    width: 704px;
-    max-width: 100%;
-    fill: none;
-  }
 }
 
 @media (min-width: 1440px) {
   .article-card {
     width: 393px;
-    height: 551px;
+    min-height: 551px;
   }
 
   .recommendation-item {
     width: 329px;
     height: 109px;
     max-width: 100%;
-  }
-
-  .save-button {
-    width: 393px;
-    max-width: 100%;
-    fill: none;
   }
 }

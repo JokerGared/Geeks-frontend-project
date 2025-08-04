@@ -3,9 +3,7 @@
   flex-direction: column;
   box-sizing: border-box;
   width: 100%;
-  gap: 16px;
-  padding-top: 48px;
-  padding-bottom: calc(80px + 48px);
+  padding: 48px 0;
 }
 
 .title {
@@ -13,7 +11,11 @@
   font-weight: 700;
   font-size: 32px;
   color: var(--color);
-  margin-bottom: 16px;
+  margin-bottom: 32px;
+}
+
+.textWrapper {
+  margin-bottom: 24px;
 }
 
 .image {
@@ -22,7 +24,7 @@
   aspect-ratio: 361 / 184;
   border-radius: 24px;
   object-fit: cover;
-  margin-bottom: 16px;
+  margin-bottom: 32px;
 }
 
 .text {
@@ -31,16 +33,45 @@
   font-size: var(--font-size);
   line-height: var(--line-height);
   color: var(--color);
-  margin-bottom: 15px;
+  white-space: pre-wrap;
+}
+
+.save-button {
+  border-radius: 64px;
+  padding: 16px;
+  width: 100%;
+  max-width: 361px;
+  height: 57px;
+  background: var(--button-bg-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  border: none;
+  box-sizing: border-box;
+  fill: none;
+}
+
+.save-icon {
+  width: 24px;
+  height: 24px;
+  stroke-width: 1px;
+  stroke: var(--button-color-main);
+}
+
+.save-button-text {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--button-color-main);
+  fill: none;
 }
 
 @media (min-width: 768px) {
   .page {
     max-width: 704px;
     min-height: auto;
-    border-radius: 24px;
-    padding-top: 48px;
-    padding-bottom: calc(80px + 48px);
   }
 
   .title {
@@ -49,19 +80,18 @@
 
   .image {
     max-width: 704px;
-    aspect-ratio: 704 / 358;
+  }
+
+  .save-button {
+    width: 704px;
+    max-width: 100%;
+    fill: none;
   }
 }
 
 @media (min-width: 1440px) {
   .page {
     max-width: 1225px;
-    margin: 0 auto;
-    padding: 48px 16px;
-    gap: 32px;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
   }
 
   .title {
@@ -76,25 +106,32 @@
 
   .text {
     color: #000;
-    max-width: 800px;
+    max-width: 808px;
     flex: 1;
   }
 
   .contentWrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
-    gap: 32px;
+    gap: 24px;
     flex-wrap: wrap;
     width: 100%;
   }
 
   .textWrapper {
-    flex: 1 1 60%;
-    max-width: 800px;
+    flex: 1 1;
+    max-width: 808px;
+    margin-bottom: 0;
   }
 
   .cardWrapper {
     flex: 0 1 393px;
+  }
+
+  .save-button {
+    width: 393px;
+    max-width: 100%;
+    fill: none;
   }
 }
