@@ -92,27 +92,19 @@
   .learnMore {
     width: 268px;
   }
-
-  .image {
-    max-width: 316px;
-  }
-
-  .learnMore {
-    max-width: 268px;
-  }
 }
 
 @media screen and (min-width: 1440px) {
   .card {
-    width: 392px;
+    min-width: 392px;
   }
 
   .image {
-    width: 368px;
+    min-width: 368px;
   }
 
   .learnMore {
-    width: 320px;
+    min-width: 320px;
   }
 
   .learnMore:hover,
