@@ -109,6 +109,7 @@
   cursor: pointer;
   border: none;
   box-sizing: border-box;
+  fill: none;
 }
 
 .save-icon {
@@ -123,6 +124,7 @@
   font-weight: 700;
   font-size: 18px;
   color: var(--button-color-main);
+  fill: none;
 }
 
 @media (min-width: 768px) {
@@ -141,6 +143,7 @@
   .save-button {
     width: 704px;
     max-width: 100%;
+    fill: none;
   }
 }
 
@@ -159,5 +162,6 @@
   .save-button {
     width: 393px;
     max-width: 100%;
+    fill: none;
   }
 }

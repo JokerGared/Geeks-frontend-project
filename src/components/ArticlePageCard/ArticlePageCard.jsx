@@ -1,59 +1,57 @@
 import { useSelector } from 'react-redux';
-import styles from './ArticlePageCard.module.css';
-import { Link } from 'react-router-dom';
-import { selectRecommendations } from '../../redux/articles/selectors';
+import { selectArticles } from '../../redux/articles/selectors';
 import { selectUser } from '../../redux/auth/selectors';
+import { useNavigate } from 'react-router-dom';
 
-const ArticlePageCard = ({ author, date, articleId }) => {
-  const recommendations = useSelector((state) =>
-    selectRecommendations(state, articleId),
-  );
+import s from './ArticlePageCard.module.css';
+
+const ArticlePageCard = () => {
+  const articles = useSelector(selectArticles);
   const user = useSelector(selectUser);
+  const navigate = useNavigate();
 
-  const current = recommendations.find(({ id }) => id === articleId);
-  const isOwn = current?.ownerId === user?._id;
+  const mainArticle = articles[0];
+  const recommended = articles.slice(0, 3);
+  const isOwn = mainArticle?.ownerId === user?._id;
+  const { author, date, _id } = mainArticle || {};
 
   return (
-    <>
-      <div className={styles['article-card']}>
-        <p className={styles['article-card-author']}>
-          Author: <a href="#">{author}</a>
-        </p>
-        <p className={styles['article-card-date']}>
-          Published on: <span>{date}</span>
-        </p>
-        <p className={styles['article-card-label']}>
-          You may also be interested
-        </p>
+    <div className={s['article-card']}>
+      <p className={s['article-card-author']}>
+        Author: <span>{author}</span>
+      </p>
 
-        <div className={styles['recommendation-list']}>
-          {recommendations.length === 0 && <p>No recommendations yet</p>}
-          {recommendations.map(({ id, title, author }) => (
-            <div key={id} className={styles['recommendation-item']}>
-              <div className={styles['item-top']}>
-                <h3 className={styles['item-title']}>{title}</h3>
-                <Link to={`/articles/${id}`} className={styles['item-link']}>
-                  <svg className={styles['item-icon']}>
-                    <use href="/icons.svg#icon-arrow" />
-                  </svg>
-                </Link>
+      <p className={s['article-card-date']}>
+        Published on: <span>{date}</span>
+      </p>
+      <div className={s['article-card-label']}>You may also be interested</div>
+
+      <div className={s['recommendation-list']}>
+        {recommended.map(({ id, title, author }) => (
+          <div key={id} className={s['recommendation-item']}>
+            <div className={s['item-top']}>
+              <h3 className={s['item-title']}>{title}</h3>
+              <div
+                className={s['item-link']}
+                onClick={() => navigate(`/articles/${id}`)}
+              >
+                <svg className={s['item-icon']}>
+                  <use href="/icons.svg#icon-arrow" />
+                </svg>
               </div>
-              <p className={styles['item-author']}>{author}</p>
             </div>
-          ))}
-        </div>
+            <p className={s['item-author']}>{author}</p>
+          </div>
+        ))}
       </div>
 
-      <Link
-        to={isOwn ? `/create/${articleId}` : `/articles/${articleId}`}
-        className={styles['save-button']}
-      >
-        Save
-        <svg className={styles['save-icon']}>
+      <div className={s['save-button']}>
+        <span className={s['save-button-text']}>Save</span>
+        <svg className={s['save-icon']}>
           <use href="/icons.svg#icon-save" />
         </svg>
-      </Link>
-    </>
+      </div>
+    </div>
   );
 };
 
