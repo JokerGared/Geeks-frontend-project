@@ -10,7 +10,7 @@ export const fetchFavorites = createAsyncThunk(
     if (!token) return thunkAPI.rejectWithValue('No token');
     try {
       const { data } = await axios.get(
-        `/users/${userId}/saved-articles?page=${page}&perPage=12`,
+        `/users/me/saved-articles?page=${page}&perPage=12`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -33,7 +33,7 @@ export const addToFavorites = createAsyncThunk(
     if (!token) return thunkAPI.rejectWithValue('No token');
     try {
       // const { data } =
-      await axios.put(`/users/${userId}/saved-articles/${articleId}`, null, {
+      await axios.put(`/users/me/saved-articles/${articleId}`, null, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -55,7 +55,7 @@ export const removeFromFavorites = createAsyncThunk(
     const token = state.auth.token;
     if (!token) return thunkAPI.rejectWithValue('No token');
     try {
-      await axios.delete(`/users/${userId}/saved-articles/${articleId}`, {
+      await axios.delete(`/users/me/saved-articles/${articleId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
