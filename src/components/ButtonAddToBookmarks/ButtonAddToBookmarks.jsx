@@ -13,31 +13,32 @@ import {
 import toast from 'react-hot-toast';
 import Loader from '../Loader/Loader';
 
-const ButtonAddToBookmarks = ({ articleId }) => {
+const ButtonAddToBookmarks = ({ article }) => {
   const dispatch = useDispatch();
 
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  if (!article || !article._id) return null;
+
   const favorites = useSelector(selectFavorites);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const isLoading = useSelector((state) => state.favorites.isLoading);
   const error = useSelector((state) => state.favorites.error);
 
-  if (!articleId) return null;
-
   const isSaved =
     Array.isArray(favorites) &&
-    favorites.some((item) => item?._id === articleId);
+    favorites.some((item) => item?._id === article._id);
 
   const handleClick = async () => {
     if (!isLoggedIn) {
       dispatch(openModal('ErrorSave'));
       return;
     }
-
     try {
       if (isSaved) {
-        await dispatch(removeFromFavorites({ articleId })).unwrap();
+        await dispatch(
+          removeFromFavorites({ articleId: article._id }),
+        ).unwrap();
       } else {
-        await dispatch(addToFavorites({ articleId })).unwrap();
+        await dispatch(addToFavorites({ article })).unwrap();
       }
     } catch (err) {
       toast.error('Failed to update favorites');
@@ -50,13 +51,13 @@ const ButtonAddToBookmarks = ({ articleId }) => {
 
   return (
     <button className={buttonClass} type="button" onClick={handleClick}>
-      {isLoading ? (
-        <Loader size={24} />
-      ) : (
-        <svg className={s.icon} width="24px" height="24px">
-          <use xlinkHref="/icons.svg#icon-save" />
-        </svg>
-      )}
+      <svg
+        className={clsx(s.icon, isLoading && s.spin)}
+        width="24px"
+        height="24px"
+      >
+        <use xlinkHref="/icons.svg#icon-save" />
+      </svg>
     </button>
   );
 };

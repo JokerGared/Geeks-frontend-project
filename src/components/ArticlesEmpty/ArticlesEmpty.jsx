@@ -21,14 +21,14 @@ const ArticlesEmpty = () => {
     linkTo = '/articles';
     showLink = true;
   } else if (path === '/profile') {
-    description = 'Nothing found.';
+    description = 'Be the first, who create an article';
     linkText = 'Create an article';
     linkTo = '/create';
     showLink = true;
   } else if (path === '/profile/my-articles') {
-    description = 'Save your first article';
-    linkText = 'Go to articles';
-    linkTo = '/articles';
+    description = 'Write your first article';
+    linkText = 'Create an article';
+    linkTo = '/create';
     showLink = true;
   }
   return (
@@ -37,8 +37,9 @@ const ArticlesEmpty = () => {
         <svg className={s.icon} width="64px" height="64">
           <use xlinkHref="/icons.svg#icon-notification" />
         </svg>
-        <h2 className={s.title}>Nothing found.</h2>
-        <p className={s.text}>{description}</p>
+
+        <h3 className={s.title}>Nothing found.</h3>
+        <p>{description}</p>
       </div>
 
       {showLink && (

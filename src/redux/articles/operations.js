@@ -33,7 +33,7 @@ export const fetchArticlesByAuthorId = createAsyncThunk(
   async ({ id, page = 1 }, thunkAPI) => {
     try {
       const { data } = await axios.get(
-        `/users/${id}/user-articles?page=${page}&limit=12`,
+        `/users/${id}/user-articles?page=${page}&perPage=12`,
       );
       return data.data;
     } catch (error) {

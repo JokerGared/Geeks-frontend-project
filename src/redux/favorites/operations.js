@@ -32,20 +32,19 @@ export const fetchFavorites = createAsyncThunk(
 
 export const addToFavorites = createAsyncThunk(
   'favorites/add',
-  async ({ articleId }, thunkAPI) => {
+  async ({ article }, thunkAPI) => {
     const state = thunkAPI.getState();
     const token = state.auth.token;
+    console.log('[addToFavorites] article:', article);
     if (!token) return thunkAPI.rejectWithValue('No token');
     try {
-      // const { data } =
-      await axios.put(`/users/me/saved-articles/${articleId}`, null, {
+      await axios.put(`/users/me/saved-articles/${article._id}`, null, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       toast.success('Added to favorites');
-      return;
-      // data;
+      return article;
     } catch (error) {
       toast.error('Failed to add to favorites');
       return thunkAPI.rejectWithValue(error.message);

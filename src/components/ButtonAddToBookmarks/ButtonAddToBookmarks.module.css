@@ -16,14 +16,24 @@
   transition: var(--transition);
 }
 
+.spin {
+  border: none;
+  animation: spin 0.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .active {
   background-color: var(--link-color);
 }
 
 .active .icon {
   stroke: var(--button-bg-secondary-hover);
-}
-
-.button:hover {
-  border: 2px solid var(--link-color);
 }

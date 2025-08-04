@@ -43,8 +43,12 @@ const favoritesSlice = createSlice({
       })
       .addCase(addToFavorites.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items.push(action.payload);
-        return { articleId };
+        const exists = state.items.some(
+          (item) => item._id === action.payload._id,
+        );
+        if (!exists) {
+          state.items.push(action.payload);
+        }
       })
       .addCase(addToFavorites.rejected, (state, action) => {
         state.isLoading = false;
