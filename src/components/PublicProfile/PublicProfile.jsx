@@ -22,6 +22,7 @@ import {
 
 import s from './PublicProfile.module.css';
 import ArticlesEmpty from '../ArticlesEmpty/ArticlesEmpty';
+import SubscribeButton from '../SubscribeButton/SubscribeButton';
 
 const PublicProfile = () => {
   const { authorId } = useParams();
@@ -76,6 +77,7 @@ const PublicProfile = () => {
         <div className={s.userInfo}>
           <h2 className={s.authorName}>{name}</h2>
           <p className={s.articleCounter}>{articlesAmount} articles</p>
+          <SubscribeButton />
         </div>
       </div>
 

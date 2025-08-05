@@ -5,6 +5,16 @@ import {
   unsubscribeFromAuthor,
 } from './operations.js';
 
+const handlePending = (state) => {
+  state.isLoading = true;
+  state.error = null;
+};
+
+const handleRejected = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
+
 const initialState = {
   list: [],
   isLoading: false,
@@ -16,42 +26,24 @@ const subscriptionsSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
-      .addCase(fetchSubscriptions.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
+      .addCase(fetchSubscriptions.pending, handlePending)
       .addCase(fetchSubscriptions.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.list = action.payload;
+        state.list = action.payload.data;
       })
-      .addCase(fetchSubscriptions.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(subscribeToAuthor.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
+      .addCase(fetchSubscriptions.rejected, handleRejected)
+      .addCase(subscribeToAuthor.pending, handlePending)
       .addCase(subscribeToAuthor.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.list = action.payload;
+        state.list = action.payload.data;
       })
-      .addCase(subscribeToAuthor.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(unsubscribeFromAuthor.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
+      .addCase(subscribeToAuthor.rejected, handleRejected)
+      .addCase(unsubscribeFromAuthor.pending, handlePending)
       .addCase(unsubscribeFromAuthor.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.list = action.payload;
+        state.list = action.payload.data;
       })
-      .addCase(unsubscribeFromAuthor.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      });
+      .addCase(unsubscribeFromAuthor.rejected, handleRejected);
   },
 });
 

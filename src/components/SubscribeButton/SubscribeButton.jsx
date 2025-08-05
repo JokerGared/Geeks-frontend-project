@@ -5,6 +5,10 @@ import {
   selectSubscriptionsLoading,
 } from '../../redux/subscriptions/selectors.js';
 import { selectCurrentAuthor } from '../../redux/authors/selectors.js';
+import {
+  subscribeToAuthor,
+  unsubscribeFromAuthor,
+} from '../../redux/subscriptions/operations.js';
 
 const SubscribeButton = () => {
   const dispatch = useDispatch();
