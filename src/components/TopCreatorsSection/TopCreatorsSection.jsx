@@ -3,19 +3,21 @@ import AuthorsItem from '../AuthorsItem/AuthorsItem';
 import SectionTitle from '../SectionTitle/SectionTitle';
 import clsx from 'clsx';
 import s from './TopCreatorsSection.module.css';
-import { selectAuthors } from '../../redux/authors/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchAuthors } from '../../redux/authors/operations';
 import { selectTopCreators } from '../../redux/authors/selectors';
 
 const TopCreatorsSection = () => {
   const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
   const authorsList = useSelector(selectTopCreators);
 
   useEffect(() => {
-    dispatch(fetchAuthors());
-  }, [dispatch]);
+    if (page === 1 && authorsList.length === 0) {
+      dispatch(fetchAuthors(1));
+    }
+  }, [dispatch, page, authorsList.length]);
 
   return (
     <section className={clsx('section')} id="top-creators">
