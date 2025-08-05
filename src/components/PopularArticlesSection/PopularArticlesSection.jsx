@@ -18,7 +18,7 @@ const PopularArticlesSection = () => {
       dispatch(fetchArticles(1));
     }
   }, [dispatch, page, articles.length]);
-
+  console.log('articles from selector:', articles);
   return (
     <section className={clsx('section')} id="popular-articles">
       <div className={clsx(s.popularArticlesTitleLinkContainer)}>
@@ -32,11 +32,11 @@ const PopularArticlesSection = () => {
           </svg>
         </Link>
       </div>
-
+      {!articles.length && <p>...Loading</p>}
       <ul className={clsx(s.popularArticlesList)}>
         {articles.map((article) => (
           <li key={article._id}>
-            <ArticleItem {...article} />
+            <ArticleItem articleItem={article} />
           </li>
         ))}
       </ul>
