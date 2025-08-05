@@ -18,9 +18,10 @@ export const selectArticlesHasPreviousPage = (state) =>
 export const selectArticlesPage = (state) => state.articles.page;
 
 export const selectFirstFourPopularArticles = createSelector(
-  [selectPopularArticles],
+  [selectArticles],
   (articles) => {
-    const firstFourArticles = articles.slice(0, 4);
+    const popularArticles = articles.toSorted((a, b) => b.rate - a.rate);
+    const firstFourArticles = popularArticles.slice(0, 4);
     return firstFourArticles;
   },
 );

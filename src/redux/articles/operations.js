@@ -108,7 +108,6 @@ export const popularArticles = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await axios.get('/articles/popular');
-      console.log(data.data);
       return data.data;
     } catch (error) {
       toast.error('Failed to load popular article');
