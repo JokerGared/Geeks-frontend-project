@@ -14,16 +14,6 @@ const authSlice = createSlice({
     isLoggedIn: false,
     isRefreshing: false,
     error: null,
-    registrationFormData: null,
-    loginFormData: null,
-  },
-  reducers: {
-    setRegistrationFormData(state, action) {
-      state.registrationFormData = action.payload;
-    },
-    setLoginFormData(state, action) {
-      state.loginFormData = action.payload;
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -54,8 +44,6 @@ const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
         state.error = null;
-        state.registrationFormData = null;
-        state.loginFormData = null;
       })
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
@@ -63,15 +51,17 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.isRefreshing = false;
-        state.user = action.payload;
+        state.token = action.payload.accessToken;
         state.isLoggedIn = true;
       })
       .addCase(refreshUser.rejected, (state, action) => {
         state.isRefreshing = false;
         state.error = action.payload;
+        state.isLoggedIn = false;
+        state.user = { name: '', email: '', avatarUrl: '' };
+        state.token = null;
       });
   },
 });
 
-export const { setRegistrationFormData, setLoginFormData } = authSlice.actions;
 export default authSlice.reducer;
