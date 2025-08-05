@@ -17,7 +17,6 @@ const handleRejected = (state, action) => {
 
 const initialState = {
   list: [],
-  isLoading: false,
   error: null,
 };
 
