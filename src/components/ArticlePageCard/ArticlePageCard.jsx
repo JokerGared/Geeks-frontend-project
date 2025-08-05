@@ -26,7 +26,7 @@ const ArticlePageCard = ({ article }) => {
       <p className={s['article-card-author']}>
         Author:{' '}
         <Link
-          to={`/profile/${ownerId?._id}`}
+          to={`/authors/${ownerId?._id}`}
           className={s['article-card-author-link']}
         >
           {ownerId?.name}
