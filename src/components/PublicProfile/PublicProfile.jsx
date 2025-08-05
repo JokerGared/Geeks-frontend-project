@@ -11,7 +11,6 @@ import { fetchArticlesByAuthorId } from '../../redux/articles/operations';
 import { selectCurrentAuthor } from '../../redux/authors/selectors';
 import {
   selectAuthorArticles,
-  selectArticlesLoading,
   selectArticlesHasNextPage,
   selectArticlesPage,
 } from '../../redux/articles/selectors';
@@ -22,6 +21,7 @@ import {
 
 import s from './PublicProfile.module.css';
 import ArticlesEmpty from '../ArticlesEmpty/ArticlesEmpty';
+import { selectIsLoading } from '../../redux/loading/selectors';
 
 const PublicProfile = () => {
   const { authorId } = useParams();
@@ -29,7 +29,7 @@ const PublicProfile = () => {
 
   const author = useSelector(selectCurrentAuthor);
   const articles = useSelector(selectAuthorArticles);
-  const isLoading = useSelector(selectArticlesLoading);
+  const isLoading = useSelector(selectIsLoading);
   const hasNextPage = useSelector(selectArticlesHasNextPage);
   const page = useSelector(selectArticlesPage);
 

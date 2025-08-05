@@ -4,13 +4,13 @@ import ArticlesList from '../ArticlesList/ArticlesList';
 import { fetchArticlesByAuthorId } from '../../redux/articles/operations';
 import {
   selectAuthorArticles,
-  selectArticlesLoading,
   selectArticlesHasNextPage,
   selectArticlesPage,
 } from '../../redux/articles/selectors';
 import { selectCurrentAuthor } from '../../redux/authors/selectors';
 import { selectUser } from '../../redux/auth/selectors';
 import ArticlesEmpty from '../ArticlesEmpty/ArticlesEmpty';
+import { selectIsLoading } from '../../redux/loading/selectors';
 
 const AuthorsArticles = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const AuthorsArticles = () => {
   const isOwnPage = author?._id === user?._id;
 
   const articles = useSelector(selectAuthorArticles);
-  const isLoading = useSelector(selectArticlesLoading);
+  const isLoading = useSelector(selectIsLoading);
   const hasNextPage = useSelector(selectArticlesHasNextPage);
   const page = useSelector(selectArticlesPage);
 

@@ -5,15 +5,15 @@ import { fetchFavorites } from '../../redux/favorites/operations';
 import {
   selectFavorites,
   selectFavoritesHasNextPage,
-  selectFavoritesLoading,
 } from '../../redux/favorites/selectors';
 import ArticlesEmpty from '../ArticlesEmpty/ArticlesEmpty';
+import { selectIsLoading } from '../../redux/loading/selectors';
 
 const SavedArticles = () => {
   const dispatch = useDispatch();
 
   const articles = useSelector(selectFavorites);
-  const isLoading = useSelector(selectFavoritesLoading);
+  const isLoading = useSelector(selectIsLoading);
   const hasNextPage = useSelector(selectFavoritesHasNextPage);
 
   const [page, setPage] = useState(1);
