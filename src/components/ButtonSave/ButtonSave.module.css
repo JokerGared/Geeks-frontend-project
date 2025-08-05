@@ -1,0 +1,70 @@
+.save-button {
+  border-radius: 64px;
+  padding: 16px;
+  width: 100%;
+  max-width: 361px;
+  height: 57px;
+  background: var(--button-bg-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  border: none;
+  box-sizing: border-box;
+  fill: none;
+}
+
+.save-icon {
+  width: 24px;
+  height: 24px;
+  stroke-width: 1px;
+  stroke: var(--button-color-main);
+  fill: none;
+  transition: var(--transition);
+}
+
+.save-button-text {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--button-color-main);
+  fill: none;
+}
+
+.spin {
+  animation: spin 0.5s linear infinite;
+}
+
+.active {
+  background-color: var(--link-color);
+}
+
+.active .save-icon {
+  stroke: var(--button-bg-secondary-hover);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (min-width: 768px) {
+  .save-button {
+    width: 704px;
+    max-width: 100%;
+    fill: none;
+  }
+}
+
+@media (min-width: 1440px) {
+  .save-button {
+    width: 393px;
+    max-width: 100%;
+    fill: none;
+  }
+}

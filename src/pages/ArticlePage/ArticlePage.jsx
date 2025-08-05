@@ -5,6 +5,7 @@ import { fetchArticleById } from '../../redux/articles/operations';
 import { selectCurrentArticle } from '../../redux/articles/selectors';
 import ArticlePageCard from '../../components/ArticlePageCard/ArticlePageCard';
 import styles from './ArticlePage.module.css';
+import ButtonSave from '../../components/ButtonSave/ButtonSave';
 
 const ArticlePage = () => {
   const { articleId } = useParams();
@@ -30,12 +31,7 @@ const ArticlePage = () => {
         </div>
         <div className={styles.cardWrapper}>
           <ArticlePageCard article={article} />
-          <div className={styles['save-button']}>
-            <span className={styles['save-button-text']}>Save</span>
-            <svg className={styles['save-icon']} width={24} height={24}>
-              <use href="/icons.svg#icon-save" />
-            </svg>
-          </div>
+          <ButtonSave article={article} />
         </div>
       </div>
     </section>
