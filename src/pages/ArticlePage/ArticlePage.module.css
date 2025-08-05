@@ -1,0 +1,137 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 48px 0;
+}
+
+.title {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--color);
+  margin-bottom: 32px;
+}
+
+.textWrapper {
+  margin-bottom: 24px;
+}
+
+.image {
+  width: 100%;
+  max-width: 361px;
+  aspect-ratio: 361 / 184;
+  border-radius: 24px;
+  object-fit: cover;
+  margin-bottom: 32px;
+}
+
+.text {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  color: var(--color);
+  white-space: pre-wrap;
+}
+
+.save-button {
+  border-radius: 64px;
+  padding: 16px;
+  width: 100%;
+  max-width: 361px;
+  height: 57px;
+  background: var(--button-bg-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  border: none;
+  box-sizing: border-box;
+  fill: none;
+}
+
+.save-icon {
+  width: 24px;
+  height: 24px;
+  stroke-width: 1px;
+  stroke: var(--button-color-main);
+}
+
+.save-button-text {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--button-color-main);
+  fill: none;
+}
+
+@media (min-width: 768px) {
+  .page {
+    max-width: 704px;
+    min-height: auto;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .image {
+    max-width: 704px;
+  }
+
+  .save-button {
+    width: 704px;
+    max-width: 100%;
+    fill: none;
+  }
+}
+
+@media (min-width: 1440px) {
+  .page {
+    max-width: 1225px;
+  }
+
+  .title {
+    margin-bottom: 32px;
+    color: #000;
+  }
+
+  .image {
+    max-width: 1225px;
+    height: 624px;
+  }
+
+  .text {
+    color: #000;
+    max-width: 808px;
+    flex: 1;
+  }
+
+  .contentWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .textWrapper {
+    flex: 1 1;
+    max-width: 808px;
+    margin-bottom: 0;
+  }
+
+  .cardWrapper {
+    flex: 0 1 393px;
+  }
+
+  .save-button {
+    width: 393px;
+    max-width: 100%;
+    fill: none;
+  }
+}

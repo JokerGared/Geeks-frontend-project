@@ -31,16 +31,19 @@ const AuthorsPage = () => {
   }, [dispatch, page]);
 
   const handleLoadMore = () => {
-    setPage((prevPage) => prevPage + 1);
+    const nextPage = page + 1;
+    setPage(nextPage);
+    dispatch(fetchAuthors(nextPage));
   };
   return (
     <section className={s.authorsPage}>
       <SectionTitle className={s.title}>Authors</SectionTitle>
       {isLoading && <Loader />}
-      {error && (
-        <p className={s.status}>Sorry, this author could not be found.</p>
+      {error && authors.length === 0 ? (
+        <p className={s.status}>Sorry, this authors could not be found.</p>
+      ) : (
+        <AuthorsList authors={authors} />
       )}
-      {!isLoading && !error && <AuthorsList authors={authors} />}
       {!isLoading && !error && hasNextPage && (
         <button type="button" onClick={handleLoadMore} className={s.loadMore}>
           Load more
