@@ -7,10 +7,19 @@
   margin-bottom: 24px;
 }
 
+.item {
+  width: 172px;
+  height: 224px;
+}
+
 @media screen and (min-width: 768px) {
   .list {
-    justify-content: center;
+    justify-content: flex-start;
     gap: 24px;
+  }
+  .item {
+    width: 286px;
+    height: 335px;
   }
 }
 

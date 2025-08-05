@@ -28,6 +28,21 @@ export const fetchArticleById = createAsyncThunk(
   },
 );
 
+export const fetchArticlesByAuthorId = createAsyncThunk(
+  'articles/fetchByAuthor',
+  async ({ id, page = 1 }, thunkAPI) => {
+    try {
+      const { data } = await axios.get(
+        `/users/${id}/user-articles?page=${page}&perPage=12`,
+      );
+      return data.data;
+    } catch (error) {
+      toast.error("Failed to load author's articles");
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
 export const createArticle = createAsyncThunk(
   'articles/create',
   async (credentials, thunkAPI) => {

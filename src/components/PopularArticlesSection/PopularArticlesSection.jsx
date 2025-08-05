@@ -6,16 +6,18 @@ import SectionTitle from '../SectionTitle/SectionTitle';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPopularArticles } from '../../redux/articles/selectors';
 import { fetchArticles } from '../../redux/articles/operations';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const PopularArticlesSection = () => {
   const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
   const articles = useSelector(selectPopularArticles);
 
   useEffect(() => {
-    dispatch(fetchArticles());
-  }, [dispatch]);
-
+    if (page === 1 && articles.length === 0) {
+      dispatch(fetchArticles(1));
+    }
+  }, [dispatch, page, articles.length]);
   return (
     <section className={clsx('section')} id="popular-articles">
       <div className={clsx(s.popularArticlesTitleLinkContainer)}>
@@ -29,11 +31,11 @@ const PopularArticlesSection = () => {
           </svg>
         </Link>
       </div>
-
+      {!articles.length && <p>...Loading</p>}
       <ul className={clsx(s.popularArticlesList)}>
         {articles.map((article) => (
           <li key={article._id}>
-            <ArticleItem {...article} />
+            <ArticleItem articleItem={article} />
           </li>
         ))}
       </ul>

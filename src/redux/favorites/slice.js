@@ -8,7 +8,6 @@ import { logOut } from '../auth/operations';
 
 const initialState = {
   items: [],
-  isLoading: false,
   error: null,
   page: 1,
   totalPages: 1,
@@ -22,11 +21,9 @@ const favoritesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchFavorites.pending, (state) => {
-        state.isLoading = true;
         state.error = null;
       })
       .addCase(fetchFavorites.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.items = [...state.items, ...action.payload.data];
         state.page = action.payload.page;
         state.totalPages = action.payload.totalPages;
@@ -34,39 +31,34 @@ const favoritesSlice = createSlice({
         state.hasPreviousPage = action.payload.hasPreviousPage;
       })
       .addCase(fetchFavorites.rejected, (state, action) => {
-        state.isLoading = false;
         state.error = action.payload;
       })
       .addCase(addToFavorites.pending, (state) => {
-        state.isLoading = true;
         state.error = null;
       })
       .addCase(addToFavorites.fulfilled, (state, action) => {
-        state.isLoading = false;
-        // state.items.push(action.payload);
+        const exists = state.items.some(
+          (item) => item._id === action.payload._id,
+        );
+        if (!exists) {
+          state.items.push(action.payload);
+        }
       })
       .addCase(addToFavorites.rejected, (state, action) => {
-        state.isLoading = false;
         state.error = action.payload;
       })
       .addCase(removeFromFavorites.pending, (state) => {
-        state.isLoading = true;
         state.error = null;
       })
       .addCase(removeFromFavorites.fulfilled, (state, action) => {
-        state.isLoading = false;
-        // state.items = state.items.filter(
-        //   (article) => article._id !== action.payload.articleId,
-        // );
+        state.items = state.items.filter(
+          (article) => article._id !== action.payload.articleId,
+        );
       })
       .addCase(removeFromFavorites.rejected, (state, action) => {
-        state.isLoading = false;
         state.error = action.payload;
       })
       .addCase(logOut.fulfilled, (state) => {
-        // state.items = [];
-        // state.isLoading = false;
-        // state.error = null;
         return initialState;
       });
   },

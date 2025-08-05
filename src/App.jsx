@@ -1,14 +1,17 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import { lazy, useEffect } from 'react';
 import PrivateRoute from './components/Route/PrivateRoute';
 import AuthorsArticles from './components/AuthorsArticles/AuthorsArticles';
 import RestrictedRoute from './components/Route/RestrictedRoute';
+
+import SavedArticles from './components/SavedArticles/SavedArticles';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsRefreshing } from './redux/auth/selectors';
 import Loader from './components/Loader/Loader';
 import { refreshUser } from './redux/auth/operations';
 import NotFound from './pages/NotFoundPage/NotFound';
+import { selectIsLoading } from './redux/loading/selectors';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const ArticlesPage = lazy(() => import('./pages/ArticlesPage/ArticlesPage'));
@@ -30,6 +33,7 @@ const CreateArticlePage = lazy(() =>
 const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -38,57 +42,72 @@ const App = () => {
   return isRefreshing ? (
     <Loader />
   ) : (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
+    <>
+      {isLoading && <Loader />}
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
 
-        <Route
-          path="register"
-          element={
-            <RestrictedRoute component={<RegisterPage />} redirectTo="/" />
-          }
-        />
-        <Route
-          path="photo"
-          element={
-            <RestrictedRoute component={<UploadPhotoPage />} redirectTo="/" />
-          }
-        />
+          <Route
+            path="register"
+            element={
+              <RestrictedRoute component={<RegisterPage />} redirectTo="/" />
+            }
+          />
+          <Route
+            path="photo"
+            element={
+              <RestrictedRoute component={<UploadPhotoPage />} redirectTo="/" />
+            }
+          />
 
-        <Route
-          path="login"
-          element={<RestrictedRoute component={<LoginPage />} redirectTo="/" />}
-        />
+          <Route
+            path="login"
+            element={
+              <RestrictedRoute component={<LoginPage />} redirectTo="/" />
+            }
+          />
 
-        <Route path="articles" element={<ArticlesPage />} />
-        <Route path="articles/:articleId" element={<ArticlePage />} />
+          <Route path="articles" element={<ArticlesPage />} />
+          <Route path="articles/:articleId" element={<ArticlePage />} />
 
-        <Route path="authors" element={<AuthorsPage />} />
-        <Route path="authors/:authorId" element={<AuthorProfilePage />} />
+          <Route path="authors" element={<AuthorsPage />} />
+          <Route path="authors/:authorId" element={<AuthorProfilePage />} />
 
-        <Route
-          path="profile"
-          element={
-            <PrivateRoute component={<MyProfile />} redirectTo="/login" />
-          }
-        >
-          <Route index element={<AuthorsArticles />} />
-          <Route path="my-articles" element={<AuthorsArticles />} />
-          <Route path="saved" element={<AuthorsArticles />} />
+          <Route
+            path="profile"
+            element={
+              <PrivateRoute component={<MyProfile />} redirectTo="/login" />
+            }
+          >
+            <Route index element={<Navigate to="my-articles" replace />} />
+            <Route path="my-articles" element={<AuthorsArticles />} />
+            <Route path="saved" element={<SavedArticles />} />
+          </Route>
+
+          <Route
+            path="create"
+            element={
+              <PrivateRoute
+                component={<CreateArticlePage />}
+                redirectTo="/login"
+              />
+            }
+          />
+
+          <Route
+            path="create/:articleId"
+            element={
+              <PrivateRoute
+                component={<CreateArticlePage />}
+                redirectTo="/login"
+              />
+            }
+          />
         </Route>
-
-        <Route
-          path="create"
-          element={
-            <PrivateRoute
-              component={<CreateArticlePage />}
-              redirectTo="/login"
-            />
-          }
-        />
-      </Route>
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 };
 
