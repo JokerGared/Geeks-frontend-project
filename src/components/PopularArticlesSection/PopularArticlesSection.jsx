@@ -18,7 +18,6 @@ const PopularArticlesSection = () => {
       dispatch(fetchArticles(1));
     }
   }, [dispatch, page, articles.length]);
-  console.log('articles from selector:', articles);
   return (
     <section className={clsx('section')} id="popular-articles">
       <div className={clsx(s.popularArticlesTitleLinkContainer)}>

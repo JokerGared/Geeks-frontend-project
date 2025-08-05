@@ -5,22 +5,17 @@ import { toast } from 'react-hot-toast';
 export const fetchFavorites = createAsyncThunk(
   'favorites/fetchAll',
   async ({ userId, page = 1 }, thunkAPI) => {
-    console.log('[fetchFavorites] thunk called');
     const state = thunkAPI.getState();
     const token = state.auth.token;
-    console.log('[fetchFavorites] token:', token);
     if (!token) return thunkAPI.rejectWithValue('No token');
     try {
       const url = `/users/me/saved-articles?page=${page}&perPage=12`;
-      console.log('[fetchFavorites] Making request to:', url);
 
       const { data } = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-
-      console.log('[fetchFavorites] response:', data);
 
       return data.data;
     } catch (error) {
@@ -35,7 +30,6 @@ export const addToFavorites = createAsyncThunk(
   async ({ article }, thunkAPI) => {
     const state = thunkAPI.getState();
     const token = state.auth.token;
-    console.log('[addToFavorites] article:', article);
     if (!token) return thunkAPI.rejectWithValue('No token');
     try {
       await axios.put(`/users/me/saved-articles/${article._id}`, null, {
