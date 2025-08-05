@@ -1,9 +1,11 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import { lazy, useEffect } from 'react';
 import PrivateRoute from './components/Route/PrivateRoute';
 import AuthorsArticles from './components/AuthorsArticles/AuthorsArticles';
 import RestrictedRoute from './components/Route/RestrictedRoute';
+
+import SavedArticles from './components/SavedArticles/SavedArticles';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsRefreshing } from './redux/auth/selectors';
 import Loader from './components/Loader/Loader';
@@ -72,13 +74,23 @@ const App = () => {
             <PrivateRoute component={<MyProfile />} redirectTo="/login" />
           }
         >
-          <Route index element={<AuthorsArticles />} />
+          <Route index element={<Navigate to="my-articles" replace />} />
           <Route path="my-articles" element={<AuthorsArticles />} />
-          <Route path="saved" element={<AuthorsArticles />} />
+          <Route path="saved" element={<SavedArticles />} />
         </Route>
 
         <Route
           path="create"
+          element={
+            <PrivateRoute
+              component={<CreateArticlePage />}
+              redirectTo="/login"
+            />
+          }
+        />
+
+        <Route
+          path="create/:articleId"
           element={
             <PrivateRoute
               component={<CreateArticlePage />}

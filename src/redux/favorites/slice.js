@@ -43,7 +43,12 @@ const favoritesSlice = createSlice({
       })
       .addCase(addToFavorites.fulfilled, (state, action) => {
         state.isLoading = false;
-        // state.items.push(action.payload);
+        const exists = state.items.some(
+          (item) => item._id === action.payload._id,
+        );
+        if (!exists) {
+          state.items.push(action.payload);
+        }
       })
       .addCase(addToFavorites.rejected, (state, action) => {
         state.isLoading = false;
@@ -55,9 +60,9 @@ const favoritesSlice = createSlice({
       })
       .addCase(removeFromFavorites.fulfilled, (state, action) => {
         state.isLoading = false;
-        // state.items = state.items.filter(
-        //   (article) => article._id !== action.payload.articleId,
-        // );
+        state.items = state.items.filter(
+          (article) => article._id !== action.payload.articleId,
+        );
       })
       .addCase(removeFromFavorites.rejected, (state, action) => {
         state.isLoading = false;
