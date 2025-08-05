@@ -39,10 +39,11 @@ const AuthorsPage = () => {
     <section className={s.authorsPage}>
       <SectionTitle className={s.title}>Authors</SectionTitle>
       {isLoading && <Loader />}
-      {error && (
-        <p className={s.status}>Sorry, this author could not be found.</p>
+      {error && authors.length === 0 ? (
+        <p className={s.status}>Sorry, this authors could not be found.</p>
+      ) : (
+        <AuthorsList authors={authors} />
       )}
-      {!isLoading && !error && <AuthorsList authors={authors} />}
       {!isLoading && !error && hasNextPage && (
         <button type="button" onClick={handleLoadMore} className={s.loadMore}>
           Load more
