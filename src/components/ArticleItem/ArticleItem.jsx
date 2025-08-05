@@ -1,7 +1,17 @@
 import s from './ArticleItem.module.css';
 import ButtonAddToBookmarks from '../ButtonAddToBookmarks/ButtonAddToBookmarks';
 import { Link } from 'react-router-dom';
-const ArticleItem = ({ _id, img, title, desc, ownerId }) => {
+
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../redux/auth/selectors';
+import ButtonEdit from '../ButtonEdit/ButtonEdit';
+
+const ArticleItem = ({ articleItem }) => {
+  if (!articleItem) return null;
+  const { _id, img, title, desc, ownerId, article } = articleItem;
+  const user = useSelector(selectUser);
+  const isOwn = ownerId === user?._id;
+
   return (
     <article className={s.card}>
       <img src={img} alt={title} className={s.image} />
@@ -10,13 +20,21 @@ const ArticleItem = ({ _id, img, title, desc, ownerId }) => {
         <p className={s.author}>{ownerId.name}</p>
         <p className={s.title}>{title}</p>
 
-        <p className={s.desc}>{desc}</p>
+        {desc ? (
+          <p className={s.desc}>{desc}</p>
+        ) : (
+          <p className={s.desc}>{article}</p>
+        )}
       </div>
       <div className={s.actions}>
         <Link to={`/articles/${_id}`} className={s.learnMore}>
           Learn more
         </Link>
-        <ButtonAddToBookmarks />
+        {isOwn ? (
+          <ButtonEdit to={`/create/${_id}`} />
+        ) : (
+          <ButtonAddToBookmarks article={articleItem} />
+        )}
       </div>
     </article>
   );

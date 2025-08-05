@@ -5,6 +5,7 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: {
     user: {
+      _id: '',
       name: '',
       email: '',
       avatarUrl: '',
@@ -55,8 +56,8 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
-      .addCase(logOut.fulfilled, (state) => {
-        state.user = { name: '', email: '', avatarURL: '' };
+      .addCase(logOut.pending, (state) => {
+        state.user = { name: '', email: '', avatarUrl: '' };
         state.token = null;
         state.isLoggedIn = false;
         state.error = null;

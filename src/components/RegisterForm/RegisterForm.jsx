@@ -2,8 +2,6 @@ import s from './RegisterForm.module.css';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setRegistrationFormData } from '../../redux/auth/slice';
 import { Link, useNavigate } from 'react-router-dom';
 import PasswordStrengthBar from 'react-password-strength-bar';
 
@@ -36,13 +34,10 @@ const validationSchema = Yup.object().shape({
 
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (values) => {
-    console.log('!!!Submitting form values:', values);
-    dispatch(setRegistrationFormData(values));
-    navigate('/photo');
+    navigate('/photo', { state: { formData: values } });
   };
 
   const iconId = showPassword ? 'icon-close-eye' : 'icon-open-eye';

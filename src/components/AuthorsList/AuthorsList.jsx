@@ -1,20 +1,15 @@
+import AuthorsItem from '../AuthorsItem/AuthorsItem';
 import s from './AuthorsList.module.css';
 
-import AuthorsItem from '../AuthorsItem/AuthorsItem';
-
-const AuthorsList = () => {
-  const authorsList = [];
-
+const AuthorsList = ({ authors }) => {
   return (
-    <>
-      {authorsList.map(author => (
-        <li key={author.id}>
+    <ul className={s.list}>
+      {authors.map((author) => (
+        <li key={author._id} className={s.item}>
           <AuthorsItem {...author} />
         </li>
       ))}
-
-      <button type='button'>Load more</button>
-    </>
+    </ul>
   );
 };
 

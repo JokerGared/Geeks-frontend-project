@@ -1,0 +1,30 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  row-gap: 16px;
+  margin-bottom: 24px;
+}
+
+.item {
+  width: 172px;
+  height: 224px;
+}
+
+@media screen and (min-width: 768px) {
+  .list {
+    justify-content: flex-start;
+    gap: 24px;
+  }
+  .item {
+    width: 286px;
+    height: 335px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .loadMore {
+    max-width: 390px;
+  }
+}

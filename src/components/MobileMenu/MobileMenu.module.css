@@ -3,7 +3,7 @@
   inset: 0;
 
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
 
   background-color: var(--backdrop-bg);
@@ -16,7 +16,7 @@
   transition: all var(--transition);
 }
 
-.mobileBackdrop.isOpen {
+.mobileBackdrop.show {
   opacity: 1;
   pointer-events: auto;
   visibility: visible;
@@ -25,18 +25,21 @@
 .mobileMenu {
   position: absolute;
   width: 100%;
-  max-width: 393px;
+  height: 100vh;
   background-color: var(--card-bg);
   padding: 24px 16px;
-  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logoCloseButtonContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 44px;
   height: 46px;
+  width: 100%;
 }
 
 .closeButton {
@@ -75,6 +78,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 32px;
+  margin: auto;
 }
 
 .mobNavLink {
@@ -124,12 +128,12 @@
 .tabCreateLink {
   display: flex;
   width: 100%;
-  max-width: 160px;
+  min-width: 160px;
 }
 
 .mobJoinLink {
   width: 100%;
-  max-width: 100px;
+  min-width: 100px;
 }
 
 .tabCreateLink {
@@ -213,7 +217,6 @@
 @media screen and (min-width:768px) {
   .mobileMenu {
     padding: 24px 32px;
-    max-width: 768px;
   }
 
   .tabCreateCloseContainer {

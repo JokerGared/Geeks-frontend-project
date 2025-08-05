@@ -1,9 +1,8 @@
 import s from './UploadForm.module.css';
 import { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
-import { selectRegistrationFormData } from '../../redux/auth/selectors';
 import { toast } from 'react-hot-toast';
 
 const UploadForm = () => {
@@ -12,8 +11,9 @@ const UploadForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const registrationFormData = useSelector(selectRegistrationFormData);
   const fileInputRef = useRef();
+  const location = useLocation();
+  const formData = location.state?.formData;
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -28,7 +28,7 @@ const UploadForm = () => {
   };
 
   const handleSubmit = async () => {
-    if (!registrationFormData) {
+    if (!formData) {
       toast.error(
         'Registration data is missing. Please start registration again.',
       );
@@ -40,7 +40,7 @@ const UploadForm = () => {
 
     try {
       const registrationDataWithAvatar = {
-        ...registrationFormData,
+        ...formData,
         avatar: selectedImage,
       };
 
@@ -55,7 +55,7 @@ const UploadForm = () => {
   };
 
   const handleClose = async () => {
-    if (!registrationFormData) {
+    if (!formData) {
       toast.error(
         'Registration data is missing. Please start registration again.',
       );
@@ -66,7 +66,7 @@ const UploadForm = () => {
     setIsSubmitting(true);
 
     try {
-      await dispatch(register(registrationFormData)).unwrap();
+      await dispatch(register(formData)).unwrap();
 
       toast.success('Registration successful!');
     } catch (error) {

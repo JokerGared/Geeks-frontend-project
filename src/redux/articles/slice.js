@@ -2,11 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   fetchArticles,
   fetchArticleById,
+  fetchArticlesByAuthorId,
   createArticle,
 } from './operations.js';
 
 const initialState = {
   items: [],
+  authorArticles: [],
   current: null,
   isLoading: false,
   error: null,
@@ -37,6 +39,7 @@ const articlesSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
+
       .addCase(fetchArticleById.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -46,6 +49,25 @@ const articlesSlice = createSlice({
         state.current = action.payload;
       })
       .addCase(fetchArticleById.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchArticlesByAuthorId.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchArticlesByAuthorId.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.authorArticles =
+          action.payload.page === 1
+            ? action.payload.data
+            : [...state.authorArticles, ...action.payload.data];
+        state.page = action.payload.page;
+        state.totalPages = action.payload.totalPages;
+        state.hasNextPage = action.payload.hasNextPage;
+        state.hasPreviousPage = action.payload.hasPreviousPage;
+      })
+      .addCase(fetchArticlesByAuthorId.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
