@@ -7,8 +7,12 @@ import {
   selectArticles,
   selectArticlesError,
   selectArticlesHasNextPage,
+  selectPopularArticles,
 } from '../../redux/articles/selectors';
-import { fetchArticles } from '../../redux/articles/operations';
+import {
+  fetchArticles,
+  popularArticles,
+} from '../../redux/articles/operations';
 
 import ArticlesList from '../../components/ArticlesList/ArticlesList';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
@@ -21,14 +25,20 @@ const ArticlesPage = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectArticlesError);
   const hasNextPage = useSelector(selectArticlesHasNextPage);
+  const popular = useSelector(selectPopularArticles);
+  console.log(popular);
 
   const [selectedFilter, setSelectedFilter] = useState('popular'); // заглушка
 
   useEffect(() => {
-    if (page === 1 && articles.length === 0) {
-      dispatch(fetchArticles(1));
+    if (selectedFilter === 'all') {
+      if (page === 1 && articles.length === 0) {
+        dispatch(fetchArticles(1));
+      }
+    } else if (selectedFilter === 'popular') {
+      dispatch(popularArticles());
     }
-  }, [dispatch, page, articles.length]);
+  }, [dispatch, page, articles, selectedFilter]);
 
   useEffect(() => {
     if (error) toast.error(error);
@@ -47,7 +57,9 @@ const ArticlesPage = () => {
       <SectionTitle className={s.title}>Articles</SectionTitle>
 
       <div className={s.counterContainer}>
-        <p className={s.articleCounter}>{articles.length} articles</p>
+        <p className={s.articleCounter}>
+          {selectedFilter === 'all' ? articles.length : popular.length} articles
+        </p>
 
         <select
           className={s.filterSelect}
@@ -62,10 +74,11 @@ const ArticlesPage = () => {
       {error && <p className={s.error}>{error}</p>}
 
       <ArticlesList
-        articles={articles}
+        articles={selectedFilter === 'all' ? articles : popular}
         isLoading={isLoading}
         hasNextPage={hasNextPage}
         onLoadMore={onLoadMore}
+        selectedFilter={selectedFilter}
       />
     </div>
   );

@@ -6,6 +6,7 @@ const ArticlesList = ({
   isLoading,
   hasNextPage,
   onLoadMore,
+  selectedFilter,
 }) => {
   return (
     <div className={s.wrapper}>
@@ -17,7 +18,7 @@ const ArticlesList = ({
         ))}
       </ul>
 
-      {hasNextPage && (
+      {hasNextPage && selectedFilter === 'all' && (
         <button
           type="button"
           className={s.loadMore}
