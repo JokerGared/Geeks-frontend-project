@@ -4,3 +4,6 @@ export const selectSubscriptionsLoading = (state) =>
   state.subscriptions.isLoading;
 
 export const selectSubscriptionsError = (state) => state.subscriptions.error;
+
+export const selectIsSubscribed = (authorId) => (state) =>
+  state.subscriptions.list.some((sub) => sub._id === authorId);

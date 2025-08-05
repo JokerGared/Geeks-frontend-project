@@ -6,7 +6,7 @@ export const fetchSubscriptions = createAsyncThunk(
   'subscriptions/fetchAll',
   async (_, thunkAPI) => {
     try {
-      const { data } = await axios.get('/subscriptions');
+      const { data } = await axios.get('/users/me/subscriptions');
       return data;
     } catch (error) {
       toast.error('Failed to load subscriptions');
@@ -19,7 +19,7 @@ export const subscribeToAuthor = createAsyncThunk(
   'subscriptions/subscribe',
   async (authorId, thunkAPI) => {
     try {
-      const { data } = await axios.post(`/subscriptions/${authorId}`);
+      const { data } = await axios.post(`/users/${authorId}/subscribe`);
       toast.success('Subscribed');
       return data;
     } catch (error) {
@@ -33,7 +33,7 @@ export const unsubscribeFromAuthor = createAsyncThunk(
   'subscriptions/unsubscribe',
   async (authorId, thunkAPI) => {
     try {
-      const { data } = await axios.delete(`/subscriptions/${authorId}`);
+      const { data } = await axios.delete(`/users/${authorId}/unsubscribe`);
       toast.success('Unsubscribed');
       return data;
     } catch (error) {

@@ -34,7 +34,7 @@ const subscriptionsSlice = createSlice({
       })
       .addCase(subscribeToAuthor.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.list.push(action.payload);
+        state.list = action.payload;
       })
       .addCase(subscribeToAuthor.rejected, (state, action) => {
         state.isLoading = false;
@@ -46,9 +46,7 @@ const subscriptionsSlice = createSlice({
       })
       .addCase(unsubscribeFromAuthor.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.list = state.list.filter(
-          (author) => author._id !== action.payload._id,
-        );
+        state.list = action.payload;
       })
       .addCase(unsubscribeFromAuthor.rejected, (state, action) => {
         state.isLoading = false;
