@@ -14,31 +14,22 @@ import { fetchArticles } from '../../redux/articles/operations';
 import ArticlesList from '../../components/ArticlesList/ArticlesList';
 import Loader from '../../components/Loader/Loader';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
-import { fetchFavorites } from '../../redux/favorites/operations';
-import { selectIsLoggedIn } from '../../redux/auth/selectors';
-import { selectFavorites } from '../../redux/favorites/selectors';
 
 const ArticlesPage = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
-  const favorites = useSelector(selectFavorites);
   const articles = useSelector(selectArticles);
   const isLoading = useSelector(selectArticlesLoading);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
   const error = useSelector(selectArticlesError);
   const hasNextPage = useSelector(selectArticlesHasNextPage);
 
   const [selectedFilter, setSelectedFilter] = useState('popular'); // заглушка
 
   useEffect(() => {
-    dispatch(fetchArticles(page));
-  }, [dispatch, page]);
-
-  useEffect(() => {
-    if (isLoggedIn && favorites.length === 0) {
-      dispatch(fetchFavorites({ page: 1 }));
+    if (page === 1 && articles.length === 0) {
+      dispatch(fetchArticles(1));
     }
-  }, [dispatch, isLoggedIn, favorites.length]);
+  }, [dispatch, page, articles.length]);
 
   useEffect(() => {
     if (error) toast.error(error);
@@ -46,7 +37,9 @@ const ArticlesPage = () => {
 
   const onLoadMore = () => {
     if (hasNextPage && !isLoading) {
-      setPage((prev) => prev + 1); // ✅
+      const nextPage = page + 1;
+      setPage(nextPage);
+      dispatch(fetchArticles(nextPage));
     }
   };
 
