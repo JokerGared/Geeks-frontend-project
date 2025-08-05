@@ -29,14 +29,7 @@ const articlesSlice = createSlice({
       })
       .addCase(fetchArticles.fulfilled, (state, action) => {
         state.isLoading = false;
-
-        if (action.payload.page === 1) {
-          state.items = action.payload.articles;
-        } else {
-          state.items = [...state.items, ...action.payload.articles];
-        }
-
-        // state.items = [...state.items, ...action.payload.articles];
+        state.items = [...state.items, ...action.payload.articles];
         state.page = action.payload.page;
         state.totalPages = action.payload.totalPages;
         state.hasNextPage = action.payload.hasNextPage;

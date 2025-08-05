@@ -21,6 +21,7 @@ import {
 } from '../../redux/modal/selectors';
 
 import s from './PublicProfile.module.css';
+import ArticlesEmpty from '../ArticlesEmpty/ArticlesEmpty';
 
 const PublicProfile = () => {
   const { authorId } = useParams();

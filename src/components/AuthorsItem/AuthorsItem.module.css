@@ -54,9 +54,6 @@
   .name {
     max-width: 240px;
   }
-<<<<<<< HEAD
-}
-=======
 
   .fallbackAvatar {
     max-width: 262px;
@@ -65,5 +62,5 @@
     height: 100%;
     font-size: 96px;
   }
+
 }
->>>>>>> main
