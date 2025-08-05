@@ -1,24 +1,38 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+
 import { fetchArticleById } from '../../redux/articles/operations';
 import { selectCurrentArticle } from '../../redux/articles/selectors';
+import { selectUser } from '../../redux/auth/selectors';
+
 import ArticlePageCard from '../../components/ArticlePageCard/ArticlePageCard';
-import styles from './ArticlePage.module.css';
 import ButtonSave from '../../components/ButtonSave/ButtonSave';
+
+import styles from './ArticlePage.module.css';
 
 const ArticlePage = () => {
   const { articleId } = useParams();
   const dispatch = useDispatch();
+
   const article = useSelector(selectCurrentArticle);
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     dispatch(fetchArticleById(articleId));
   }, [dispatch, articleId]);
 
-  if (!article) return null;
+  if (!article || !user) return null;
 
   const formattedText = article.article.replace(/\/n/g, '\n');
+
+  const isOwnArticle =
+    user &&
+    article.ownerId &&
+    user._id ===
+      (typeof article.ownerId === 'string'
+        ? article.ownerId
+        : article.ownerId._id);
 
   return (
     <section className={styles.page}>
@@ -29,9 +43,11 @@ const ArticlePage = () => {
         <div className={styles.textWrapper}>
           <p className={styles.text}>{formattedText}</p>
         </div>
+
         <div className={styles.cardWrapper}>
           <ArticlePageCard article={article} />
-          <ButtonSave article={article} />
+
+          {!isOwnArticle && <ButtonSave article={article} />}
         </div>
       </div>
     </section>

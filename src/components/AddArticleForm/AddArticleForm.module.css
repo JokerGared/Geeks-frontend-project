@@ -2,15 +2,16 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  gap: 24px;
 }
 
 .create-article-form-img-title-wrapper,
 .create-article-form-title-wrapper {
   display: contents;
+  gap: 24px;
 }
 
 .create-article-form-part {
-  margin-bottom: 24px;
   position: relative;
 }
 
@@ -238,6 +239,33 @@
   opacity: 0.9;
 }
 
+.buttonGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 24px;
+  width: 361px;
+}
+
+.cancelButton,
+.updateButton,
+.fullWidthPublishButton {
+  width: 100%;
+  height: 46px;
+  border-radius: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(100, 145, 121, 1);
+
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 16px;
+  line-height: 100%;
+  color: rgba(247, 255, 251, 1);
+  transition: var(--transition);
+}
+
 @media screen and (min-width: 768px) {
   .create-article-form-img-title-wrapper {
     display: flex;
@@ -275,6 +303,14 @@
     display: flex;
     flex-direction: column;
     width: 340px;
+  }
+
+  .buttonGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 24px;
+    width: 704px;
   }
 }
 
@@ -328,5 +364,37 @@
 
   .create-article-form-part {
     margin-bottom: 32px;
+  }
+
+  .buttonGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 24px;
+    width: 809px;
+  }
+
+  .cancelButton,
+  .updateButton {
+    width: 100%;
+    height: 46px;
+    border-radius: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(100, 145, 121, 1);
+
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 16px;
+    line-height: 100%;
+    color: rgba(247, 255, 251, 1);
+    transition: var(--transition);
+  }
+
+  .updateButton:hover,
+  .cancelButton:hover,
+  .fullWidthPublishButton:hover {
+    background-color: #374f42;
   }
 }
