@@ -20,12 +20,8 @@ export const selectArticlesPage = (state) => state.articles.page;
 export const selectPopularArticles = createSelector(
   [selectArticles],
   (articles) => {
-    const popularArticles = articles
-      .toSorted((a, b) => b.rate - a.rate)
-      .slice();
-
+    const popularArticles = articles.toSorted((a, b) => b.rate - a.rate);
     const firstFourArticles = popularArticles.slice(0, 4);
-
     return firstFourArticles;
   },
 );

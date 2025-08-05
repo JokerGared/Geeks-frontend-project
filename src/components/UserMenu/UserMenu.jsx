@@ -13,7 +13,6 @@ const UserMenu = () => {
   const { name, avatarUrl } = useSelector(selectUser);
 
   const userAvatar = avatarUrl ? avatarUrl : '/images/default-avatar.png';
-  const userName = name ? name : 'No name';
 
   const dispatch = useDispatch();
 
@@ -33,7 +32,7 @@ const UserMenu = () => {
       <div className={clsx(s.avatarContainer)}>
         <div className={clsx(s.avatarNameContainer)}>
           <img src={userAvatar} alt="User avatar" className={clsx(s.avatar)} />
-          <p className={clsx(s.name)}>{userName}</p>
+          <p className={clsx(s.name)}>{name}</p>
         </div>
         <button
           onClick={handleOpenConfirmExitModal}
