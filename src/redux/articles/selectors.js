@@ -15,6 +15,16 @@ export const selectArticlesHasPreviousPage = (state) =>
 
 export const selectArticlesPage = (state) => state.articles.page;
 
+// my articles
+
+export const selectMyArticlesHasNextPage = (state) =>
+  state.articles.hasNextPageMyArticles;
+
+export const selectMyArticlesHasPreviousPage = (state) =>
+  state.articles.hasPreviousPageMyArticles;
+
+export const selectMyArticlesPage = (state) => state.articles.pageMyArticles;
+
 export const selectPopularArticles = createSelector(
   [selectArticles],
   (articles) => {

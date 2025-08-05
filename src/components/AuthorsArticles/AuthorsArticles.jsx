@@ -4,8 +4,8 @@ import ArticlesList from '../ArticlesList/ArticlesList';
 import { fetchArticlesByAuthorId } from '../../redux/articles/operations';
 import {
   selectAuthorArticles,
-  selectArticlesHasNextPage,
-  selectArticlesPage,
+  selectMyArticlesHasNextPage,
+  selectMyArticlesPage,
 } from '../../redux/articles/selectors';
 import { selectCurrentAuthor } from '../../redux/authors/selectors';
 import { selectUser } from '../../redux/auth/selectors';
@@ -20,8 +20,8 @@ const AuthorsArticles = () => {
 
   const articles = useSelector(selectAuthorArticles);
   const isLoading = useSelector(selectIsLoading);
-  const hasNextPage = useSelector(selectArticlesHasNextPage);
-  const page = useSelector(selectArticlesPage);
+  const hasNextPage = useSelector(selectMyArticlesHasNextPage);
+  const page = useSelector(selectMyArticlesPage);
 
   useEffect(() => {
     if (isOwnPage && author?._id) {

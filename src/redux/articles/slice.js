@@ -11,10 +11,18 @@ const initialState = {
   authorArticles: [],
   current: null,
   error: null,
+
+  // all articles
   page: 1,
   totalPages: 1,
   hasNextPage: false,
   hasPreviousPage: false,
+
+  // my articles
+  pageMyArticles: 1,
+  totalPagesMyArticles: 1,
+  hasNextPageMyArticles: false,
+  hasPreviousPageMyArticles: false,
 };
 
 const articlesSlice = createSlice({
@@ -55,10 +63,10 @@ const articlesSlice = createSlice({
           action.payload.page === 1
             ? action.payload.data
             : [...state.authorArticles, ...action.payload.data];
-        state.page = action.payload.page;
-        state.totalPages = action.payload.totalPages;
-        state.hasNextPage = action.payload.hasNextPage;
-        state.hasPreviousPage = action.payload.hasPreviousPage;
+        state.pageMyArticles = action.payload.page;
+        state.totalPagesMyArticles = action.payload.totalPages;
+        state.hasNextPageMyArticles = action.payload.hasNextPage;
+        state.hasPreviousPageMyArticles = action.payload.hasPreviousPage;
       })
       .addCase(fetchArticlesByAuthorId.rejected, (state, action) => {
         state.error = action.payload;
