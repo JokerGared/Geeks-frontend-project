@@ -6,7 +6,8 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/selectors';
 import ButtonEdit from '../ButtonEdit/ButtonEdit';
 
-const ArticleItem = ({ _id, img, title, desc, ownerId }) => {
+const ArticleItem = (article) => {
+  const { _id, img, title, desc, ownerId } = article;
   const user = useSelector(selectUser);
   const isOwn = ownerId === user?._id;
 
@@ -15,7 +16,7 @@ const ArticleItem = ({ _id, img, title, desc, ownerId }) => {
       <img src={img} alt={title} className={s.image} />
 
       <div className={s.content}>
-        <p className={s.author}>{user.name}</p>
+        <p className={s.author}>{ownerId.name}</p>
         <p className={s.title}>{title}</p>
 
         <p className={s.desc}>{desc}</p>
@@ -27,7 +28,7 @@ const ArticleItem = ({ _id, img, title, desc, ownerId }) => {
         {isOwn ? (
           <ButtonEdit to={`/create/${_id}`} />
         ) : (
-          <ButtonAddToBookmarks articleId={_id} />
+          <ButtonAddToBookmarks article={article} />
         )}
       </div>
     </article>
