@@ -27,3 +27,14 @@ export const fetchAuthorById = createAsyncThunk(
     }
   },
 );
+
+export const loadMoreAuthors = () => (dispatch, getState) => {
+  const { authors } = getState();
+  const nextPage = authors.page + 1;
+
+  if (!authors.hasNextPage) {
+    return;
+  }
+
+  dispatch(fetchAuthors(nextPage));
+};

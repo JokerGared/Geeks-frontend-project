@@ -13,7 +13,7 @@ import {
   selectAuthorsHasNextPage,
 } from '../../redux/authors/selectors';
 
-import { fetchAuthors } from '../../redux/authors/operations';
+import { fetchAuthors, loadMoreAuthors } from '../../redux/authors/operations';
 
 const AuthorsPage = () => {
   const dispatch = useDispatch();
@@ -22,16 +22,14 @@ const AuthorsPage = () => {
   const error = useSelector(selectAuthorsError);
   const hasNextPage = useSelector(selectAuthorsHasNextPage);
 
-  const [page, setPage] = useState(1);
-
   useEffect(() => {
     if (authors.length === 0) {
-      dispatch(fetchAuthors(page));
+      dispatch(fetchAuthors(1));
     }
-  }, [dispatch, page]);
+  }, [dispatch, authors.length]);
 
   const handleLoadMore = () => {
-    setPage((prevPage) => prevPage + 1);
+    dispatch(loadMoreAuthors());
   };
   return (
     <section className={s.authorsPage}>
@@ -40,7 +38,7 @@ const AuthorsPage = () => {
       {error && (
         <p className={s.status}>Sorry, this author could not be found.</p>
       )}
-      {!isLoading && !error && <AuthorsList authors={authors} />}
+      {!error && <AuthorsList authors={authors} />}
       {!isLoading && !error && hasNextPage && (
         <button type="button" onClick={handleLoadMore} className={s.loadMore}>
           Load more
