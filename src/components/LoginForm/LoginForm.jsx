@@ -4,8 +4,6 @@ import * as Yup from 'yup';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
-import { selectError } from '../../redux/auth/selectors';
 import { logIn } from '../../redux/auth/operations';
 
 const initialValues = {
@@ -29,15 +27,6 @@ const validationSchema = Yup.object().shape({
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
-  const error = useSelector(selectError);
-
-  useEffect(() => {
-    if (error) {
-      toast.error(error, {
-        position: 'top-right',
-      });
-    }
-  }, [error]);
 
   const handleSubmit = (values, { setSubmitting }) => {
     dispatch(logIn(values))
@@ -138,7 +127,6 @@ const LoginForm = () => {
           </p>
         </div>
       </div>
-      <Toaster position="top-right" />
     </div>
   );
 };

@@ -5,21 +5,20 @@ import toast from 'react-hot-toast';
 
 import {
   selectArticles,
-  selectArticlesLoading,
   selectArticlesError,
   selectArticlesHasNextPage,
 } from '../../redux/articles/selectors';
 import { fetchArticles } from '../../redux/articles/operations';
 
 import ArticlesList from '../../components/ArticlesList/ArticlesList';
-import Loader from '../../components/Loader/Loader';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
+import { selectIsLoading } from '../../redux/loading/selectors';
 
 const ArticlesPage = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const articles = useSelector(selectArticles);
-  const isLoading = useSelector(selectArticlesLoading);
+  const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectArticlesError);
   const hasNextPage = useSelector(selectArticlesHasNextPage);
 
@@ -68,8 +67,6 @@ const ArticlesPage = () => {
         hasNextPage={hasNextPage}
         onLoadMore={onLoadMore}
       />
-
-      {isLoading && <Loader />}
     </div>
   );
 };
