@@ -10,9 +10,9 @@ const ArticlesList = ({
   return (
     <div className={s.wrapper}>
       <ul className={s.list}>
-        {articles.map((article) => (
-          <li key={article._id}>
-            <ArticleItem {...article} />
+        {articles.map((articleItem) => (
+          <li key={articleItem?._id}>
+            <ArticleItem articleItem={articleItem} />
           </li>
         ))}
       </ul>

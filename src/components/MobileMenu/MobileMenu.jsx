@@ -16,7 +16,6 @@ const MobileMenu = () => {
   const { name, avatarUrl } = useSelector(selectUser);
 
   const userAvatar = avatarUrl ? avatarUrl : '/images/default-avatar.png';
-  const userName = name ? name : 'No name';
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const modalType = useSelector(selectModalType);
@@ -172,7 +171,7 @@ const MobileMenu = () => {
             <div className={clsx(s.avatarContainer)}>
               <div className={clsx(s.avatarNameContainer)}>
                 <img src={userAvatar} alt="Avatar" className={clsx(s.avatar)} />
-                <p className={clsx(s.name)}>{userName}</p>
+                <p className={clsx(s.name)}>{name}</p>
               </div>
               <button
                 onClick={handleOpenConfirmExitModal}

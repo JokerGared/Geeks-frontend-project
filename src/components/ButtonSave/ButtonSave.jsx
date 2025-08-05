@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
-import s from './ButtonAddToBookmarks.module.css';
+import s from './ButtonSave.module.css';
 
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import { openModal } from '../../redux/modal/slice';
@@ -14,7 +14,7 @@ import {
 
 import toast from 'react-hot-toast';
 
-const ButtonAddToBookmarks = ({ article }) => {
+const ButtonSave = ({ article }) => {
   const dispatch = useDispatch();
 
   if (!article || !article._id) return null;
@@ -49,19 +49,19 @@ const ButtonAddToBookmarks = ({ article }) => {
 
   if (error) toast.error(error);
 
-  const buttonClass = clsx(s.button, { [s.active]: isSaved });
-
+  const buttonClass = clsx(s['save-button'], { [s.active]: isSaved });
   return (
-    <button className={buttonClass} type="button" onClick={handleClick}>
+    <button type="button" onClick={handleClick} className={buttonClass}>
+      <span className={s['save-button-text']}>Save</span>
       <svg
-        className={clsx(s.icon, isLoading && s.spin)}
+        className={clsx(s['save-icon'], isLoading && s.spin)}
         width="24px"
         height="24px"
       >
-        <use xlinkHref="/icons.svg#icon-save" />
+        <use href="/icons.svg#icon-save" />
       </svg>
     </button>
   );
 };
 
-export default ButtonAddToBookmarks;
+export default ButtonSave;

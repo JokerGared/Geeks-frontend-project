@@ -14,6 +14,7 @@ import {
   selectModalType,
 } from '../../redux/modal/selectors';
 import { MODALS } from '../../constants/modals';
+import { Toaster } from 'react-hot-toast';
 
 const Layout = () => {
   const modalType = useSelector(selectModalType);
@@ -27,6 +28,7 @@ const Layout = () => {
   return (
     <div className={s.layout}>
       <ScrollToTop />
+      <Toaster position="top-right" reverseOrder={false} />
       <Header />
       <main>
         <Container>
