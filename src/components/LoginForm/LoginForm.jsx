@@ -45,7 +45,7 @@ const LoginForm = () => {
       onClick={() => setShowPassword(!showPassword)}
       aria-label={ariaLabel}
     >
-      <use href={`icons.svg#${iconId}`}></use>
+      <use href={`/icons.svg#${iconId}`}></use>
     </svg>
   );
 
