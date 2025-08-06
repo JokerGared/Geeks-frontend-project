@@ -37,9 +37,12 @@ const ArticlesPage = () => {
 
   useEffect(() => {
     if (selectedFilter === 'all') {
-      dispatch(clearPopularArticles());
-      dispatch(fetchArticles(page));
+      if (page === 1 && articles.length === 0) {
+        dispatch(clearPopularArticles());
+        dispatch(fetchArticles(page));
+      }
     } else if (selectedFilter === 'popular') {
+      setPage(1);
       dispatch(clearArticles());
       dispatch(popularArticles());
     }
