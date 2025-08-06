@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   gap: 24px;
+  width: 100%;
 }
 .list {
   display: flex;
