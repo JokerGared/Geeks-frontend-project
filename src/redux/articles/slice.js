@@ -37,6 +37,7 @@ const articlesSlice = createSlice({
       })
 
       .addCase(fetchArticleById.pending, (state) => {
+        state.current = null;
         state.isLoading = true;
         state.error = null;
       })

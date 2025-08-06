@@ -32,10 +32,12 @@ const AddArticleForm = () => {
   }, [articleId, dispatch]);
 
   useEffect(() => {
-    if (editingArticle?.img && !selectedImage) {
+    if (editingArticle?.img) {
       setSelectedImage(editingArticle.img);
+    } else {
+      setSelectedImage(null);
     }
-  }, [editingArticle, selectedImage]);
+  }, [editingArticle]);
 
   const initialValues = {
     title: editingArticle?.title || '',
