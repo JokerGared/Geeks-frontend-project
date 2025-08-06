@@ -36,7 +36,25 @@
   font-weight: bold;
   font-size: 64px;
 }
+
+.userInfoWithSubscribe {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
 .authorName {
+  text-align: center;
   font-weight: 700;
   font-size: 32px;
 }
@@ -45,6 +63,7 @@
   font-weight: 700;
   font-size: 18px;
   color: #000;
+  white-space: nowrap;
 }
 
 .avatarWrapper img {
@@ -59,5 +78,20 @@
   .avatarWrapper {
     width: 137px;
     height: 137px;
+  }
+
+  .userInfoWithSubscribe {
+    flex-direction: row;
+    gap: 24px;
+  }
+  .userInfo {
+    gap: 4px;
+    white-space: nowrap;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .userInfoWithSubscribe {
+    gap: 16px;
   }
 }

@@ -23,6 +23,7 @@ import s from './PublicProfile.module.css';
 import ArticlesEmpty from '../ArticlesEmpty/ArticlesEmpty';
 import SubscribeButton from '../SubscribeButton/SubscribeButton';
 import { selectIsLoading } from '../../redux/loading/selectors';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
 const PublicProfile = () => {
   const { authorId } = useParams();
@@ -33,6 +34,7 @@ const PublicProfile = () => {
   const isLoading = useSelector(selectIsLoading);
   const hasNextPage = useSelector(selectArticlesHasNextPage);
   const page = useSelector(selectArticlesPage);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const isModalOpen = useSelector(selectIsModalOpen);
   const modalType = useSelector(selectModalType);
@@ -74,10 +76,13 @@ const PublicProfile = () => {
           )}
         </div>
 
-        <div className={s.userInfo}>
-          <h2 className={s.authorName}>{name}</h2>
-          <p className={s.articleCounter}>{articlesAmount} articles</p>
-          <SubscribeButton />
+        <div className={s.userInfoWithSubscribe}>
+          <div className={s.userInfo}>
+            <h2 className={s.authorName}>{name}</h2>
+            <p className={s.articleCounter}>{articlesAmount} articles</p>
+          </div>
+
+          {isLoggedIn && <SubscribeButton />}
         </div>
       </div>
 

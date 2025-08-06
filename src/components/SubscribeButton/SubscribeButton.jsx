@@ -1,35 +1,30 @@
 import { useDispatch, useSelector } from 'react-redux';
 import s from './SubscribeButton.module.css';
-import {
-  selectIsSubscribed,
-  selectSubscriptionsLoading,
-} from '../../redux/subscriptions/selectors.js';
-import { selectCurrentAuthor } from '../../redux/authors/selectors.js';
+import { selectIsSubscribed } from '../../redux/subscriptions/selectors.js';
 import {
   subscribeToAuthor,
   unsubscribeFromAuthor,
 } from '../../redux/subscriptions/operations.js';
+import { selectIsLoading } from '../../redux/loading/selectors.js';
+import { useParams } from 'react-router-dom';
 
 const SubscribeButton = () => {
   const dispatch = useDispatch();
-  const author = useSelector(selectCurrentAuthor);
-  const isSubscribed = useSelector(selectIsSubscribed(author?._id));
-  const loading = useSelector(selectSubscriptionsLoading);
+  const { authorId } = useParams();
+  const isSubscribed = useSelector(selectIsSubscribed(authorId));
 
   const handleToggleSubscription = () => {
-    if (!author?._id) return;
+    if (!authorId) return;
     if (isSubscribed) {
-      dispatch(unsubscribeFromAuthor(author._id));
+      dispatch(unsubscribeFromAuthor(authorId));
     } else {
-      dispatch(subscribeToAuthor(author._id));
+      dispatch(subscribeToAuthor(authorId));
     }
   };
 
   return (
     <>
-      {loading ? (
-        <span className={s.loading}>Loading...</span>
-      ) : isSubscribed ? (
+      {isSubscribed ? (
         <button
           type="button"
           onClick={handleToggleSubscription}

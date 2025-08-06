@@ -21,6 +21,8 @@ export const subscribeToAuthor = createAsyncThunk(
     try {
       const { data } = await axios.post(`/users/${authorId}/subscribe`);
       toast.success('Subscribed');
+
+      thunkAPI.dispatch(fetchSubscriptions());
       return data;
     } catch (error) {
       toast.error('Subscription failed');
@@ -33,9 +35,10 @@ export const unsubscribeFromAuthor = createAsyncThunk(
   'subscriptions/unsubscribe',
   async (authorId, thunkAPI) => {
     try {
-      const { data } = await axios.delete(`/users/${authorId}/unsubscribe`);
+      await axios.delete(`/users/${authorId}/unsubscribe`);
       toast.success('Unsubscribed');
-      return data;
+      thunkAPI.dispatch(fetchSubscriptions());
+      return;
     } catch (error) {
       toast.error('Unsubscription failed');
       return thunkAPI.rejectWithValue(error.message);
