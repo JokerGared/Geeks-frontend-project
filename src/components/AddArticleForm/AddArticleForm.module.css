@@ -107,6 +107,7 @@
   height: 233px;
   opacity: 0;
   cursor: pointer;
+  z-index: 999;
 }
 
 .selectedImage {
