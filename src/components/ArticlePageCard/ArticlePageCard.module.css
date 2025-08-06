@@ -81,6 +81,7 @@
 }
 
 .item-link {
+  cursor: pointer;
   border: 1px solid var(--link-color);
   border-radius: 64px;
   padding: 8px;
