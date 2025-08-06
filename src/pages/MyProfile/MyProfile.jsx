@@ -69,6 +69,13 @@ const MyProfile = () => {
         >
           Saved Articles
         </NavLink>
+
+        <NavLink
+          to="subscriptions"
+          className={({ isActive }) => clsx(s.link, isActive && s.active)}
+        >
+          Subscriptions
+        </NavLink>
       </nav>
 
       <Outlet />

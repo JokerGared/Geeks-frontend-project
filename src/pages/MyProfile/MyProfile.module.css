@@ -14,6 +14,10 @@
   flex-direction: row;
   gap: 16px;
   align-items: center;
+
+  @media screen and (max-width: 392px) {
+    flex-wrap: wrap;
+  }
 }
 
 .avatarWrapper {
@@ -56,7 +60,12 @@
 .nav {
   display: flex;
   flex-direction: row;
-  gap: 38px;
+  gap: 30px;
+  white-space: nowrap;
+
+  @media screen and (max-width: 392px) {
+    flex-wrap: wrap;
+  }
 }
 
 .link {
@@ -87,5 +96,9 @@
   .avatarWrapper {
     width: 137px;
     height: 137px;
+  }
+
+  .nav {
+    gap: 38px;
   }
 }
