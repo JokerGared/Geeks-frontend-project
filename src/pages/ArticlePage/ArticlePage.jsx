@@ -10,6 +10,7 @@ import ArticlePageCard from '../../components/ArticlePageCard/ArticlePageCard';
 import ButtonSave from '../../components/ButtonSave/ButtonSave';
 
 import styles from './ArticlePage.module.css';
+import ButtonEdit from '../../components/ButtonEdit/ButtonEdit';
 
 const ArticlePage = () => {
   const { articleId } = useParams();
@@ -47,7 +48,13 @@ const ArticlePage = () => {
         <div className={styles.cardWrapper}>
           <ArticlePageCard article={article} />
 
-          {!isOwnArticle && <ButtonSave article={article} />}
+          {isOwnArticle ? (
+            <ButtonEdit to={`/create/${articleId}`} className="LargeButton">
+              Edit article
+            </ButtonEdit>
+          ) : (
+            <ButtonSave article={article} />
+          )}
         </div>
       </div>
     </section>

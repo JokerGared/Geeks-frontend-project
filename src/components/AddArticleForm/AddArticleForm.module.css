@@ -172,6 +172,8 @@
   vertical-align: middle;
   color: rgba(247, 255, 251, 1);
   cursor: pointer;
+  position: relative;
+  z-index: 10;
 }
 
 .input-error {
@@ -209,18 +211,16 @@
 .publish-article-button,
 .create-article-form-update-img-button,
 .publish-article-cancelButton {
-  transition: background-color var(--transition), transform var(--transition);
+  transition: background-color var(--transition);
 }
 
 .publish-article-button:hover,
 .create-article-form-update-img-button:hover {
   background-color: var(--button-bg-main-hover);
-  transform: scale(1.02);
 }
 
 .publish-article-cancelButton:hover {
   background-color: var(--button-bg-secondary-hover);
-  transform: scale(1.02);
 }
 
 .imageUploadArea {
