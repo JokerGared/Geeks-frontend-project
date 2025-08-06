@@ -25,3 +25,5 @@ export const selectFirstFourPopularArticles = createSelector(
     return firstFourArticles;
   },
 );
+
+export const selectTotalArticles = (state) => state.articles.totalItems;

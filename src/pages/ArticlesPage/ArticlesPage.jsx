@@ -8,6 +8,7 @@ import {
   selectArticlesError,
   selectArticlesHasNextPage,
   selectPopularArticles,
+  selectTotalArticles,
 } from '../../redux/articles/selectors';
 import {
   fetchArticles,
@@ -17,6 +18,10 @@ import {
 import ArticlesList from '../../components/ArticlesList/ArticlesList';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import { selectIsLoading } from '../../redux/loading/selectors';
+import {
+  clearArticles,
+  clearPopularArticles,
+} from '../../redux/articles/slice';
 
 const ArticlesPage = () => {
   const [page, setPage] = useState(1);
@@ -26,23 +31,19 @@ const ArticlesPage = () => {
   const error = useSelector(selectArticlesError);
   const hasNextPage = useSelector(selectArticlesHasNextPage);
   const popular = useSelector(selectPopularArticles);
-  console.log(popular);
+  const totalArticles = useSelector(selectTotalArticles);
 
-  const [selectedFilter, setSelectedFilter] = useState('popular'); // заглушка
+  const [selectedFilter, setSelectedFilter] = useState('all');
 
   useEffect(() => {
     if (selectedFilter === 'all') {
-      if (page === 1 && articles.length === 0) {
-        dispatch(fetchArticles(1));
-      }
+      dispatch(clearPopularArticles());
+      dispatch(fetchArticles(page));
     } else if (selectedFilter === 'popular') {
+      dispatch(clearArticles());
       dispatch(popularArticles());
     }
-  }, [dispatch, page, articles, selectedFilter]);
-
-  useEffect(() => {
-    if (error) toast.error(error);
-  }, [error]);
+  }, [page, selectedFilter]);
 
   const onLoadMore = () => {
     if (hasNextPage && !isLoading) {
@@ -58,7 +59,7 @@ const ArticlesPage = () => {
 
       <div className={s.counterContainer}>
         <p className={s.articleCounter}>
-          {selectedFilter === 'all' ? articles.length : popular.length} articles
+          {selectedFilter === 'all' ? totalArticles : popular.length} articles
         </p>
 
         <select
@@ -70,8 +71,6 @@ const ArticlesPage = () => {
           <option value="all">All</option>
         </select>
       </div>
-
-      {error && <p className={s.error}>{error}</p>}
 
       <ArticlesList
         articles={selectedFilter === 'all' ? articles : popular}

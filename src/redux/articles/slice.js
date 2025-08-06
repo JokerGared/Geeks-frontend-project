@@ -23,6 +23,7 @@ const initialState = {
   error: null,
   page: 1,
   totalPages: 1,
+  totalItems: 0,
   hasNextPage: false,
   hasPreviousPage: false,
 };
@@ -30,6 +31,14 @@ const initialState = {
 const articlesSlice = createSlice({
   name: 'articles',
   initialState,
+  reducers: {
+    clearArticles: (state) => {
+      state.items = [];
+    },
+    clearPopularArticles: (state) => {
+      state.popularArticles = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchArticles.pending, handlePending)
@@ -37,6 +46,7 @@ const articlesSlice = createSlice({
         state.items = [...state.items, ...action.payload.articles];
         state.page = action.payload.page;
         state.totalPages = action.payload.totalPages;
+        state.totalItems = action.payload.totalItems;
         state.hasNextPage = action.payload.hasNextPage;
         state.hasPreviousPage = action.payload.hasPreviousPage;
       })
@@ -71,5 +81,7 @@ const articlesSlice = createSlice({
       .addCase(popularArticles.rejected, handleRejected);
   },
 });
+
+export const { clearArticles, clearPopularArticles } = articlesSlice.actions;
 
 export default articlesSlice.reducer;
