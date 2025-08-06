@@ -64,7 +64,7 @@ export const createArticle = createAsyncThunk(
       });
       return response.data.data;
     } catch (error) {
-      const message = error.response?.data?.message || error.message;
+      const message = error.response?.data?.data || error.message;
       toast.error(message);
       return thunkAPI.rejectWithValue(message);
     }
@@ -75,7 +75,11 @@ export const deleteArticle = createAsyncThunk(
   'articles/delete',
   async (id, thunkAPI) => {
     try {
-      await axios.delete(`/articles/${id}`);
+      await axios.delete(`/articles/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return id;
     } catch (error) {
       toast.error('Failed to delete article');
@@ -94,7 +98,11 @@ export const updateArticle = createAsyncThunk(
       if (updates.desc) formData.append('desc', updates.desc);
       if (updates.img) formData.append('img', updates.img);
 
-      const { data } = await axios.patch(`/articles/${id}`, formData);
+      const { data } = await axios.patch(`/articles/${id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return data.data;
     } catch (error) {
       const message =
