@@ -53,15 +53,8 @@ export const createArticle = createAsyncThunk(
     if (credentials.desc) {
       formData.append('desc', credentials.desc);
     }
-    const state = thunkAPI.getState();
-    const token = state.auth.token;
-    if (!token) return thunkAPI.rejectWithValue('No token');
     try {
-      const response = await axios.post('/articles', formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post('/articles', formData);
       return response.data.data;
     } catch (error) {
       const message = error.response?.data?.data || error.message;
@@ -74,15 +67,8 @@ export const createArticle = createAsyncThunk(
 export const deleteArticle = createAsyncThunk(
   'articles/delete',
   async (id, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const token = state.auth.token;
-    if (!token) return thunkAPI.rejectWithValue('No token');
     try {
-      await axios.delete(`/articles/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.delete(`/articles/${id}`);
       return id;
     } catch (error) {
       toast.error('Failed to delete article');
@@ -94,9 +80,6 @@ export const deleteArticle = createAsyncThunk(
 export const updateArticle = createAsyncThunk(
   'articles/update',
   async ({ id, updates }, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const token = state.auth.token;
-    if (!token) return thunkAPI.rejectWithValue('No token');
     try {
       const formData = new FormData();
       if (updates.title) formData.append('title', updates.title);
@@ -104,11 +87,7 @@ export const updateArticle = createAsyncThunk(
       if (updates.desc) formData.append('desc', updates.desc);
       if (updates.img) formData.append('img', updates.img);
 
-      const { data } = await axios.patch(`/articles/${id}`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const { data } = await axios.patch(`/articles/${id}`, formData);
       return data.data;
     } catch (error) {
       const message =
