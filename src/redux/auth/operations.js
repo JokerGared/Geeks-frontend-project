@@ -54,8 +54,13 @@ export const logIn = createAsyncThunk(
 );
 
 export const logOut = createAsyncThunk('auth/logout', async () => {
-  await axios.post('/auth/logout');
-  setAuthHeader('');
+  try {
+    await axios.post('/auth/logout');
+  } catch (error) {
+    toast.error('Error while logged out, please login again');
+  } finally {
+    setAuthHeader('');
+  }
 });
 
 export const refreshUser = createAsyncThunk(
