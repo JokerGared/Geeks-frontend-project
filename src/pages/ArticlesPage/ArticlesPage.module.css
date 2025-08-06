@@ -24,7 +24,22 @@
 }
 
 .filterSelect {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 8px;
+  width: 169px;
+  height: 33px;
+  padding: 4px 8px;
+  border: 1px solid #9f9f9f;
+  border-radius: 4px;
+  background: #f7fffb;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 155%;
+  color: #595d62;
+  cursor: pointer;
 }
 
 .error {
@@ -36,26 +51,9 @@
   font-weight: 400;
   font-size: 18px;
 }
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
 }
 
 @media screen and (min-width: 1440px) {
-  .filterSelect {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: row;
-    gap: 8px;
-    width: 169px;
-    height: 33px;
-    padding: 4px 8px;
-    border: 1px solid #9f9f9f;
-    border-radius: 4px;
-    background: #f7fffb;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 155%;
-    color: #595d62;
-    cursor: not-allowed;
-  }
-}
+
+} */

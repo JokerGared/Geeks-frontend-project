@@ -4,15 +4,26 @@ import {
   fetchArticleById,
   fetchArticlesByAuthorId,
   createArticle,
+  popularArticles,
 } from './operations.js';
+
+const handlePending = (state) => {
+  state.error = null;
+};
+
+const handleRejected = (state, action) => {
+  state.error = action.payload;
+};
 
 const initialState = {
   items: [],
   authorArticles: [],
+  popularArticles: [],
   current: null,
   error: null,
   page: 1,
   totalPages: 1,
+  totalItems: 0,
   hasNextPage: false,
   hasPreviousPage: false,
 };
@@ -20,37 +31,35 @@ const initialState = {
 const articlesSlice = createSlice({
   name: 'articles',
   initialState,
+  reducers: {
+    clearArticles: (state) => {
+      state.items = [];
+    },
+    clearPopularArticles: (state) => {
+      state.popularArticles = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchArticles.pending, (state) => {
-        state.error = null;
-      })
+      .addCase(fetchArticles.pending, handlePending)
       .addCase(fetchArticles.fulfilled, (state, action) => {
         state.items = [...state.items, ...action.payload.articles];
         state.page = action.payload.page;
         state.totalPages = action.payload.totalPages;
+        state.totalItems = action.payload.totalItems;
         state.hasNextPage = action.payload.hasNextPage;
         state.hasPreviousPage = action.payload.hasPreviousPage;
       })
-      .addCase(fetchArticles.rejected, (state, action) => {
-        state.error = action.payload;
-      })
-
+      .addCase(fetchArticles.rejected, handleRejected)
       .addCase(fetchArticleById.pending, (state) => {
         state.current = null;
-        state.isLoading = true;
         state.error = null;
       })
       .addCase(fetchArticleById.fulfilled, (state, action) => {
         state.current = action.payload;
       })
-      .addCase(fetchArticleById.rejected, (state, action) => {
-        state.error = action.payload;
-      })
-      .addCase(fetchArticlesByAuthorId.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
+      .addCase(fetchArticleById.rejected, handleRejected)
+      .addCase(fetchArticlesByAuthorId.pending, handlePending)
       .addCase(fetchArticlesByAuthorId.fulfilled, (state, action) => {
         state.authorArticles =
           action.payload.page === 1
@@ -61,19 +70,20 @@ const articlesSlice = createSlice({
         state.hasNextPage = action.payload.hasNextPage;
         state.hasPreviousPage = action.payload.hasPreviousPage;
       })
-      .addCase(fetchArticlesByAuthorId.rejected, (state, action) => {
-        state.error = action.payload;
-      })
-      .addCase(createArticle.pending, (state) => {
-        state.error = null;
-      })
+      .addCase(fetchArticlesByAuthorId.rejected, handleRejected)
+      .addCase(createArticle.pending, handlePending)
       .addCase(createArticle.fulfilled, (state, action) => {
         state.items.unshift(action.payload);
       })
-      .addCase(createArticle.rejected, (state, action) => {
-        state.error = action.payload;
-      });
+      .addCase(createArticle.rejected, handleRejected)
+      .addCase(popularArticles.pending, handlePending)
+      .addCase(popularArticles.fulfilled, (state, action) => {
+        state.popularArticles = action.payload.articles;
+      })
+      .addCase(popularArticles.rejected, handleRejected);
   },
 });
+
+export const { clearArticles, clearPopularArticles } = articlesSlice.actions;
 
 export default articlesSlice.reducer;

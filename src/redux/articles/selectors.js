@@ -2,6 +2,8 @@ import { createSelector } from '@reduxjs/toolkit';
 
 export const selectArticles = (state) => state.articles.items;
 
+export const selectPopularArticles = (state) => state.articles.popularArticles;
+
 export const selectCurrentArticle = (state) => state.articles.current;
 
 export const selectAuthorArticles = (state) => state.articles.authorArticles;
@@ -15,7 +17,7 @@ export const selectArticlesHasPreviousPage = (state) =>
 
 export const selectArticlesPage = (state) => state.articles.page;
 
-export const selectPopularArticles = createSelector(
+export const selectFirstFourPopularArticles = createSelector(
   [selectArticles],
   (articles) => {
     const popularArticles = articles.toSorted((a, b) => b.rate - a.rate);
@@ -23,3 +25,5 @@ export const selectPopularArticles = createSelector(
     return firstFourArticles;
   },
 );
+
+export const selectTotalArticles = (state) => state.articles.totalItems;

@@ -106,3 +106,16 @@ export const updateArticle = createAsyncThunk(
     }
   },
 );
+
+export const popularArticles = createAsyncThunk(
+  'articles/popular',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get('/articles/popular');
+      return data.data;
+    } catch (error) {
+      toast.error('Failed to load popular article');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
