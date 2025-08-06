@@ -60,7 +60,7 @@ const AddArticleForm = () => {
       .max(100, 'Description can be up to 100 characters'),
 
     img: Yup.mixed()
-      .nullable()
+      .required('Image is required')
       .test('fileSize', 'Image too large (max 1MB)', (value) => {
         return !value || value.size <= 1000000;
       }),
@@ -103,7 +103,7 @@ const AddArticleForm = () => {
         navigate(`/articles/${result._id}`);
       }
     } catch (error) {
-      toast.error(error.message || 'Something went wrong');
+      console.error(error);
     }
   };
 

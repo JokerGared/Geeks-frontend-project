@@ -97,7 +97,11 @@ export const updateArticle = createAsyncThunk(
       const { data } = await axios.patch(`/articles/${id}`, formData);
       return data.data;
     } catch (error) {
-      toast.error('Failed to update article');
+      const message =
+        error.response?.status === 409
+          ? 'Failed to update article'
+          : error.response?.data?.data || error.message;
+      toast.error(`Failed to update article, ${message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   },

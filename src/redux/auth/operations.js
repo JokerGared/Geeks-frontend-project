@@ -26,7 +26,7 @@ export const register = createAsyncThunk(
       const message =
         error.response?.status === 409
           ? 'User with this email is already registered'
-          : error.response?.data?.data.message || error.message;
+          : error.response?.data?.data || error.message;
       toast.error(message);
       return thunkAPI.rejectWithValue(message);
     }
@@ -47,7 +47,7 @@ export const logIn = createAsyncThunk(
           ? 'Invalid username or password'
           : error.response?.data?.data.message || error.message;
 
-      toast.error(message);
+      toast.error(`${message}! Please, enter correct password and email`);
       return thunkAPI.rejectWithValue(message);
     }
   },
