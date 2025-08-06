@@ -74,6 +74,9 @@ export const createArticle = createAsyncThunk(
 export const deleteArticle = createAsyncThunk(
   'articles/delete',
   async (id, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+    if (!token) return thunkAPI.rejectWithValue('No token');
     try {
       await axios.delete(`/articles/${id}`, {
         headers: {
@@ -91,6 +94,9 @@ export const deleteArticle = createAsyncThunk(
 export const updateArticle = createAsyncThunk(
   'articles/update',
   async ({ id, updates }, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+    if (!token) return thunkAPI.rejectWithValue('No token');
     try {
       const formData = new FormData();
       if (updates.title) formData.append('title', updates.title);
