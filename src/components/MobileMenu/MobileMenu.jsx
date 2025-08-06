@@ -170,7 +170,17 @@ const MobileMenu = () => {
           {isLoggedIn && (
             <div className={clsx(s.avatarContainer)}>
               <div className={clsx(s.avatarNameContainer)}>
-                <img src={userAvatar} alt="Avatar" className={clsx(s.avatar)} />
+                {avatarUrl ? (
+                  <img className={s.avatar} src={avatarUrl} alt={name} />
+                ) : (
+                  <div className={s.fallbackAvatar}>
+                    {name
+                      .split(' ')
+                      .map((n) => n[0])
+                      .join('')
+                      .toUpperCase()}
+                  </div>
+                )}
                 <p className={clsx(s.name)}>{name}</p>
               </div>
               <button
