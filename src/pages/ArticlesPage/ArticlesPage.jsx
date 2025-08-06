@@ -1,7 +1,6 @@
 import s from './ArticlesPage.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
+import { useEffect, useRef, useState } from 'react';
 
 import {
   selectArticles,
@@ -32,8 +31,9 @@ const ArticlesPage = () => {
   const hasNextPage = useSelector(selectArticlesHasNextPage);
   const popular = useSelector(selectPopularArticles);
   const totalArticles = useSelector(selectTotalArticles);
+  const [selectedFilter, setSelectedFilter] = useState('popular');
 
-  const [selectedFilter, setSelectedFilter] = useState('all');
+  const loadMoreTriggeredRef = useRef(false);
 
   useEffect(() => {
     if (selectedFilter === 'all') {
@@ -50,6 +50,7 @@ const ArticlesPage = () => {
 
   const onLoadMore = () => {
     if (hasNextPage && !isLoading) {
+      loadMoreTriggeredRef.current = true;
       const nextPage = page + 1;
       setPage(nextPage);
       dispatch(fetchArticles(nextPage));
@@ -81,6 +82,7 @@ const ArticlesPage = () => {
         hasNextPage={hasNextPage}
         onLoadMore={onLoadMore}
         selectedFilter={selectedFilter}
+        loadMoreTriggeredRef={loadMoreTriggeredRef}
       />
     </div>
   );
