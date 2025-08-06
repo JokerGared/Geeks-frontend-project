@@ -36,38 +36,6 @@
   white-space: pre-wrap;
 }
 
-.save-button {
-  border-radius: 64px;
-  padding: 16px;
-  width: 100%;
-  max-width: 361px;
-  height: 57px;
-  background: var(--button-bg-main);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  cursor: pointer;
-  border: none;
-  box-sizing: border-box;
-  fill: none;
-}
-
-.save-icon {
-  width: 24px;
-  height: 24px;
-  stroke-width: 1px;
-  stroke: var(--button-color-main);
-}
-
-.save-button-text {
-  font-family: var(--font-family);
-  font-weight: 700;
-  font-size: 18px;
-  color: var(--button-color-main);
-  fill: none;
-}
-
 @media (min-width: 768px) {
   .page {
     max-width: 704px;
@@ -80,12 +48,6 @@
 
   .image {
     max-width: 704px;
-  }
-
-  .save-button {
-    width: 704px;
-    max-width: 100%;
-    fill: none;
   }
 }
 
@@ -127,11 +89,5 @@
 
   .cardWrapper {
     flex: 0 1 393px;
-  }
-
-  .save-button {
-    width: 393px;
-    max-width: 100%;
-    fill: none;
   }
 }

@@ -20,7 +20,7 @@
 
 .popularArticlesLink:hover,
 .popularArticlesLink:focus {
-  color: var(--secondary-icon-fill)
+  color: var(--secondary-icon-fill);
 }
 
 .topCreatorsIcon {
@@ -29,7 +29,7 @@
 
 .popularArticlesLink:hover .topCreatorsIcon,
 .popularArticlesLink:focus .topCreatorsIcon {
-  stroke: var(--secondary-icon-fill)
+  stroke: var(--secondary-icon-fill);
 }
 
 .popularArticlesLink::after {
@@ -40,7 +40,7 @@
   width: 0;
   height: 1px;
   background-color: var(--link-color);
-  transition: width .3s ease;
+  transition: width 0.3s ease;
 }
 
 .popularArticlesLink:hover::after,
@@ -52,12 +52,10 @@
 .popularArticlesList {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 24px;
 }
 
-
-@media screen and (min-width:768px) {
+@media screen and (min-width: 768px) {
   .popularArticlesTitleLinkContainer {
     display: flex;
     justify-content: space-between;
@@ -74,7 +72,7 @@
   }
 }
 
-@media screen and (min-width:1440px) {
+@media screen and (min-width: 1440px) {
   .popularArticlesTitle {
     font-size: 40px;
   }

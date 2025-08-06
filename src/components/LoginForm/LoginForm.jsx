@@ -1,8 +1,8 @@
 import s from './LoginForm.module.css';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logIn } from '../../redux/auth/operations';
 
@@ -45,7 +45,7 @@ const LoginForm = () => {
       onClick={() => setShowPassword(!showPassword)}
       aria-label={ariaLabel}
     >
-      <use href={`icons.svg#${iconId}`}></use>
+      <use href={`/icons.svg#${iconId}`}></use>
     </svg>
   );
 

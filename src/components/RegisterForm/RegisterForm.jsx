@@ -49,7 +49,7 @@ const RegisterForm = () => {
       onClick={() => setShowPassword(!showPassword)}
       aria-label={ariaLabel}
     >
-      <use href={`/public/icons.svg#${iconId}`}></use>
+      <use href={`/icons.svg#${iconId}`}></use>
     </svg>
   );
 

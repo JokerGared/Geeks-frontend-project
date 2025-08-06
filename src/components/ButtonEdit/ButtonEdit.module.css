@@ -10,6 +10,24 @@
   transition: var(--transition);
 }
 
+.LargeButton {
+  border-radius: 64px;
+  padding: 16px;
+  width: 100%;
+  max-width: 361px;
+  height: 57px;
+  background: var(--button-bg-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  border: none;
+  box-sizing: border-box;
+  fill: none;
+  transition: var(--transition);
+}
+
 .icon {
   stroke: var(--link-color);
   fill: none;
@@ -22,4 +40,29 @@
 
 .active .icon {
   stroke: var(--button-bg-secondary-hover);
+}
+
+.LargeButton:hover {
+  color: var(--button-color-main);
+  background-color: var(--button-bg-main-hover);
+}
+
+.LargeButton:hover .icon {
+  stroke: var(--button-bg-secondary-hover);
+}
+
+@media (min-width: 768px) {
+  .LargeButton {
+    width: 704px;
+    max-width: 100%;
+    fill: none;
+  }
+}
+
+@media (min-width: 1440px) {
+  .LargeButton {
+    width: 393px;
+    max-width: 100%;
+    fill: none;
+  }
 }

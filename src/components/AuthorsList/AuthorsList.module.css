@@ -14,7 +14,7 @@
 
 @media screen and (min-width: 768px) {
   .list {
-    justify-content: flex-start;
+    justify-content: center;
     gap: 24px;
   }
   .item {

@@ -20,7 +20,6 @@ const SavedArticles = () => {
 
   useEffect(() => {
     if (page === 1 && articles.length === 0) {
-      console.log('[SavedArticles] Initial fetch');
       dispatch(fetchFavorites({ page: 1 }));
     }
   }, [dispatch, page, articles.length]);

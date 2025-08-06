@@ -173,7 +173,7 @@
 
 .avatarNameContainer::after {
   position: absolute;
-  content: "";
+  content: '';
   width: 1px;
   height: 40px;
   background: #374f42;
@@ -214,7 +214,20 @@
   stroke: var(--button-bg-main-hover);
 }
 
-@media screen and (min-width:768px) {
+.fallbackAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--button-color-main);
+  color: var(--card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+@media screen and (min-width: 768px) {
   .mobileMenu {
     padding: 24px 32px;
   }
