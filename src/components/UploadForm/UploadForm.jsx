@@ -71,7 +71,6 @@ const UploadForm = () => {
       toast.success('Registration successful!');
     } catch (error) {
       console.error('Registration failed:', error);
-      toast.error('Registration failed. Please try again.');
     } finally {
       setIsSubmitting(false);
     }

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -23,7 +24,11 @@ axiosInstance.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    if (originalRequest.url.includes('/auth/refresh')) {
+    if (
+      originalRequest.url.includes('/auth/refresh') ||
+      originalRequest.url.includes('/auth/login') ||
+      originalRequest.url.includes('/auth/register')
+    ) {
       return Promise.reject(error);
     }
     if (error.response.status === 401 && !originalRequest._retry) {

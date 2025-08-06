@@ -51,8 +51,10 @@ const articlesSlice = createSlice({
         state.hasPreviousPage = action.payload.hasPreviousPage;
       })
       .addCase(fetchArticles.rejected, handleRejected)
-
-      .addCase(fetchArticleById.pending, handlePending)
+      .addCase(fetchArticleById.pending, (state) => {
+        state.current = null;
+        state.error = null;
+      })
       .addCase(fetchArticleById.fulfilled, (state, action) => {
         state.current = action.payload;
       })
