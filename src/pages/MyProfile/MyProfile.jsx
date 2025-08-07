@@ -12,6 +12,7 @@ import { selectCurrentAuthor } from '../../redux/authors/selectors';
 
 import clsx from 'clsx';
 import { selectIsLoading } from '../../redux/loading/selectors';
+import { clearAuthorArticles } from '../../redux/articles/slice';
 
 const MyProfile = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const MyProfile = () => {
   const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
+    dispatch(clearAuthorArticles());
     if (user?._id) {
       dispatch(fetchAuthorById(user._id));
       dispatch(fetchArticlesByAuthorId({ id: user._id }));
