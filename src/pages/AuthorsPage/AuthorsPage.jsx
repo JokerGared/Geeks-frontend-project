@@ -37,7 +37,7 @@ const AuthorsPage = () => {
   return (
     <section className={s.authorsPage}>
       <SectionTitle className={s.title}>Authors</SectionTitle>
-      {error && authors.length === 0 ? (
+      {!isLoading && error && authors.length === 0 ? (
         <p className={s.status}>Sorry, this authors could not be found.</p>
       ) : (
         <AuthorsList authors={authors} />

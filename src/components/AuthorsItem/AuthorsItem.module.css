@@ -4,7 +4,6 @@
   align-items: center;
   gap: 16px;
   padding: 12px;
-
 }
 
 .card:hover .name,
@@ -12,9 +11,24 @@
   color: #649179;
 }
 
-.fallbackAvatar {
+.fallbackAvatarAuthors {
   max-width: 148px;
   max-height: 148px;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--card-bg);
+  color: var(--button-color-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 64px;
+  padding: 26px;
+}
+
+.fallbackAvatar {
+  width: 148px;
+  height: 148px;
   border-radius: 50%;
   aspect-ratio: 1 / 1;
   background-color: var(--card-bg);
@@ -56,11 +70,16 @@
   }
 
   .fallbackAvatar {
+    width: 160px;
+    height: 160px;
+    font-size: 96px;
+  }
+
+  .fallbackAvatarAuthors {
     max-width: 262px;
     max-height: 262px;
     width: 100%;
     height: 100%;
     font-size: 96px;
   }
-
 }
