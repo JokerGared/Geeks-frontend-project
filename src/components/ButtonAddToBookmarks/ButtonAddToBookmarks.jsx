@@ -43,11 +43,9 @@ const ButtonAddToBookmarks = ({ article }) => {
         await dispatch(addToFavorites({ article })).unwrap();
       }
     } catch (err) {
-      toast.error('Failed to update favorites');
+      console.error(err);
     }
   };
-
-  if (error) toast.error(error);
 
   const buttonClass = clsx(s.button, { [s.active]: isSaved });
 

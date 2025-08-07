@@ -21,12 +21,6 @@ const AuthorProfilePage = () => {
     }
   }, [dispatch, authorId, user._id]);
 
-  useEffect(() => {
-    if (error) {
-      toast.error('This author was not found');
-    }
-  }, [error]);
-
   if (authorId === user._id) return <Navigate to="/profile" />;
 
   if (error) {

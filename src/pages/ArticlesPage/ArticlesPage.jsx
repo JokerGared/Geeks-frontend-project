@@ -1,18 +1,26 @@
 import s from './ArticlesPage.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
+import { useEffect, useRef, useState } from 'react';
 
 import {
   selectArticles,
   selectArticlesError,
   selectArticlesHasNextPage,
+  selectPopularArticles,
+  selectTotalArticles,
 } from '../../redux/articles/selectors';
-import { fetchArticles } from '../../redux/articles/operations';
+import {
+  fetchArticles,
+  popularArticles,
+} from '../../redux/articles/operations';
 
 import ArticlesList from '../../components/ArticlesList/ArticlesList';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import { selectIsLoading } from '../../redux/loading/selectors';
+import {
+  clearArticles,
+  clearPopularArticles,
+} from '../../redux/articles/slice';
 
 const ArticlesPage = () => {
   const [page, setPage] = useState(1);
@@ -21,21 +29,28 @@ const ArticlesPage = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectArticlesError);
   const hasNextPage = useSelector(selectArticlesHasNextPage);
+  const popular = useSelector(selectPopularArticles);
+  const totalArticles = useSelector(selectTotalArticles);
+  const [selectedFilter, setSelectedFilter] = useState('popular');
 
-  const [selectedFilter, setSelectedFilter] = useState('popular'); // заглушка
+  const loadMoreTriggeredRef = useRef(false);
 
   useEffect(() => {
-    if (page === 1 && articles.length === 0) {
-      dispatch(fetchArticles(1));
+    if (selectedFilter === 'all') {
+      if (page === 1 && articles.length === 0) {
+        dispatch(clearPopularArticles());
+        dispatch(fetchArticles(page));
+      }
+    } else if (selectedFilter === 'popular') {
+      setPage(1);
+      dispatch(clearArticles());
+      dispatch(popularArticles());
     }
-  }, [dispatch, page, articles.length]);
-
-  useEffect(() => {
-    if (error) toast.error(error);
-  }, [error]);
+  }, [page, selectedFilter]);
 
   const onLoadMore = () => {
     if (hasNextPage && !isLoading) {
+      loadMoreTriggeredRef.current = true;
       const nextPage = page + 1;
       setPage(nextPage);
       dispatch(fetchArticles(nextPage));
@@ -47,7 +62,9 @@ const ArticlesPage = () => {
       <SectionTitle className={s.title}>Articles</SectionTitle>
 
       <div className={s.counterContainer}>
-        <p className={s.articleCounter}>{articles.length} articles</p>
+        <p className={s.articleCounter}>
+          {selectedFilter === 'all' ? totalArticles : popular.length} articles
+        </p>
 
         <select
           className={s.filterSelect}
@@ -59,13 +76,13 @@ const ArticlesPage = () => {
         </select>
       </div>
 
-      {error && <p className={s.error}>{error}</p>}
-
       <ArticlesList
-        articles={articles}
+        articles={selectedFilter === 'all' ? articles : popular}
         isLoading={isLoading}
         hasNextPage={hasNextPage}
         onLoadMore={onLoadMore}
+        selectedFilter={selectedFilter}
+        loadMoreTriggeredRef={loadMoreTriggeredRef}
       />
     </div>
   );

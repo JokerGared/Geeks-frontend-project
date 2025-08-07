@@ -53,18 +53,11 @@ export const createArticle = createAsyncThunk(
     if (credentials.desc) {
       formData.append('desc', credentials.desc);
     }
-    const state = thunkAPI.getState();
-    const token = state.auth.token;
-    if (!token) return thunkAPI.rejectWithValue('No token');
     try {
-      const response = await axios.post('/articles', formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post('/articles', formData);
       return response.data.data;
     } catch (error) {
-      const message = error.response?.data?.message || error.message;
+      const message = error.response?.data?.data || error.message;
       toast.error(message);
       return thunkAPI.rejectWithValue(message);
     }
@@ -97,7 +90,24 @@ export const updateArticle = createAsyncThunk(
       const { data } = await axios.patch(`/articles/${id}`, formData);
       return data.data;
     } catch (error) {
-      toast.error('Failed to update article');
+      const message =
+        error.response?.status === 409
+          ? 'Failed to update article'
+          : error.response?.data?.data || error.message;
+      toast.error(`Failed to update article, ${message}`);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const popularArticles = createAsyncThunk(
+  'articles/popular',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get('/articles/popular');
+      return data.data;
+    } catch (error) {
+      toast.error('Failed to load popular article');
       return thunkAPI.rejectWithValue(error.message);
     }
   },

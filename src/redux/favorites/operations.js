@@ -4,18 +4,11 @@ import { toast } from 'react-hot-toast';
 
 export const fetchFavorites = createAsyncThunk(
   'favorites/fetchAll',
-  async ({ userId, page = 1 }, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const token = state.auth.token;
-    if (!token) return thunkAPI.rejectWithValue('No token');
+  async ({ page = 1 }, thunkAPI) => {
     try {
       const url = `/users/me/saved-articles?page=${page}&perPage=12`;
 
-      const { data } = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const { data } = await axios.get(url);
 
       return data.data;
     } catch (error) {
@@ -28,15 +21,8 @@ export const fetchFavorites = createAsyncThunk(
 export const addToFavorites = createAsyncThunk(
   'favorites/add',
   async ({ article }, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const token = state.auth.token;
-    if (!token) return thunkAPI.rejectWithValue('No token');
     try {
-      await axios.put(`/users/me/saved-articles/${article._id}`, null, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.put(`/users/me/saved-articles/${article._id}`, null);
       toast.success('Added to favorites');
       return article;
     } catch (error) {
@@ -49,15 +35,8 @@ export const addToFavorites = createAsyncThunk(
 export const removeFromFavorites = createAsyncThunk(
   'favorites/remove',
   async ({ articleId }, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const token = state.auth.token;
-    if (!token) return thunkAPI.rejectWithValue('No token');
     try {
-      await axios.delete(`/users/me/saved-articles/${articleId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.delete(`/users/me/saved-articles/${articleId}`);
       toast.success('Removed from favorites');
       return { articleId };
     } catch (error) {
