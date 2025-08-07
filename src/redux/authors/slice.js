@@ -14,6 +14,11 @@ const initialState = {
 const authorsSlice = createSlice({
   name: 'authors',
   initialState,
+  reducers: {
+    clearAuthors: (state) => {
+      state.current = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchAuthors.pending, (state) => {
@@ -42,4 +47,5 @@ const authorsSlice = createSlice({
   },
 });
 
+export const { clearAuthors } = authorsSlice.actions;
 export default authorsSlice.reducer;

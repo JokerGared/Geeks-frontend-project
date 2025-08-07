@@ -23,6 +23,7 @@ import s from './PublicProfile.module.css';
 import ArticlesEmpty from '../ArticlesEmpty/ArticlesEmpty';
 import { selectIsLoading } from '../../redux/loading/selectors';
 import { clearAuthorArticles } from '../../redux/articles/slice';
+import { clearAuthors } from '../../redux/authors/slice';
 
 const PublicProfile = () => {
   const { authorId } = useParams();
@@ -39,6 +40,7 @@ const PublicProfile = () => {
   const [noArticles, setNoArticles] = useState(false);
 
   useEffect(() => {
+    dispatch(clearAuthors());
     dispatch(fetchAuthorById(authorId));
   }, [dispatch, authorId]);
 
@@ -67,40 +69,38 @@ const PublicProfile = () => {
 
   return (
     <>
-      {!isLoading && (
-        <div className={s.pageWrapper}>
-          <div className={s.userInfoWrapper}>
-            <div className={s.avatarWrapper}>
-              {avatarUrl ? (
-                <img className={s.avatar} src={avatarUrl} alt={name} />
-              ) : (
-                <div className={s.fallbackAvatar}>
-                  {name
-                    .split(' ')
-                    .map((n) => n[0])
-                    .join('')
-                    .toUpperCase()}
-                </div>
-              )}
-            </div>
-            <div className={s.userInfo}>
-              <h2 className={s.authorName}>{name}</h2>
-              <p className={s.articleCounter}>{articlesAmount} articles</p>
-            </div>
+      <div className={s.pageWrapper}>
+        <div className={s.userInfoWrapper}>
+          <div className={s.avatarWrapper}>
+            {avatarUrl ? (
+              <img className={s.avatar} src={avatarUrl} alt={name} />
+            ) : (
+              <div className={s.fallbackAvatar}>
+                {name
+                  .split(' ')
+                  .map((n) => n[0])
+                  .join('')
+                  .toUpperCase()}
+              </div>
+            )}
           </div>
-          {articles.length === 0 && noArticles ? (
-            <ArticlesEmpty />
-          ) : (
-            <ArticlesList
-              articles={articles}
-              isLoading={isLoading}
-              hasNextPage={hasNextPage}
-              onLoadMore={handleLoadMore}
-            />
-          )}
-          {isModalOpen && modalType === 'ErrorSave' && <ModalErrorSave />}
+          <div className={s.userInfo}>
+            <h2 className={s.authorName}>{name}</h2>
+            <p className={s.articleCounter}>{articlesAmount} articles</p>
+          </div>
         </div>
-      )}
+        {articles.length === 0 && noArticles ? (
+          <ArticlesEmpty />
+        ) : (
+          <ArticlesList
+            articles={articles}
+            isLoading={isLoading}
+            hasNextPage={hasNextPage}
+            onLoadMore={handleLoadMore}
+          />
+        )}
+        {isModalOpen && modalType === 'ErrorSave' && <ModalErrorSave />}
+      </div>
     </>
   );
 };

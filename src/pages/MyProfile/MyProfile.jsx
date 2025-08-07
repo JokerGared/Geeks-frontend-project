@@ -13,15 +13,16 @@ import { selectCurrentAuthor } from '../../redux/authors/selectors';
 import clsx from 'clsx';
 import { selectIsLoading } from '../../redux/loading/selectors';
 import { clearAuthorArticles } from '../../redux/articles/slice';
+import { clearAuthors } from '../../redux/authors/slice';
 
 const MyProfile = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const author = useSelector(selectCurrentAuthor);
   const articles = useSelector(selectAuthorArticles);
-  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
+    dispatch(clearAuthors());
     dispatch(clearAuthorArticles());
     if (user?._id) {
       dispatch(fetchAuthorById(user._id));
@@ -38,43 +39,39 @@ const MyProfile = () => {
     <>
       <div className={s.pageWrapper}>
         <SectionTitle className={s.title}>My Profile</SectionTitle>
-        {!isLoading && (
-          <div className={s.userInfoWrapper}>
-            <div className={s.avatarWrapper}>
-              {avatarUrl ? (
-                <img className={s.avatar} src={avatarUrl} alt={name} />
-              ) : (
-                <div className={s.fallbackAvatar}>
-                  {name
-                    .split(' ')
-                    .map((n) => n[0])
-                    .join('')
-                    .toUpperCase()}
-                </div>
-              )}
-            </div>
-            <div className={s.userInfo}>
-              <h2 className={s.authorName}>{name}</h2>
-              <p className={s.articleCounter}>{articlesAmount} articles</p>
-            </div>
+        <div className={s.userInfoWrapper}>
+          <div className={s.avatarWrapper}>
+            {avatarUrl ? (
+              <img className={s.avatar} src={avatarUrl} alt={name} />
+            ) : (
+              <div className={s.fallbackAvatar}>
+                {name
+                  .split(' ')
+                  .map((n) => n[0])
+                  .join('')
+                  .toUpperCase()}
+              </div>
+            )}
           </div>
-        )}
-        {!isLoading && (
-          <nav className={s.nav}>
-            <NavLink
-              to="my-articles"
-              className={({ isActive }) => clsx(s.link, isActive && s.active)}
-            >
-              My Articles
-            </NavLink>
-            <NavLink
-              to="saved"
-              className={({ isActive }) => clsx(s.link, isActive && s.active)}
-            >
-              Saved Articles
-            </NavLink>
-          </nav>
-        )}
+          <div className={s.userInfo}>
+            <h2 className={s.authorName}>{name}</h2>
+            <p className={s.articleCounter}>{articlesAmount} articles</p>
+          </div>
+        </div>
+        <nav className={s.nav}>
+          <NavLink
+            to="my-articles"
+            className={({ isActive }) => clsx(s.link, isActive && s.active)}
+          >
+            My Articles
+          </NavLink>
+          <NavLink
+            to="saved"
+            className={({ isActive }) => clsx(s.link, isActive && s.active)}
+          >
+            Saved Articles
+          </NavLink>
+        </nav>
         <Outlet />
       </div>
     </>
