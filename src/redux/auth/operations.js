@@ -20,6 +20,7 @@ export const register = createAsyncThunk(
 
       const response = await axios.post('/auth/register', formData);
       const fetchedData = response.data.data;
+      localStorage.setItem('accessToken', response.data.data.accessToken);
       setAuthHeader(`Bearer ${fetchedData.accessToken}`);
       return fetchedData;
     } catch (error) {
@@ -39,6 +40,7 @@ export const logIn = createAsyncThunk(
     try {
       const response = await axios.post('/auth/login', credentials);
       const fetchedData = response.data.data;
+      localStorage.setItem('accessToken', response.data.data.accessToken);
       setAuthHeader(`Bearer ${fetchedData.accessToken}`);
       return response.data.data;
     } catch (error) {
@@ -60,6 +62,7 @@ export const logOut = createAsyncThunk('auth/logout', async () => {
     toast.error('Error while logged out, please login again');
   } finally {
     setAuthHeader('');
+    localStorage.removeItem('accessToken');
   }
 });
 
@@ -71,9 +74,9 @@ export const refreshUser = createAsyncThunk(
       const token = state.auth.token;
 
       if (!token) return thunkAPI.rejectWithValue('No token found');
-
       setAuthHeader(`Bearer ${token}`);
       const response = await axios.post('/auth/refresh');
+      localStorage.setItem('accessToken', response.data.data.accessToken);
       return response.data.data;
     } catch (error) {
       toast.error('Oops...try again!');
