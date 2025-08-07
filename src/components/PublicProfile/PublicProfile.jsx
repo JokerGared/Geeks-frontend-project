@@ -24,6 +24,7 @@ import ArticlesEmpty from '../ArticlesEmpty/ArticlesEmpty';
 import SubscribeButton from '../SubscribeButton/SubscribeButton';
 import { selectIsLoading } from '../../redux/loading/selectors';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { clearAuthorArticles } from '../../redux/articles/slice';
 
 const PublicProfile = () => {
   const { authorId } = useParams();
@@ -44,10 +45,11 @@ const PublicProfile = () => {
   }, [dispatch, authorId]);
 
   useEffect(() => {
-    if (author?._id) {
-      dispatch(fetchArticlesByAuthorId({ id: author._id, page: 1 }));
+    dispatch(clearAuthorArticles());
+    if (authorId) {
+      dispatch(fetchArticlesByAuthorId({ id: authorId, page: 1 }));
     }
-  }, [dispatch, author?._id]);
+  }, [dispatch, authorId]);
 
   const handleLoadMore = () => {
     if (author._id && hasNextPage) {
@@ -60,44 +62,47 @@ const PublicProfile = () => {
   const { name, avatarUrl, articlesAmount } = author;
 
   return (
-    <div className={s.pageWrapper}>
-      <div className={s.userInfoWrapper}>
-        <div className={s.avatarWrapper}>
-          {avatarUrl ? (
-            <img className={s.avatar} src={avatarUrl} alt={name} />
-          ) : (
-            <div className={s.fallbackAvatar}>
-              {name
-                .split(' ')
-                .map((n) => n[0])
-                .join('')
-                .toUpperCase()}
+    <>
+      {!isLoading && (
+        <div className={s.pageWrapper}>
+          <div className={s.userInfoWrapper}>
+            <div className={s.avatarWrapper}>
+              {avatarUrl ? (
+                <img className={s.avatar} src={avatarUrl} alt={name} />
+              ) : (
+                <div className={s.fallbackAvatar}>
+                  {name
+                    .split(' ')
+                    .map((n) => n[0])
+                    .join('')
+                    .toUpperCase()}
+                </div>
+              )}
             </div>
-          )}
-        </div>
 
-        <div className={s.userInfoWithSubscribe}>
-          <div className={s.userInfo}>
-            <h2 className={s.authorName}>{name}</h2>
-            <p className={s.articleCounter}>{articlesAmount} articles</p>
+            <div className={s.userInfoWithSubscribe}>
+              <div className={s.userInfo}>
+                <h2 className={s.authorName}>{name}</h2>
+                <p className={s.articleCounter}>{articlesAmount} articles</p>
+              </div>
+
+              {isLoggedIn && <SubscribeButton />}
+            </div>
           </div>
 
-          {isLoggedIn && <SubscribeButton />}
+          {articles.length === 0 && !isLoading && <ArticlesEmpty />}
+          {articles.length !== 0 && !isLoading && (
+            <ArticlesList
+              articles={articles}
+              isLoading={isLoading}
+              hasNextPage={hasNextPage}
+              onLoadMore={handleLoadMore}
+            />
+          )}
+          {isModalOpen && modalType === 'ErrorSave' && <ModalErrorSave />}
         </div>
-      </div>
-
-      {articles.length === 0 && !isLoading ? (
-        <ArticlesEmpty />
-      ) : (
-        <ArticlesList
-          articles={articles}
-          isLoading={isLoading}
-          hasNextPage={hasNextPage}
-          onLoadMore={handleLoadMore}
-        />
       )}
-      {isModalOpen && modalType === 'ErrorSave' && <ModalErrorSave />}
-    </div>
+    </>
   );
 };
 

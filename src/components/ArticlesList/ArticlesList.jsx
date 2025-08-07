@@ -33,34 +33,38 @@ const ArticlesList = ({
   }, [articles.length]);
 
   return (
-    <div className={s.wrapper}>
-      <ul className={s.list}>
-        {articles.map((articleItem, index) => (
-          <li
-            key={articleItem?._id}
-            ref={
-              loadMoreTriggeredRef?.current &&
-              index === prevArticlesLength.current
-                ? firstNewArticleRef
-                : null
-            }
-          >
-            <ArticleItem articleItem={articleItem} />
-          </li>
-        ))}
-      </ul>
+    <>
+      {!isLoading && (
+        <div className={s.wrapper}>
+          <ul className={s.list}>
+            {articles.map((articleItem, index) => (
+              <li
+                key={articleItem?._id}
+                ref={
+                  loadMoreTriggeredRef?.current &&
+                  index === prevArticlesLength.current
+                    ? firstNewArticleRef
+                    : null
+                }
+              >
+                <ArticleItem articleItem={articleItem} />
+              </li>
+            ))}
+          </ul>
 
-      {hasNextPage && selectedFilter === 'all' && (
-        <button
-          type="button"
-          className={s.loadMore}
-          onClick={onLoadMore}
-          disabled={isLoading}
-        >
-          {isLoading ? 'Loading...' : 'Load more'}
-        </button>
+          {hasNextPage && selectedFilter === 'all' && (
+            <button
+              type="button"
+              className={s.loadMore}
+              onClick={onLoadMore}
+              disabled={isLoading}
+            >
+              {isLoading ? 'Loading...' : 'Load more'}
+            </button>
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
