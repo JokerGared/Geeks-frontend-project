@@ -50,7 +50,9 @@ const ButtonSave = ({ article }) => {
   const buttonClass = clsx(s['save-button'], { [s.active]: isSaved });
   return (
     <button type="button" onClick={handleClick} className={buttonClass}>
-      <span className={s['save-button-text']}>Save</span>
+      <span className={s['save-button-text']}>
+        {isSaved ? 'Unsave' : 'Save'}
+      </span>
       <svg
         className={clsx(s['save-icon'], isLoading && s.spin)}
         width="24px"

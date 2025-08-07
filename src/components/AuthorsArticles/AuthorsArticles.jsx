@@ -39,12 +39,14 @@ const AuthorsArticles = () => {
     return <ArticlesEmpty />;
   }
   return (
-    <ArticlesList
-      articles={articles}
-      isLoading={isLoading}
-      hasNextPage={hasNextPage}
-      onLoadMore={loadMore}
-    />
+    !isLoading && (
+      <ArticlesList
+        articles={articles}
+        isLoading={isLoading}
+        hasNextPage={hasNextPage}
+        onLoadMore={loadMore}
+      />
+    )
   );
 };
 

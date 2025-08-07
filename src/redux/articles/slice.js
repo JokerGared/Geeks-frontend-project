@@ -38,6 +38,9 @@ const articlesSlice = createSlice({
     clearPopularArticles: (state) => {
       state.popularArticles = [];
     },
+    clearAuthorArticles: (state) => {
+      state.authorArticles = [];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -84,6 +87,7 @@ const articlesSlice = createSlice({
   },
 });
 
-export const { clearArticles, clearPopularArticles } = articlesSlice.actions;
+export const { clearArticles, clearPopularArticles, clearAuthorArticles } =
+  articlesSlice.actions;
 
 export default articlesSlice.reducer;

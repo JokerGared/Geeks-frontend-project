@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -22,6 +22,7 @@ import {
 import s from './PublicProfile.module.css';
 import ArticlesEmpty from '../ArticlesEmpty/ArticlesEmpty';
 import { selectIsLoading } from '../../redux/loading/selectors';
+import { clearAuthorArticles } from '../../redux/articles/slice';
 
 const PublicProfile = () => {
   const { authorId } = useParams();
@@ -35,16 +36,24 @@ const PublicProfile = () => {
 
   const isModalOpen = useSelector(selectIsModalOpen);
   const modalType = useSelector(selectModalType);
+  const [noArticles, setNoArticles] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAuthorById(authorId));
   }, [dispatch, authorId]);
 
   useEffect(() => {
-    if (author?._id) {
-      dispatch(fetchArticlesByAuthorId({ id: author._id, page: 1 }));
+    dispatch(clearAuthorArticles());
+    if (authorId) {
+      dispatch(fetchArticlesByAuthorId({ id: authorId, page: 1 }))
+        .unwrap()
+        .then((resp) => {
+          if (resp.data.length === 0) {
+            setNoArticles(true);
+          }
+        });
     }
-  }, [dispatch, author?._id]);
+  }, [dispatch, authorId]);
 
   const handleLoadMore = () => {
     if (author._id && hasNextPage) {
@@ -57,40 +66,42 @@ const PublicProfile = () => {
   const { name, avatarUrl, articlesAmount } = author;
 
   return (
-    <div className={s.pageWrapper}>
-      <div className={s.userInfoWrapper}>
-        <div className={s.avatarWrapper}>
-          {avatarUrl ? (
-            <img className={s.avatar} src={avatarUrl} alt={name} />
-          ) : (
-            <div className={s.fallbackAvatar}>
-              {name
-                .split(' ')
-                .map((n) => n[0])
-                .join('')
-                .toUpperCase()}
+    <>
+      {!isLoading && (
+        <div className={s.pageWrapper}>
+          <div className={s.userInfoWrapper}>
+            <div className={s.avatarWrapper}>
+              {avatarUrl ? (
+                <img className={s.avatar} src={avatarUrl} alt={name} />
+              ) : (
+                <div className={s.fallbackAvatar}>
+                  {name
+                    .split(' ')
+                    .map((n) => n[0])
+                    .join('')
+                    .toUpperCase()}
+                </div>
+              )}
             </div>
+            <div className={s.userInfo}>
+              <h2 className={s.authorName}>{name}</h2>
+              <p className={s.articleCounter}>{articlesAmount} articles</p>
+            </div>
+          </div>
+          {articles.length === 0 && noArticles ? (
+            <ArticlesEmpty />
+          ) : (
+            <ArticlesList
+              articles={articles}
+              isLoading={isLoading}
+              hasNextPage={hasNextPage}
+              onLoadMore={handleLoadMore}
+            />
           )}
+          {isModalOpen && modalType === 'ErrorSave' && <ModalErrorSave />}
         </div>
-
-        <div className={s.userInfo}>
-          <h2 className={s.authorName}>{name}</h2>
-          <p className={s.articleCounter}>{articlesAmount} articles</p>
-        </div>
-      </div>
-
-      {articles.length === 0 && !isLoading ? (
-        <ArticlesEmpty />
-      ) : (
-        <ArticlesList
-          articles={articles}
-          isLoading={isLoading}
-          hasNextPage={hasNextPage}
-          onLoadMore={handleLoadMore}
-        />
       )}
-      {isModalOpen && modalType === 'ErrorSave' && <ModalErrorSave />}
-    </div>
+    </>
   );
 };
 
