@@ -36,7 +36,6 @@ const MyProfile = () => {
   const { name, avatarUrl, articlesAmount } = author;
 
   return (
-    <>
       <div className={s.pageWrapper}>
         <SectionTitle className={s.title}>My Profile</SectionTitle>
         <div className={s.userInfoWrapper}>
@@ -71,10 +70,15 @@ const MyProfile = () => {
           >
             Saved Articles
           </NavLink>
+        <NavLink
+          to="subscriptions"
+          className={({ isActive }) => clsx(s.link, isActive && s.active)}
+        >
+          Subscriptions
+        </NavLink>
         </nav>
         <Outlet />
       </div>
-    </>
   );
 };
 

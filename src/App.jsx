@@ -12,6 +12,7 @@ import Loader from './components/Loader/Loader';
 import { refreshUser } from './redux/auth/operations';
 import NotFound from './pages/NotFoundPage/NotFound';
 import { selectIsLoading } from './redux/loading/selectors';
+import Subscriptions from './components/Subscriptions/Subscriptions';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const ArticlesPage = lazy(() => import('./pages/ArticlesPage/ArticlesPage'));
@@ -83,6 +84,7 @@ const App = () => {
             <Route index element={<Navigate to="my-articles" replace />} />
             <Route path="my-articles" element={<AuthorsArticles />} />
             <Route path="saved" element={<SavedArticles />} />
+            <Route path="subscriptions" element={<Subscriptions />} />
           </Route>
 
           <Route

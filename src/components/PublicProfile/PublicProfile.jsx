@@ -14,14 +14,12 @@ import {
   selectArticlesHasNextPage,
   selectArticlesPage,
 } from '../../redux/articles/selectors';
-import {
-  selectIsModalOpen,
-  selectModalType,
-} from '../../redux/modal/selectors';
 
 import s from './PublicProfile.module.css';
 import ArticlesEmpty from '../ArticlesEmpty/ArticlesEmpty';
+import SubscribeButton from '../SubscribeButton/SubscribeButton';
 import { selectIsLoading } from '../../redux/loading/selectors';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import { clearAuthorArticles } from '../../redux/articles/slice';
 import { clearAuthors } from '../../redux/authors/slice';
 
@@ -34,9 +32,8 @@ const PublicProfile = () => {
   const isLoading = useSelector(selectIsLoading);
   const hasNextPage = useSelector(selectArticlesHasNextPage);
   const page = useSelector(selectArticlesPage);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  const isModalOpen = useSelector(selectIsModalOpen);
-  const modalType = useSelector(selectModalType);
   const [noArticles, setNoArticles] = useState(false);
 
   useEffect(() => {
@@ -68,40 +65,42 @@ const PublicProfile = () => {
   const { name, avatarUrl, articlesAmount } = author;
 
   return (
-    <>
-      <div className={s.pageWrapper}>
-        <div className={s.userInfoWrapper}>
-          <div className={s.avatarWrapper}>
-            {avatarUrl ? (
-              <img className={s.avatar} src={avatarUrl} alt={name} />
-            ) : (
-              <div className={s.fallbackAvatar}>
-                {name
-                  .split(' ')
-                  .map((n) => n[0])
-                  .join('')
-                  .toUpperCase()}
-              </div>
-            )}
-          </div>
+    <div className={s.pageWrapper}>
+      <div className={s.userInfoWrapper}>
+        <div className={s.avatarWrapper}>
+          {avatarUrl ? (
+            <img className={s.avatar} src={avatarUrl} alt={name} />
+          ) : (
+            <div className={s.fallbackAvatar}>
+              {name
+                .split(' ')
+                .map((n) => n[0])
+                .join('')
+                .toUpperCase()}
+            </div>
+          )}
+        </div>
+
+        <div className={s.userInfoWithSubscribe}>
           <div className={s.userInfo}>
             <h2 className={s.authorName}>{name}</h2>
             <p className={s.articleCounter}>{articlesAmount} articles</p>
           </div>
+
+          {isLoggedIn && <SubscribeButton />}
         </div>
-        {articles.length === 0 && noArticles ? (
-          <ArticlesEmpty />
-        ) : (
-          <ArticlesList
-            articles={articles}
-            isLoading={isLoading}
-            hasNextPage={hasNextPage}
-            onLoadMore={handleLoadMore}
-          />
-        )}
-        {isModalOpen && modalType === 'ErrorSave' && <ModalErrorSave />}
       </div>
-    </>
+      {articles.length === 0 && noArticles ? (
+        <ArticlesEmpty />
+      ) : (
+        <ArticlesList
+          articles={articles}
+          isLoading={isLoading}
+          hasNextPage={hasNextPage}
+          onLoadMore={handleLoadMore}
+        />
+      )}
+    </div>
   );
 };
 
