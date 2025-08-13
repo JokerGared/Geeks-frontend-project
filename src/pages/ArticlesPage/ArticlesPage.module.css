@@ -40,6 +40,7 @@
   line-height: 155%;
   color: #595d62;
   cursor: pointer;
+  outline: none;
 }
 
 .error {
@@ -51,9 +52,3 @@
   font-weight: 400;
   font-size: 18px;
 }
-/* @media screen and (min-width: 768px) {
-}
-
-@media screen and (min-width: 1440px) {
-
-} */

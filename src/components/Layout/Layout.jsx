@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -24,6 +24,15 @@ const Layout = () => {
   const LogoutConfirmIsOpen =
     modalType === MODALS.MODAL_LOGOUT_CONFIRM && modalIsOpen;
   const mobileMenuIsOpen = MODALS.MOBILE_MENU && modalIsOpen;
+
+  useEffect(() => {
+    if (modalIsOpen) {
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = '';
+      };
+    }
+  }, [modalIsOpen]);
 
   return (
     <div className={s.layout}>

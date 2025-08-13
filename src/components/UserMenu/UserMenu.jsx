@@ -12,8 +12,6 @@ const handleActiveClass = ({ isActive }) => {
 const UserMenu = () => {
   const { name, avatarUrl } = useSelector(selectUser);
 
-  const userAvatar = avatarUrl ? avatarUrl : '/images/default-avatar.png';
-
   const dispatch = useDispatch();
 
   const handleOpenConfirmExitModal = () => {
