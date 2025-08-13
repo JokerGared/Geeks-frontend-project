@@ -50,7 +50,6 @@ const MobileMenu = () => {
   };
 
   const handleOpenConfirmExitModal = () => {
-    handleCloseModal();
     dispatch(openModal({ type: 'modalLogoutConfirm' }));
   };
 

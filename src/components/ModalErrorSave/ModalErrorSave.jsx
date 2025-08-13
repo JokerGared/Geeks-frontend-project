@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import s from './ModalErrorSave.module.css';
 import { closeModal } from '../../redux/modal/slice';
+import { selectModalPayload } from '../../redux/modal/selectors';
 
 const ModalErrorSave = () => {
+  const message = useSelector(selectModalPayload);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -56,10 +58,11 @@ const ModalErrorSave = () => {
             <use href="/icons.svg#icon-close" />
           </svg>
         </button>
-        <h2 className={s.modalTitle}>Error while saving</h2>
-        <p className={s.modalText}>
-          To save this article, you need to <br /> authorize first
-        </p>
+        <h2 className={s.modalTitle}>{message.header}</h2>
+        <p
+          className={s.modalText}
+          dangerouslySetInnerHTML={{ __html: message.text }}
+        />
         <div className={s.modalActions}>
           <button
             onClick={() => handleNavigate('/login')}

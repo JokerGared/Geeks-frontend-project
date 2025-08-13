@@ -12,8 +12,6 @@ import {
   removeFromFavorites,
 } from '../../redux/favorites/operations';
 
-import toast from 'react-hot-toast';
-
 const ButtonAddToBookmarks = ({ article }) => {
   const dispatch = useDispatch();
 
@@ -22,7 +20,6 @@ const ButtonAddToBookmarks = ({ article }) => {
   const favorites = useSelector(selectFavorites);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isLoading = useSelector((state) => state.favorites.isLoading);
-  const error = useSelector((state) => state.favorites.error);
 
   const isSaved =
     Array.isArray(favorites) &&
@@ -30,7 +27,15 @@ const ButtonAddToBookmarks = ({ article }) => {
 
   const handleClick = async () => {
     if (!isLoggedIn) {
-      dispatch(openModal({ type: MODALS.MODAL_ERROR_SAVE }));
+      dispatch(
+        openModal({
+          type: MODALS.MODAL_ERROR_SAVE,
+          payload: {
+            header: 'Error while saving',
+            text: 'To save this article, you need to <br /> authorize first',
+          },
+        }),
+      );
       return;
     }
 

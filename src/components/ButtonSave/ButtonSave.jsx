@@ -12,8 +12,6 @@ import {
   removeFromFavorites,
 } from '../../redux/favorites/operations';
 
-import toast from 'react-hot-toast';
-
 const ButtonSave = ({ article }) => {
   const dispatch = useDispatch();
 
