@@ -42,7 +42,7 @@ const AddArticleForm = () => {
   const initialValues = {
     title: editingArticle?.title || '',
     article: editingArticle?.article || '',
-    img: null,
+    img: articleId ? undefined : null,
     desc: editingArticle?.desc || '',
   };
 
@@ -68,6 +68,24 @@ const AddArticleForm = () => {
       }),
   });
 
+  const validationSchemaEditingArticle = Yup.object({
+    title: Yup.string()
+      .min(3, 'Title must be at least 3 characters')
+      .max(48, 'Title can be up to 48 characters'),
+
+    article: Yup.string()
+      .min(100, 'Article must be at least 100 characters')
+      .max(4000, 'Article can be up to 4000 characters'),
+
+    desc: Yup.string()
+      .min(3, 'Description must be at least 3 characters')
+      .max(100, 'Description can be up to 100 characters'),
+
+    img: Yup.mixed().test('fileSize', 'Image too large (max 1MB)', (value) => {
+      return !value || value.size <= 1000000;
+    }),
+  });
+
   const adjustTextareaHeight = () => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
@@ -89,11 +107,17 @@ const AddArticleForm = () => {
 
   const handleSubmit = async (values, { resetForm }) => {
     try {
+      const filteredValues = { ...values };
+
+      if (articleId && !filteredValues.img) {
+        delete filteredValues.img;
+      }
+
       if (articleId && editingArticle) {
         const result = await dispatch(
           updateArticle({
             id: articleId,
-            updates: values,
+            updates: filteredValues,
           }),
         ).unwrap();
         toast.success('Article updated successfully!');
@@ -112,7 +136,9 @@ const AddArticleForm = () => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={validationSchema}
+      validationSchema={
+        editingArticle ? validationSchemaEditingArticle : validationSchema
+      }
       onSubmit={handleSubmit}
       enableReinitialize={true}
     >

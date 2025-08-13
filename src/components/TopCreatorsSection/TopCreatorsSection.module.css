@@ -20,7 +20,7 @@
 
 .topCreatorsLink:hover,
 .topCreatorsLink:focus {
-  color: var(--secondary-icon-fill)
+  color: var(--secondary-icon-fill);
 }
 
 .topCreatorsIcon {
@@ -29,7 +29,7 @@
 
 .topCreatorsLink:hover .topCreatorsIcon,
 .topCreatorsLink:focus .topCreatorsIcon {
-  stroke: var(--secondary-icon-fill)
+  stroke: var(--secondary-icon-fill);
 }
 
 .topCreatorsLink::after {
@@ -40,7 +40,7 @@
   width: 0;
   height: 1px;
   background-color: var(--link-color);
-  transition: width .3s ease;
+  transition: width 0.3s ease;
 }
 
 .topCreatorsLink:hover::after,
@@ -54,9 +54,13 @@
   flex-wrap: wrap;
   justify-content: space-between;
   row-gap: 16px;
+
+  @media screen and (max-width: 392px) {
+    justify-content: center;
+  }
 }
 
-@media screen and (min-width:768px) {
+@media screen and (min-width: 768px) {
   .topCreatorsTitleLinkContainer {
     display: flex;
     justify-content: space-between;
@@ -78,7 +82,7 @@
   }
 }
 
-@media screen and (min-width:1440px) {
+@media screen and (min-width: 1440px) {
   .topCreatorsTitle {
     font-size: 40px;
   }

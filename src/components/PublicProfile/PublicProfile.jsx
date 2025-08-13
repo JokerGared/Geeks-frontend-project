@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -14,16 +14,14 @@ import {
   selectArticlesHasNextPage,
   selectArticlesPage,
 } from '../../redux/articles/selectors';
-import {
-  selectIsModalOpen,
-  selectModalType,
-} from '../../redux/modal/selectors';
 
 import s from './PublicProfile.module.css';
 import ArticlesEmpty from '../ArticlesEmpty/ArticlesEmpty';
 import SubscribeButton from '../SubscribeButton/SubscribeButton';
 import { selectIsLoading } from '../../redux/loading/selectors';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { clearAuthorArticles } from '../../redux/articles/slice';
+import { clearAuthors } from '../../redux/authors/slice';
 
 const PublicProfile = () => {
   const { authorId } = useParams();
@@ -36,18 +34,25 @@ const PublicProfile = () => {
   const page = useSelector(selectArticlesPage);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  const isModalOpen = useSelector(selectIsModalOpen);
-  const modalType = useSelector(selectModalType);
+  const [noArticles, setNoArticles] = useState(false);
 
   useEffect(() => {
+    dispatch(clearAuthors());
     dispatch(fetchAuthorById(authorId));
   }, [dispatch, authorId]);
 
   useEffect(() => {
-    if (author?._id) {
-      dispatch(fetchArticlesByAuthorId({ id: author._id, page: 1 }));
+    dispatch(clearAuthorArticles());
+    if (authorId) {
+      dispatch(fetchArticlesByAuthorId({ id: authorId, page: 1 }))
+        .unwrap()
+        .then((resp) => {
+          if (resp.data.length === 0) {
+            setNoArticles(true);
+          }
+        });
     }
-  }, [dispatch, author?._id]);
+  }, [dispatch, authorId]);
 
   const handleLoadMore = () => {
     if (author._id && hasNextPage) {
@@ -84,20 +89,18 @@ const PublicProfile = () => {
 
           {isLoggedIn && <SubscribeButton />}
         </div>
+        {articles.length === 0 && noArticles ? (
+          <ArticlesEmpty />
+        ) : (
+          <ArticlesList
+            articles={articles}
+            isLoading={isLoading}
+            hasNextPage={hasNextPage}
+            onLoadMore={handleLoadMore}
+          />
+        )}
       </div>
-
-      {articles.length === 0 && !isLoading ? (
-        <ArticlesEmpty />
-      ) : (
-        <ArticlesList
-          articles={articles}
-          isLoading={isLoading}
-          hasNextPage={hasNextPage}
-          onLoadMore={handleLoadMore}
-        />
-      )}
-      {isModalOpen && modalType === 'ErrorSave' && <ModalErrorSave />}
-    </div>
+    </>
   );
 };
 
