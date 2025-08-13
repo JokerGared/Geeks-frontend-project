@@ -89,18 +89,18 @@ const PublicProfile = () => {
 
           {isLoggedIn && <SubscribeButton />}
         </div>
-        {articles.length === 0 && noArticles ? (
-          <ArticlesEmpty />
-        ) : (
-          <ArticlesList
-            articles={articles}
-            isLoading={isLoading}
-            hasNextPage={hasNextPage}
-            onLoadMore={handleLoadMore}
-          />
-        )}
       </div>
-    </>
+      {articles.length === 0 && noArticles ? (
+        <ArticlesEmpty />
+      ) : (
+        <ArticlesList
+          articles={articles}
+          isLoading={isLoading}
+          hasNextPage={hasNextPage}
+          onLoadMore={handleLoadMore}
+        />
+      )}
+    </div>
   );
 };
 
